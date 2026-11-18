@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio of Devanshi Patel — Frontend & Full-Stack Developer specializing in React.js, Next.js, and REST API Integrations.">
+  <meta name="color-scheme" content="light dark">
+  <title>Devanshi Patel ✦ Frontend & Full-Stack Artisan</title>
+
+  <!-- Google Fonts: IM Fell English (headings) & Crimson Pro (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <script>
+    // Immediate script to prevent FOUC (Flash of Un-themed Content)
+    (function () {
+      try {
+        const storedTheme = localStorage.getItem('devanshi_theme');
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        }
+      } catch (e) {
+        // Fallback silently if storage is restricted
+      }
+    })();
+  </script>
+
+  <style>
+    /* ==========================================================================
+       THEMES & CUSTOM PROPERTIES (CSS Variables)
+       ========================================================================== */
+    :root {
+      /* Typography */
+      --font-heading: 'IM Fell English', Garamond, 'Palatino Linotype', 'Book Antiqua', serif;
+      --font-body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+
+      /* Light Theme (Parchment) */
+      --bg-color: #f4ebd8;
+      --text-color: #2b1d12;
+      --accent-color: #9c7838;
+      --accent-text: #745218;
+      --glow-rgb: 156, 120, 56;
+      --btn-bg: #8b1e1e;
+      --btn-text: #f4ebd8;
+      --btn-hover: #701616;
+      --btn-shadow: rgba(139, 30, 30, 0.35);
+
+      /* Semantic Surfaces & Utilities (Light) */
+      --card-bg: rgba(244, 235, 216, 0.85);
+      --card-inner: rgba(255, 255, 255, 0.45);
+      --card-border: rgba(156, 120, 56, 0.28);
+      --subtle-ink: #543d2b;
+      --nav-bg: rgba(244, 235, 216, 0.92);
+      --border-light: rgba(156, 120, 56, 0.22);
+      --table-header-bg: rgba(156, 120, 56, 0.12);
+      --table-row-even: rgba(156, 120, 56, 0.05);
+      --table-row-hover: rgba(156, 120, 56, 0.1);
+      --tag-bg: rgba(156, 120, 56, 0.14);
+      --code-bg: rgba(43, 29, 18, 0.06);
+      --wax-seal-border: #721616;
+
+      color-scheme: light;
+    }
+
+    /* System Preference: Dark Default */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        /* Dark Theme (Midnight) */
+        --bg-color: #0b0e17;
+        --text-color: #ede3cf;
+        --accent-color: #d4af37;
+      --accent-text: #d4af37;
+      --glow-rgb: 212, 175, 55;
+      --btn-bg: #a62626;
+        --btn-text: #ede3cf;
+        --btn-hover: #c32e2e;
+        --btn-shadow: rgba(166, 38, 38, 0.5);
+
+        /* Semantic Surfaces & Utilities (Dark) */
+        --card-bg: rgba(15, 20, 32, 0.88);
+        --card-inner: rgba(22, 29, 46, 0.65);
+        --card-border: rgba(212, 175, 55, 0.25);
+        --subtle-ink: #c2b79e;
+        --nav-bg: rgba(11, 14, 23, 0.93);
+        --border-light: rgba(212, 175, 55, 0.2);
+        --table-header-bg: rgba(212, 175, 55, 0.14);
+        --table-row-even: rgba(212, 175, 55, 0.04);
+        --table-row-hover: rgba(212, 175, 55, 0.09);
+        --tag-bg: rgba(212, 175, 55, 0.15);
+        --code-bg: rgba(237, 227, 207, 0.07);
+        --wax-seal-border: #871c1c;
+
+        color-scheme: dark;
+      }
+    }
+
+    /* Explicit Dark Theme (Midnight) */
+    :root[data-theme="dark"] {
+      --bg-color: #0b0e17;
+      --text-color: #ede3cf;
+      --accent-color: #d4af37;
+      --accent-text: #d4af37;
+      --glow-rgb: 212, 175, 55;
+      --btn-bg: #a62626;
+      --btn-text: #ede3cf;
+      --btn-hover: #c32e2e;
+      --btn-shadow: rgba(166, 38, 38, 0.5);
+
+      --card-bg: rgba(15, 20, 32, 0.88);
+      --card-inner: rgba(22, 29, 46, 0.65);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --subtle-ink: #c2b79e;
+      --nav-bg: rgba(11, 14, 23, 0.93);
+      --border-light: rgba(212, 175, 55, 0.2);
+      --table-header-bg: rgba(212, 175, 55, 0.14);
+      --table-row-even: rgba(212, 175, 55, 0.04);
+      --table-row-hover: rgba(212, 175, 55, 0.09);
+      --tag-bg: rgba(212, 175, 55, 0.15);
+      --code-bg: rgba(237, 227, 207, 0.07);
+      --wax-seal-border: #871c1c;
+
+      color-scheme: dark;
+    }
+
+    /* Explicit Light Theme (Parchment) */
+    :root[data-theme="light"] {
+      --bg-color: #f4ebd8;
+      --text-color: #2b1d12;
+      --accent-color: #9c7838;
+      --accent-text: #745218;
+      --glow-rgb: 156, 120, 56;
+      --btn-bg: #8b1e1e;
+      --btn-text: #f4ebd8;
+      --btn-hover: #701616;
+      --btn-shadow: rgba(139, 30, 30, 0.35);
+
+      --card-bg: rgba(244, 235, 216, 0.85);
+      --card-inner: rgba(255, 255, 255, 0.45);
+      --card-border: rgba(156, 120, 56, 0.28);
+      --subtle-ink: #543d2b;
+      --nav-bg: rgba(244, 235, 216, 0.92);
+      --border-light: rgba(156, 120, 56, 0.22);
+      --table-header-bg: rgba(156, 120, 56, 0.12);
+      --table-row-even: rgba(156, 120, 56, 0.05);
+      --table-row-hover: rgba(156, 120, 56, 0.1);
+      --tag-bg: rgba(156, 120, 56, 0.14);
+      --code-bg: rgba(43, 29, 18, 0.06);
+      --wax-seal-border: #721616;
+
+      color-scheme: light;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLING
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 18px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.45s ease, color 0.45s ease;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(156, 120, 56, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(156, 120, 56, 0.04) 0%, transparent 40%);
+      position: relative;
+    }
+
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      color: var(--text-color);
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.2s ease, border-bottom 0.2s ease;
+    }
+
+    a {
+      color: var(--accent-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--btn-bg);
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       DISTINCT FOCUS-VISIBLE ACCESSIBILITY OUTLINES
+       2px solid accent colour with 3px offset on every link, button, and toggle
+       ========================================================================== */
+    a:focus-visible,
+    button:focus-visible,
+    .nav-link:focus-visible,
+    .wax-btn:focus-visible,
+    .owl-btn:focus-visible,
+    .spell-toggle-btn:focus-visible,
+    .mobile-menu-btn:focus-visible,
+    .letter-cta-link:focus-visible,
+    .back-to-top:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--accent-color) !important;
+      outline-offset: 3px !important;
+      box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.5) !important;
+    }
+
+
+    /* Navigation Links & Table Headers Requirement:
+       Style navigation links and table headers in uppercase with letter-spacing: 0.12em for an editorial storybook feel */
+    nav a,
+    .nav-link,
+    th,
+    .editorial-badge,
+    .section-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ==========================================================================
+       SECTION DIVIDERS REQUIREMENT:
+       Separate major sections using 1px solid gold hairline borders with a centered ✦ diamond ornament via CSS pseudo-elements.
+       ========================================================================== */
+    .section-divider {
+      position: relative;
+      border: none;
+      height: 1px;
+      background-color: var(--accent-color);
+      margin: 4.5rem auto;
+      width: 90%;
+      max-width: 1040px;
+      overflow: visible;
+      opacity: 0.85;
+    }
+
+    .section-divider::before {
+      content: "✦";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--bg-color);
+      padding: 0 1.2rem;
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: background-color 0.45s ease, color 0.45s ease;
+    }
+
+    /* ==========================================================================
+       RADIAL CANDLE GLOW (Dark Mode Only)
+       ========================================================================== */
+    #candle-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      background: radial-gradient(550px circle at var(--candle-x, -500px) var(--candle-y, -500px),
+          rgba(212, 175, 55, 0.14) 0%,
+          rgba(235, 185, 60, 0.08) 25%,
+          rgba(212, 175, 55, 0.02) 50%,
+          transparent 75%);
+    }
+
+    /* Glow active ONLY in dark mode */
+    :root[data-theme="dark"] #candle-glow {
+      opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) #candle-glow {
+        opacity: 1;
+      }
+    }
+
+    :root[data-theme="light"] #candle-glow {
+      opacity: 0 !important;
+      display: none;
+    }
+
+    /* ==========================================================================
+       REDUCED MOTION PREFERENCE:
+       Disable the glow and all animations when prefers-reduced-motion: reduce is enabled.
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      #candle-glow {
+        display: none !important;
+        opacity: 0 !important;
+      }
+
+      .parchment-letter {
+        animation: none !important;
+        transform: rotate(-1.5deg) !important;
+      }
+    }
+
+    /* ==========================================================================
+       CONTAINER & EDITORIAL FRAME
+       ========================================================================== */
+    .folio-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* Storybook Header Banner / Top Nav */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      transition: background-color 0.4s ease, border-color 0.4s ease;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1.5rem;
+    }
+
+    .masthead-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      text-decoration: none !important;
+    }
+
+    .masthead-title {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      color: var(--text-color);
+      letter-spacing: 0.04em;
+    }
+
+    .masthead-sigil {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.4rem;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-color);
+      padding: 0.35rem 0.2rem;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background-color: var(--accent-color);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-text);
+      text-decoration: none;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Nox / Lumos Toggle Button */
+    .spell-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-text);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.45rem 0.95rem;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .spell-toggle-btn:hover {
+      background: rgba(156, 120, 56, 0.12);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    }
+
+    .spell-toggle-btn:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 3px;
+    }
+
+    .spell-icon {
+      font-size: 1.05rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .spell-toggle-btn:hover .spell-icon {
+      transform: rotate(18deg) scale(1.15);
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-light);
+      color: var(--text-color);
+      padding: 0.4rem 0.7rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    /* ==========================================================================
+       BUTTONS: WAX-RED STORYBOOK SEALS
+       ========================================================================== */
+    .wax-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      background-color: var(--btn-bg);
+      color: var(--btn-text) !important;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--btn-shadow);
+      transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wax-btn::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      pointer-events: none;
+    }
+
+    .wax-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px var(--btn-shadow);
+    }
+
+    .wax-btn:active {
+      transform: translateY(0);
+    }
+
+    .wax-btn.secondary {
+      background-color: transparent;
+      color: var(--text-color) !important;
+      border: 1px solid var(--accent-color);
+      box-shadow: none;
+    }
+
+    .wax-btn.secondary::before {
+      display: none;
+    }
+
+    .wax-btn.secondary:hover {
+      background-color: rgba(156, 120, 56, 0.12);
+      border-color: var(--accent-color);
+    }
+
+    /* ==========================================================================
+       HERO / PROLOGUE SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 5rem 0 3.5rem 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-story {
+      position: relative;
+    }
+
+    .section-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-size: 3.4rem;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      color: var(--text-color);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-color);
+    }
+
+    .hero-role-call {
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+      margin-bottom: 1.6rem;
+      border-left: 2px solid var(--accent-color);
+      padding-left: 1.2rem;
+    }
+
+    .drop-cap::first-letter {
+      font-family: var(--font-heading);
+      float: left;
+      font-size: 3.8rem;
+      line-height: 0.85;
+      padding-top: 4px;
+      padding-right: 12px;
+      padding-bottom: 4px;
+      color: var(--accent-color);
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 2.2rem;
+    }
+
+    /* ==========================================================================
+       AGED PARCHMENT ACCEPTANCE LETTER & WAX SEAL
+       ========================================================================== */
+    @keyframes letterUnfold {
+      0% {
+        opacity: 0;
+        transform: rotateX(-80deg) rotate(-1.5deg) scale(0.92);
+        filter: brightness(0.85);
+      }
+      60% {
+        opacity: 1;
+        transform: rotateX(8deg) rotate(-1.5deg) scale(1.015);
+        filter: brightness(1.02);
+      }
+      80% {
+        transform: rotateX(-3deg) rotate(-1.5deg) scale(0.995);
+      }
+      100% {
+        opacity: 1;
+        transform: rotateX(0deg) rotate(-1.5deg) scale(1);
+        filter: brightness(1);
+      }
+    }
+
+    .parchment-letter-wrapper {
+      perspective: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .parchment-letter {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(150deg, #fdf8ee 0%, #f4ebd8 55%, #eae0c8 100%);
+      color: #2b1d12;
+      padding: 2.2rem 2.2rem 2.8rem 2.2rem;
+      border-radius: 3px;
+      border: 1px solid rgba(156, 120, 56, 0.45);
+      transform: rotate(-1.5deg);
+      transform-origin: top center;
+      animation: letterUnfold 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.15s 1 normal forwards;
+      
+      /* Layered box-shadows for realistic aged parchment depth */
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.06),
+        0 4px 8px rgba(0, 0, 0, 0.06),
+        0 12px 24px rgba(43, 29, 18, 0.12),
+        0 24px 48px rgba(43, 29, 18, 0.16),
+        inset 0 0 50px rgba(156, 120, 56, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .parchment-letter:hover {
+      transform: rotate(-0.5deg) translateY(-2px);
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.08),
+        0 18px 36px rgba(43, 29, 18, 0.16),
+        0 30px 60px rgba(43, 29, 18, 0.2),
+        inset 0 0 50px rgba(156, 120, 56, 0.12);
+    }
+
+    /* Inner hairline bronze border */
+    .parchment-letter::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--accent-color);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    /* Dark Mode (Midnight) theme adaptations */
+    :root[data-theme="dark"] .parchment-letter {
+      background: linear-gradient(150deg, #171d2b 0%, #111622 60%, #0c101a 100%);
+      color: #ede3cf;
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        0 8px 18px rgba(0, 0, 0, 0.5),
+        0 20px 42px rgba(0, 0, 0, 0.7),
+        0 32px 64px rgba(0, 0, 0, 0.8),
+        inset 0 0 50px rgba(212, 175, 55, 0.07);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .parchment-letter {
+        background: linear-gradient(150deg, #171d2b 0%, #111622 60%, #0c101a 100%);
+        color: #ede3cf;
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.4),
+          0 8px 18px rgba(0, 0, 0, 0.5),
+          0 20px 42px rgba(0, 0, 0, 0.7),
+          0 32px 64px rgba(0, 0, 0, 0.8),
+          inset 0 0 50px rgba(212, 175, 55, 0.07);
+      }
+    }
+
+    /* Letterhead / Crest */
+    .letter-crest {
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.15rem;
+      position: relative;
+    }
+
+    .letter-crest-sigil {
+      color: var(--accent-color);
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .letter-crest-title {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-text);
+    }
+
+    .letter-crest-sub {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--subtle-ink);
+      opacity: 0.85;
+    }
+
+    /* Addressed Recipient */
+    .letter-recipient {
+      padding-left: 0.85rem;
+      border-left: 2px solid var(--accent-color);
+      margin-bottom: 1.15rem;
+    }
+
+    .recipient-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent-text);
+      margin-bottom: 0.1rem;
+    }
+
+    .recipient-name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      line-height: 1.2;
+      color: var(--text-color);
+    }
+
+    .recipient-role {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+    }
+
+    .recipient-location {
+      font-size: 0.82rem;
+      color: var(--subtle-ink);
+      letter-spacing: 0.02em;
+    }
+
+    /* Concise Letter Body */
+    .letter-body {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .letter-body p {
+      margin-bottom: 0.8rem;
+    }
+
+    .letter-greeting {
+      font-family: var(--font-heading);
+      font-size: 1.08rem;
+      font-style: italic;
+      color: var(--text-color);
+      margin-bottom: 0.4rem;
+    }
+
+    .letter-cta-wrapper {
+      margin-top: 0.6rem;
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+    }
+
+    .letter-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .letter-cta-link:hover {
+      color: var(--btn-bg);
+      text-decoration: underline;
+    }
+
+    /* Sign-off */
+    .letter-signoff {
+      margin-top: 0.8rem;
+      padding-right: 75px; /* Room for the wax seal in the bottom corner */
+    }
+
+    .letter-signoff-witness {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+    }
+
+    .letter-signoff-author {
+      font-family: var(--font-heading);
+      font-size: 1.22rem;
+      color: var(--accent-text);
+      line-height: 1.2;
+    }
+
+    /* ==========================================================================
+       REALISTIC CIRCULAR RED WAX SEAL
+       Pure CSS gradients, inner embossed rings, letter 'D' in IM Fell English
+       ========================================================================== */
+    .wax-seal {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #c42929 0%, #991919 45%, #6e0f0f 78%, #480707 100%);
+      box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.35),
+        0 8px 18px rgba(72, 7, 7, 0.45),
+        inset 0 2px 3px rgba(255, 255, 255, 0.32),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      user-select: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .wax-seal:hover {
+      transform: scale(1.06) rotate(4deg);
+      box-shadow: 
+        0 5px 12px rgba(0, 0, 0, 0.4),
+        0 12px 24px rgba(110, 15, 15, 0.5),
+        inset 0 2px 3px rgba(255, 255, 255, 0.38),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Inner embossed ring 1 */
+    .wax-seal-outer-ring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.75),
+        inset 0 -1.5px 2px rgba(255, 255, 255, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 35% 30%, #ab1f1f 0%, #7e1212 60%, #520808 100%);
+    }
+
+    /* Inner embossed ring 2 */
+    .wax-seal-inner-ring {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      box-shadow: 
+        inset 0 1.5px 3px rgba(0, 0, 0, 0.8),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.2),
+        0 1px 1px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 38% 34%, #991a1a 0%, #680d0d 75%, #420606 100%);
+    }
+
+    /* Letter 'D' in IM Fell English */
+    .wax-seal-letter {
+      font-family: var(--font-heading); /* 'IM Fell English' */
+      font-size: 25px;
+      font-weight: 700;
+      color: #e88282;
+      line-height: 1;
+      margin-top: -2px;
+      text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.3),
+        0 -1.5px 2px rgba(0, 0, 0, 0.9),
+        1px 0 2px rgba(0, 0, 0, 0.75);
+    }
+
+    /* ==========================================================================
+       TIMETABLE OF CLASSES (#classes)
+       Semantic HTML <table> that stacks cleanly into cards on mobile (< 768px)
+       ========================================================================== */
+    .classes-table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .classes-table-container::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--border-light);
+      pointer-events: none;
+    }
+
+    .classes-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .classes-table thead {
+      background-color: var(--table-header-bg);
+      border-bottom: 1px solid var(--accent-color);
+    }
+
+    .classes-table th {
+      padding: 1.2rem 1.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-text);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .classes-table td {
+      padding: 1.35rem 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    .classes-table tbody tr:nth-child(even) {
+      background-color: var(--table-row-even);
+    }
+
+    .classes-table tbody tr:hover {
+      background-color: var(--table-row-hover);
+    }
+
+    .class-discipline {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--text-color);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .class-discipline-icon {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    .class-entry-title {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      color: var(--text-color);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .class-entry-desc {
+      font-size: 0.96rem;
+      color: var(--subtle-ink);
+      line-height: 1.55;
+    }
+
+    .class-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .class-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border-light);
+      color: var(--text-color);
+      font-size: 0.76rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    /* Stacking Cleanly into Cards on Mobile (< 768px) */
+    @media (max-width: 767px) {
+      .classes-table-container {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        overflow: visible;
+      }
+
+      .classes-table-container::after {
+        display: none;
+      }
+
+      .classes-table,
+      .classes-table tbody,
+      .classes-table tr,
+      .classes-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .classes-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .classes-table tbody tr {
+        margin-bottom: 1.75rem;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 4px;
+        padding: 1.4rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        position: relative;
+      }
+
+      .classes-table tbody tr::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border: 1px solid var(--border-light);
+        pointer-events: none;
+      }
+
+      .classes-table td {
+        padding: 0.75rem 0;
+        border-bottom: 1px dotted var(--border-light);
+      }
+
+      .classes-table td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .classes-table td::before {
+        content: attr(data-label);
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--accent-text);
+        margin-bottom: 0.35rem;
+      }
+    }
+
+    /* ==========================================================================
+       SPELLBOOK (#spellbook)
+       Clean 2-column grid (1-column on mobile)
+       ========================================================================== */
+    .spellbook-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 767px) {
+      .spellbook-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .spell-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.9rem 2rem;
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .spell-card::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--border-light);
+      pointer-events: none;
+    }
+
+    .spell-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+    }
+
+    .spell-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border-light);
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .spell-name {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      color: var(--accent-text);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .spell-sigil {
+      font-size: 1.05rem;
+      color: var(--accent-text);
+    }
+
+    .spell-type {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      color: var(--subtle-ink);
+      font-weight: 600;
+    }
+
+    .spell-skills {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--text-color);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .spell-desc {
+      font-size: 0.95rem;
+      color: var(--subtle-ink);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .spell-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================================
+       OWL POST (#owl-post)
+       Centered contact section with gliding owl animation
+       ========================================================================== */
+    .owl-post-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 3.5rem 2.5rem;
+      border-radius: 4px;
+      position: relative;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+    }
+
+    .owl-post-card::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid var(--border-light);
+      pointer-events: none;
+    }
+
+    .owl-post-intro {
+      font-size: 1.12rem;
+      line-height: 1.7;
+      color: var(--subtle-ink);
+      margin-bottom: 2.2rem;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .owl-btn-container {
+      margin-bottom: 2.5rem;
+    }
+
+    .owl-btn {
+      font-size: 1rem;
+      padding: 0.95rem 2.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .owl-btn .owl-icon {
+      display: inline-block;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 22px;
+      height: 22px;
+    }
+
+    .owl-btn:hover .owl-icon {
+      transform: translate(6px, -6px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .owl-btn:hover .owl-icon {
+        transform: none !important;
+      }
+    }
+
+    .owl-channels {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.8rem;
+      font-size: 0.95rem;
+      color: var(--subtle-ink);
+    }
+
+    .owl-channel-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .owl-channel-item a {
+      color: var(--accent-text);
+      font-weight: 500;
+    }
+
+    .owl-channel-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       SITE FOOTER & COLOPHON
+       ========================================================================== */
+    footer.site-footer {
+      border-top: 1px solid var(--border-light);
+      padding: 3.5rem 0 2.8rem 0;
+      margin-top: 5rem;
+      background-color: var(--nav-bg);
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-colophon {
+      font-size: 0.95rem;
+      color: var(--subtle-ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-fan-note {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--accent-text);
+      margin: 0.8rem 0 0.5rem 0;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-sigil {
+      color: var(--accent-text);
+      font-size: 1.15rem;
+      margin: 0.6rem 0;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-top: 1.2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Back to top button */
+    .back-to-top {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: var(--accent-text);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS & ZERO OVERFLOW AT 375PX MOBILE WIDTH
+       ========================================================================== */
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-color);
+        border-bottom: 1px solid var(--border-light);
+        padding: 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .folio-container {
+        padding: 0 1rem;
+      }
+
+      .nav-bar {
+        padding: 0.75rem 0;
+        gap: 0.5rem;
+      }
+
+      .masthead-title {
+        font-size: 1.15rem;
+      }
+
+      .spell-toggle-btn {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-section {
+        padding: 3rem 0 2rem 0;
+      }
+
+      .hero-title {
+        font-size: clamp(1.85rem, 7.5vw, 2.2rem);
+        line-height: 1.2;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      .hero-role-call {
+        font-size: 1.1rem;
+        padding-left: 0.8rem;
+      }
+
+      .drop-cap::first-letter {
+        font-size: 3.2rem;
+        padding-right: 8px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.85rem;
+      }
+
+      .hero-actions .wax-btn {
+        width: 100%;
+      }
+
+      .parchment-letter-wrapper {
+        padding: 0.5rem 0;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .parchment-letter {
+        padding: 1.6rem 1.1rem 2.8rem 1.1rem;
+        transform: rotate(-0.75deg);
+        max-width: 100%;
+      }
+
+      .wax-seal {
+        width: 60px;
+        height: 60px;
+        bottom: 12px;
+        right: 12px;
+      }
+
+      .wax-seal-outer-ring {
+        width: 48px;
+        height: 48px;
+      }
+
+      .wax-seal-inner-ring {
+        width: 36px;
+        height: 36px;
+      }
+
+      .wax-seal-letter {
+        font-size: 21px;
+      }
+
+      .letter-signoff {
+        padding-right: 64px;
+      }
+
+      .section-title {
+        font-size: 1.85rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+      }
+
+      .section-divider {
+        margin: 3rem auto;
+      }
+
+      .classes-table tbody tr {
+        padding: 1.1rem 0.95rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .class-discipline {
+        white-space: normal;
+        font-size: 1.15rem;
+      }
+
+      .class-tags {
+        gap: 0.35rem;
+      }
+
+      .class-tag {
+        font-size: 0.72rem;
+        padding: 0.15rem 0.45rem;
+      }
+
+      .spell-card {
+        padding: 1.4rem 1.1rem;
+      }
+
+      .spell-name {
+        font-size: 1.35rem;
+      }
+
+      .spell-skills {
+        font-size: 1rem;
+      }
+
+      .owl-post-card {
+        padding: 2.2rem 1.1rem;
+      }
+
+      .owl-btn {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+      }
+
+      .owl-channels {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .footer-links {
+        gap: 1rem;
+        font-size: 0.74rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Radial candle glow element (active in dark mode only) -->
+  <div id="candle-glow" aria-hidden="true"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="folio-container">
+      <nav class="nav-bar" aria-label="Main Navigation">
+        <a href="#prologue" class="masthead-logo">
+          <span class="masthead-sigil">✦</span>
+          <span class="masthead-title">Devanshi Patel</span>
+        </a>
+
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#prologue" class="nav-link">Prologue</a></li>
+          <li><a href="#classes" class="nav-link">Classes</a></li>
+          <li><a href="#spellbook" class="nav-link">Spellbook</a></li>
+          <li><a href="#owl-post" class="nav-link">Owl Post</a></li>
+        </ul>
+
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <!-- Nox / Lumos Spell Toggle -->
+          <button id="theme-toggle" class="spell-toggle-btn" aria-label="Toggle Nox or Lumos theme"
+            title="Cast spell to toggle theme">
+            <span class="spell-icon" id="spell-icon">🕯️</span>
+            <span id="spell-text">Nox</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Open Navigation Menu">
+            ☰
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         HERO / PROLOGUE SECTION
+         ======================================================================== -->
+    <section id="prologue" class="hero-section">
+      <div class="folio-container">
+        <div class="hero-grid">
+          <div class="hero-story">
+            <span class="section-eyebrow">✦ Prologue ✦</span>
+            <h1 class="hero-title">Crafting Resilient Web <em>Experiences</em> & Dynamic Interfaces</h1>
+            <div class="hero-role-call">
+              Frontend & Full-Stack Developer · React.js & Next.js · REST API Integrations
+            </div>
+            <p class="drop-cap">
+              Devanshi Patel is an engineer of the digital realm based in Gandhinagar, Gujarat. Bridging deliberate
+              design with rigorous engineering, she specializes in forging production, client-facing web applications,
+              performant interactive widgets, and clean RESTful data architectures.
+            </p>
+            <p>
+              From architecting full-stack support portals with real-time persistent sessions to authoring sophisticated
+              review and analytics engines for thousands of active visitors, her craft turns intricate requirements into
+              fluid, dependable reality.
+            </p>
+            <div class="hero-actions">
+              <a href="#classes" class="wax-btn">
+                <span>View Timetable</span>
+                <span>✦</span>
+              </a>
+              <a href="#owl-post" class="wax-btn secondary">
+                <span>Send an Owl</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Aged Parchment Acceptance Letter -->
+          <aside class="parchment-letter-wrapper" aria-label="Official Acceptance Letter">
+            <div class="parchment-letter">
+              <!-- Crest & Letterhead -->
+              <div class="letter-crest">
+                <span class="letter-crest-sigil">✦ 🕮 ✦</span>
+                <div class="letter-crest-title">THE ORDER OF THE WEB & CODE</div>
+                <div class="letter-crest-sub">OFFICIAL ACCEPTANCE DISPATCH</div>
+              </div>
+
+              <!-- Recipient Address -->
+              <div class="letter-recipient">
+                <div class="recipient-label">Addressed To:</div>
+                <div class="recipient-name">Devanshi Patel</div>
+                <div class="recipient-role">Frontend & Full-Stack Developer</div>
+                <div class="recipient-location">Gandhinagar, Gujarat</div>
+              </div>
+
+              <!-- Concise Letter Body -->
+              <div class="letter-body">
+                <p class="letter-greeting">Welcome, Esteemed Visitor —</p>
+                <p>
+                  We are delighted to present the craft and works of <strong>Devanshi Patel</strong>. Herein lies an artisan specializing in resilient frontend architectures with <strong>React.js</strong>, full-stack portals in <strong>Next.js</strong>, and robust <strong>REST API integrations</strong> powering live production environments.
+                </p>
+                <p class="letter-cta-wrapper">
+                  Examine her dispatched milestones and terms of practice in the 
+                  <a href="#classes" class="letter-cta-link">Timetable of Classes ↓</a>
+                </p>
+              </div>
+
+              <!-- Sign-off & Seal -->
+              <div class="letter-signoff">
+                <div class="letter-signoff-witness">In Witness Whereof,</div>
+                <div class="letter-signoff-author">Devanshi Patel</div>
+              </div>
+
+              <!-- Realistic Circular Red Wax Seal -->
+              <div class="wax-seal" aria-hidden="true" title="Official Seal of Devanshi Patel">
+                <div class="wax-seal-outer-ring">
+                  <div class="wax-seal-inner-ring">
+                    <span class="wax-seal-letter">D</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <hr class="section-divider">
+
+    <!-- ========================================================================
+         TIMETABLE OF CLASSES (#classes)
+         Semantic HTML <table> that stacks cleanly into cards on mobile (< 768px)
+         ======================================================================== -->
+    <section id="classes" class="folio-container">
+      <div id="timetable" style="scroll-margin-top: 5rem;"></div>
+      <div class="section-header">
+        <span class="section-eyebrow">✦ The Curriculum ✦</span>
+        <h2 class="section-title">Timetable of Classes</h2>
+        <p class="section-subtitle">A schedule of technical masteries, production disciplines, and client-facing artifacts.</p>
+      </div>
+
+      <div class="classes-table-container">
+        <table class="classes-table">
+          <thead>
+            <tr>
+              <th scope="col">Discipline</th>
+              <th scope="col">Curriculum & Project Artifact</th>
+              <th scope="col">Enchanted Runes / Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Discipline">
+                <div class="class-discipline">
+                  <span class="class-discipline-icon">⚗️</span>
+                  <span>Potions</span>
+                </div>
+              </td>
+              <td data-label="Curriculum & Project Artifact">
+                <div class="class-entry-title">Remedy Success Centre</div>
+                <p class="class-entry-desc">
+                  Full-stack support portal with staff login, persistent live chat via session tokens, DOCX transcript export, and Airtable/Slack/Resend integrations.
+                </p>
+              </td>
+              <td data-label="Enchanted Runes / Tags">
+                <div class="class-tags">
+                  <span class="class-tag">Next.js</span>
+                  <span class="class-tag">React</span>
+                  <span class="class-tag">REST APIs</span>
+                  <span class="class-tag">Airtable</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td data-label="Discipline">
+                <div class="class-discipline">
+                  <span class="class-discipline-icon">✨</span>
+                  <span>Charms</span>
+                </div>
+              </td>
+              <td data-label="Curriculum & Project Artifact">
+                <div class="class-entry-title">Review Builder & Listing Suite</div>
+                <p class="class-entry-desc">
+                  Production Duda widgets with Google Reviews API, rating-based auto-approval, search, filtering, and CSV export.
+                </p>
+              </td>
+              <td data-label="Enchanted Runes / Tags">
+                <div class="class-tags">
+                  <span class="class-tag">JavaScript</span>
+                  <span class="class-tag">Duda</span>
+                  <span class="class-tag">Google Reviews API</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td data-label="Discipline">
+                <div class="class-discipline">
+                  <span class="class-discipline-icon">📜</span>
+                  <span>Transfiguration</span>
+                </div>
+              </td>
+              <td data-label="Curriculum & Project Artifact">
+                <div class="class-entry-title">Review Collector & Campaign Manager</div>
+                <p class="class-entry-desc">
+                  Dual-mode campaign delivery and customer feedback routing integrated with RemedyConnect API and Airtable.
+                </p>
+              </td>
+              <td data-label="Enchanted Runes / Tags">
+                <div class="class-tags">
+                  <span class="class-tag">JavaScript</span>
+                  <span class="class-tag">RemedyConnect API</span>
+                  <span class="class-tag">Webhooks</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td data-label="Discipline">
+                <div class="class-discipline">
+                  <span class="class-discipline-icon">🛡️</span>
+                  <span>Defence Against the Dark Arts</span>
+                </div>
+              </td>
+              <td data-label="Curriculum & Project Artifact">
+                <div class="class-entry-title">Session & Compliance Hardening</div>
+                <p class="class-entry-desc">
+                  Automated cookie-consent widgets, browser session token handling, and HIPAA-compliant workflows.
+                </p>
+              </td>
+              <td data-label="Enchanted Runes / Tags">
+                <div class="class-tags">
+                  <span class="class-tag">Auth Flows</span>
+                  <span class="class-tag">Session Tokens</span>
+                  <span class="class-tag">HIPAA</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <hr class="section-divider">
+
+    <!-- ========================================================================
+         SPELLBOOK (#spellbook)
+         Clean 2-column grid (1-column on mobile)
+         ======================================================================== -->
+    <section id="spellbook" class="folio-container">
+      <div class="section-header">
+        <span class="section-eyebrow">✦ The Grimoire ✦</span>
+        <h2 class="section-title">The Spellbook</h2>
+        <p class="section-subtitle">Essential incantations, charms, and defensive wards invoked across modern web architectures.</p>
+      </div>
+
+      <div class="spellbook-grid">
+        <!-- Spell 1: Lumos -->
+        <article class="spell-card">
+          <div>
+            <div class="spell-card-header">
+              <h3 class="spell-name"><span class="spell-sigil">✦</span> Lumos</h3>
+              <span class="spell-type">Illumination Charm</span>
+            </div>
+            <div class="spell-skills">React, Next.js, HTML/CSS</div>
+            <p class="spell-desc">
+              Illuminates responsive, component-driven user interfaces with reactive state hierarchies, server-side rendering pipelines, and semantic CSS architecture built for speed and accessibility.
+            </p>
+          </div>
+          <div class="spell-tags">
+            <span class="class-tag">React.js</span>
+            <span class="class-tag">Next.js</span>
+            <span class="class-tag">HTML5</span>
+            <span class="class-tag">CSS3</span>
+          </div>
+        </article>
+
+        <!-- Spell 2: Accio -->
+        <article class="spell-card">
+          <div>
+            <div class="spell-card-header">
+              <h3 class="spell-name"><span class="spell-sigil">✦</span> Accio</h3>
+              <span class="spell-type">Summoning Charm</span>
+            </div>
+            <div class="spell-skills">REST APIs, Webhooks, Airtable</div>
+            <p class="spell-desc">
+              Summons live data streams and payloads across third-party endpoints, orchestrating webhooks, asynchronous data routing, and structured cloud database tables.
+            </p>
+          </div>
+          <div class="spell-tags">
+            <span class="class-tag">REST APIs</span>
+            <span class="class-tag">Webhooks</span>
+            <span class="class-tag">Airtable</span>
+            <span class="class-tag">JSON</span>
+          </div>
+        </article>
+
+        <!-- Spell 3: Reparo -->
+        <article class="spell-card">
+          <div>
+            <div class="spell-card-header">
+              <h3 class="spell-name"><span class="spell-sigil">✦</span> Reparo</h3>
+              <span class="spell-type">Mending Charm</span>
+            </div>
+            <div class="spell-skills">Frontend/API Debugging, Postman</div>
+            <p class="spell-desc">
+              Diagnoses, troubleshoots, and mends fractured network calls, session synchronization errors, and frontend regressions across test and live production environments.
+            </p>
+          </div>
+          <div class="spell-tags">
+            <span class="class-tag">Debugging</span>
+            <span class="class-tag">Postman</span>
+            <span class="class-tag">DevTools</span>
+            <span class="class-tag">Issue Triage</span>
+          </div>
+        </article>
+
+        <!-- Spell 4: Protego -->
+        <article class="spell-card">
+          <div>
+            <div class="spell-card-header">
+              <h3 class="spell-name"><span class="spell-sigil">✦</span> Protego</h3>
+              <span class="spell-type">Shield Charm</span>
+            </div>
+            <div class="spell-skills">Auth Flows, Session Tokens, HIPAA Security</div>
+            <p class="spell-desc">
+              Casts an impenetrable defensive ward over client web apps; implements secure browser session token storage, authenticated access gates, and HIPAA-compliant privacy safeguards.
+            </p>
+          </div>
+          <div class="spell-tags">
+            <span class="class-tag">Auth Flows</span>
+            <span class="class-tag">Session Tokens</span>
+            <span class="class-tag">HIPAA</span>
+            <span class="class-tag">Security</span>
+          </div>
+        </article>
+
+        <!-- Spell 5: Alohomora (Spans full width on desktop for balanced 2-column aesthetic) -->
+        <article class="spell-card" style="grid-column: 1 / -1;">
+          <div>
+            <div class="spell-card-header">
+              <h3 class="spell-name"><span class="spell-sigil">✦</span> Alohomora</h3>
+              <span class="spell-type">Unlocking Charm</span>
+            </div>
+            <div class="spell-skills">MySQL, MongoDB, SQL</div>
+            <p class="spell-desc">
+              Unlocks relational and document-based data vaults; architects normalized database schemas, crafts optimized SQL queries, and guarantees persistent, structured record storage.
+            </p>
+          </div>
+          <div class="spell-tags">
+            <span class="class-tag">MySQL</span>
+            <span class="class-tag">MongoDB</span>
+            <span class="class-tag">SQL</span>
+            <span class="class-tag">Data Modeling</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <hr class="section-divider">
+
+    <!-- ========================================================================
+         OWL POST (#owl-post)
+         Centered contact section with gliding owl animation
+         ======================================================================== -->
+    <section id="owl-post" class="folio-container">
+      <div class="section-header">
+        <span class="section-eyebrow">✦ Correspondence ✦</span>
+        <h2 class="section-title">Owl Post</h2>
+        <p class="section-subtitle">Dispatch a message regarding engineering opportunities, full-stack portals, or technical collaborations.</p>
+      </div>
+
+      <div class="owl-post-card">
+        <p class="owl-post-intro">
+          Whether you are looking to build responsive React/Next.js platforms, engineer custom widgets, or integrate complex RESTful data pipelines, my window is always open for an owl.
+        </p>
+
+        <div class="owl-btn-container">
+          <a href="mailto:devanshi1303@gmail.com" class="wax-btn owl-btn">
+            <span>Send an owl</span>
+            <svg class="owl-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2C7.5 2 4 5.5 4 10c0 4.5 3 7.5 5 11 1.5 2.5 3 2.5 3 2.5s1.5 0 3-2.5c2-3.5 5-6.5 5-11 0-4.5-3.5-8-8-8z"/>
+              <circle cx="9" cy="8" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="8" r="1.5" fill="currentColor"/>
+              <path d="M12 11.5l-1 2h2l-1-2z" fill="currentColor"/>
+              <path d="M5 10c-1.5 2-2 4-2 5.5 2.5.5 5-1 6-2"/>
+              <path d="M19 10c1.5 2 2 4 2 5.5-2.5.5-5-1-6-2"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="owl-channels">
+          <div class="owl-channel-item">
+            <span>✦ <strong>LinkedIn:</strong></span>
+            <a href="https://linkedin.com/in/devanshipatel03" target="_blank" rel="noopener noreferrer">linkedin.com/in/devanshipatel03 ↗</a>
+          </div>
+          <div class="owl-channel-item">
+            <span>✦ <strong>Telephone:</strong></span>
+            <a href="tel:+919316661187">+91 93166 61187</a>
+          </div>
+          <div class="owl-channel-item">
+            <span>✦ <strong>Location:</strong></span>
+            <span>Gandhinagar, Gujarat, India</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER & COLOPHON
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="folio-container">
+      <div class="footer-sigil">✦ ✦ ✦</div>
+      <div class="footer-fan-note">
+        Mischief managed. An unofficial, fan-inspired design.
+      </div>
+      <div class="footer-colophon">
+        Crafted & Inscribed by <strong>Devanshi Patel</strong> · Gandhinagar, Gujarat
+      </div>
+      <p style="font-size: 0.92rem; color: var(--subtle-ink); margin-bottom: 0.5rem;">
+        Typeset in <em>IM Fell English</em> and <em>Crimson Pro</em>. Styled in Parchment & Midnight.
+      </p>
+      <ul class="footer-links">
+        <li><a href="#prologue">Prologue</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#spellbook">Spellbook</a></li>
+        <li><a href="#owl-post">Owl Post</a></li>
+        <li><a href="mailto:devanshi1303@gmail.com">devanshi1303@gmail.com</a></li>
+      </ul>
+      <a href="#prologue" class="back-to-top">↑ Return to the Beginning</a>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT: THEME ENGINE, CANDLE GLOW, & INTERACTIONS
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Elements
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const spellIcon = document.getElementById('spell-icon');
+      const spellText = document.getElementById('spell-text');
+      const candleGlow = document.getElementById('candle-glow');
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      // Motion preference detection
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      // Color scheme media query
+      const systemDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      /**
+       * Determines whether the current view is in dark mode
+       */
+      function isDarkMode() {
+        const explicitTheme = document.documentElement.getAttribute('data-theme');
+        if (explicitTheme === 'dark') return true;
+        if (explicitTheme === 'light') return false;
+        return systemDarkQuery.matches;
+      }
+
+      /**
+       * Updates the theme toggle UI (Nox / Lumos) according to active mode
+       * In Light mode: button offers "Nox" (to extinguish light and enter midnight)
+       * In Dark mode: button offers "Lumos" (to ignite light and enter parchment)
+       */
+      function updateToggleUI() {
+        const dark = isDarkMode();
+        if (dark) {
+          spellIcon.textContent = '✨';
+          spellText.textContent = 'Lumos';
+          themeToggleBtn.setAttribute('title', 'Cast Lumos: Return to Parchment (Light Mode)');
+          themeToggleBtn.setAttribute('aria-label', 'Cast Lumos to activate light theme');
+        } else {
+          spellIcon.textContent = '🕯️';
+          spellText.textContent = 'Nox';
+          themeToggleBtn.setAttribute('title', 'Cast Nox: Enter Midnight (Dark Mode)');
+          themeToggleBtn.setAttribute('aria-label', 'Cast Nox to activate dark theme');
+        }
+      }
+
+      /**
+       * Toggles between Nox and Lumos
+       */
+      function toggleTheme() {
+        const currentlyDark = isDarkMode();
+        const nextTheme = currentlyDark ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        try {
+          localStorage.setItem('devanshi_theme', nextTheme);
+        } catch (e) { }
+
+        updateToggleUI();
+      }
+
+      themeToggleBtn.addEventListener('click', toggleTheme);
+
+      // Listen for system preference changes (if user hasn't hardcoded an override)
+      systemDarkQuery.addEventListener('change', function () {
+        try {
+          const stored = localStorage.getItem('devanshi_theme');
+          if (!stored) {
+            updateToggleUI();
+          }
+        } catch (e) {
+          updateToggleUI();
+        }
+      });
+
+      // Initial UI state setup
+      updateToggleUI();
+
+      /**
+       * Soft Radial Candle Glow that follows the cursor in dark mode only
+       * Disabled when prefers-reduced-motion: reduce is enabled
+       */
+      let glowTicking = false;
+      let lastX = -500;
+      let lastY = -500;
+
+      function updateCandlePosition() {
+        document.documentElement.style.setProperty('--candle-x', lastX + 'px');
+        document.documentElement.style.setProperty('--candle-y', lastY + 'px');
+        glowTicking = false;
+      }
+
+      function onMouseMove(e) {
+        // Only run when dark mode is active and reduced motion is NOT requested
+        if (prefersReducedMotion.matches || !isDarkMode()) return;
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        if (!glowTicking) {
+          window.requestAnimationFrame(updateCandlePosition);
+          glowTicking = true;
+        }
+      }
+
+      window.addEventListener('pointermove', onMouseMove, { passive: true });
+
+      // Disable or enable glow on motion preference changes
+      prefersReducedMotion.addEventListener('change', function (e) {
+        if (e.matches && candleGlow) {
+          candleGlow.style.display = 'none';
+        } else if (candleGlow) {
+          candleGlow.style.display = '';
+        }
+      });
+
+      /**
+       * Mobile Menu Toggle
+       */
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function () {
+          const isOpen = navMenu.classList.toggle('open');
+          mobileToggle.setAttribute('aria-expanded', isOpen);
+          mobileToggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        // Close mobile nav on link click
+        navMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            navMenu.classList.remove('open');
+            mobileToggle.textContent = '☰';
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>
