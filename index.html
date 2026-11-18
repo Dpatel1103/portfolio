@@ -75,6 +75,11 @@
       --code-bg: rgba(43, 29, 18, 0.06);
       --wax-seal-border: #721616;
 
+      /* Atmospheric Background Motes (Parchment - Sunlit Dust) */
+      --mote-bg: radial-gradient(circle, #b8914b 0%, rgba(156, 120, 56, 0.45) 60%, transparent 100%);
+      --mote-shadow: 0 0 3px rgba(156, 120, 56, 0.22);
+      --mote-opacity-scale: 0.32;
+
       color-scheme: light;
     }
 
@@ -106,6 +111,11 @@
         --code-bg: rgba(237, 227, 207, 0.07);
         --wax-seal-border: #871c1c;
 
+        /* Atmospheric Background Motes (Midnight - Floating Candle Embers) */
+        --mote-bg: radial-gradient(circle, #fff3c4 0%, #d4af37 55%, rgba(212, 175, 55, 0.15) 100%);
+        --mote-shadow: 0 0 6px rgba(212, 175, 55, 0.7), 0 0 14px rgba(212, 175, 55, 0.35);
+        --mote-opacity-scale: 0.78;
+
         color-scheme: dark;
       }
     }
@@ -135,6 +145,11 @@
       --code-bg: rgba(237, 227, 207, 0.07);
       --wax-seal-border: #871c1c;
 
+      /* Atmospheric Background Motes (Midnight - Floating Candle Embers) */
+      --mote-bg: radial-gradient(circle, #fff3c4 0%, #d4af37 55%, rgba(212, 175, 55, 0.15) 100%);
+      --mote-shadow: 0 0 6px rgba(212, 175, 55, 0.7), 0 0 14px rgba(212, 175, 55, 0.35);
+      --mote-opacity-scale: 0.78;
+
       color-scheme: dark;
     }
 
@@ -162,6 +177,11 @@
       --tag-bg: rgba(156, 120, 56, 0.14);
       --code-bg: rgba(43, 29, 18, 0.06);
       --wax-seal-border: #721616;
+
+      /* Atmospheric Background Motes (Parchment - Sunlit Dust) */
+      --mote-bg: radial-gradient(circle, #b8914b 0%, rgba(156, 120, 56, 0.45) 60%, transparent 100%);
+      --mote-shadow: 0 0 3px rgba(156, 120, 56, 0.22);
+      --mote-opacity-scale: 0.32;
 
       color-scheme: light;
     }
@@ -271,6 +291,7 @@
     input:focus-visible,
     textarea:focus-visible,
     .nav-link:focus-visible,
+    .mischief-btn:focus-visible,
     .wax-btn:focus-visible,
     .owl-btn:focus-visible,
     .owl-submit-btn:focus-visible,
@@ -303,6 +324,75 @@
     }
 
     /* ==========================================================================
+       SCROLL INK-REVEAL REQUIREMENT
+       Major sections & dividers gently fade in and glide upward like invisible ink appearing on parchment
+       ========================================================================== */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-divider.scroll-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .section-divider.scroll-reveal.is-revealed {
+      opacity: 0.85;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       MISCHIEF MANAGED FOOTER EASTER EGG
+       Interactive clickable button & soft ink disappearance
+       ========================================================================== */
+    .mischief-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 4px;
+      transition: color 0.25s ease, text-shadow 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mischief-btn:hover {
+      color: var(--text-color);
+      text-shadow: 0 0 8px rgba(var(--glow-rgb), 0.45);
+    }
+
+    .footer-ink-surface {
+      transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.75s ease,
+        transform 0.75s ease;
+    }
+
+    .footer-ink-surface.ink-dissolved {
+      opacity: 0.04;
+      filter: blur(2.5px);
+      transform: scale(0.995);
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
        SECTION DIVIDERS REQUIREMENT:
        Separate major sections using 1px solid gold hairline borders with a centered ✦ diamond ornament via CSS pseudo-elements.
        ========================================================================== */
@@ -330,6 +420,63 @@
       font-size: 1.2rem;
       line-height: 1;
       transition: background-color 0.45s ease, color 0.45s ease;
+    }
+
+    /* ==========================================================================
+       ATMOSPHERIC BACKGROUND MOTES
+       Floating candle embers in Dark Mode / Sunlit parchment dust in Light Mode
+       ========================================================================== */
+    #ambient-motes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .ambient-mote {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--mote-bg);
+      box-shadow: var(--mote-shadow);
+      pointer-events: none;
+      animation-name: moteDrift;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+      will-change: transform, opacity;
+    }
+
+    @keyframes moteDrift {
+      0% {
+        transform: translate3d(0, 105vh, 0);
+        opacity: 0;
+      }
+      15% {
+        opacity: calc(var(--mote-peak-opacity, 0.6) * var(--mote-opacity-scale, 1));
+      }
+      50% {
+        transform: translate3d(var(--sway-x, 15px), 50vh, 0);
+        opacity: calc(var(--mote-peak-opacity, 0.8) * var(--mote-opacity-scale, 1));
+      }
+      85% {
+        opacity: calc(var(--mote-peak-opacity, 0.5) * var(--mote-opacity-scale, 1));
+      }
+      100% {
+        transform: translate3d(calc(var(--sway-x, 15px) * -0.6), -10vh, 0);
+        opacity: 0;
+      }
+    }
+
+    /* Content layers strictly in front of ambient motes */
+    main,
+    footer.site-footer {
+      position: relative;
+      z-index: 1;
     }
 
     /* ==========================================================================
@@ -383,9 +530,43 @@
         scroll-behavior: auto !important;
       }
 
-      #candle-glow {
+      #candle-glow,
+      #ambient-motes,
+      .ambient-motes,
+      .ambient-mote {
         display: none !important;
+        animation: none !important;
         opacity: 0 !important;
+      }
+
+      /* Disable Scroll Ink-Reveal, Nav Underline animations, & Footer ink dissolve */
+      .scroll-reveal,
+      .section-divider.scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .section-divider.scroll-reveal {
+        opacity: 0.85 !important;
+      }
+
+      .nav-link::after {
+        transition: none !important;
+      }
+
+      .footer-ink-surface,
+      .footer-ink-surface.ink-dissolved {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+        pointer-events: auto !important;
+      }
+
+      .mischief-btn {
+        text-decoration: none;
+        cursor: default;
       }
 
       .parchment-letter {
@@ -458,23 +639,28 @@
       transition: color 0.2s ease;
     }
 
+    /* Centered Gold Underline on Navigation (draws outward from center) */
     .nav-link::after {
       content: "";
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1.5px;
       background-color: var(--accent-color);
-      transition: width 0.25s ease;
+      transition: width 0.32s cubic-bezier(0.2, 0.8, 0.4, 1);
+      pointer-events: none;
     }
 
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link:focus-visible {
       color: var(--accent-text);
       text-decoration: none;
     }
 
-    .nav-link:hover::after {
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after {
       width: 100%;
     }
 
@@ -2659,6 +2845,9 @@
   <!-- Radial candle glow element (active in dark mode only) -->
   <div id="candle-glow" aria-hidden="true"></div>
 
+  <!-- Ambient Atmospheric Motes (Floating Candles / Sunlit Dust) -->
+  <div id="ambient-motes" class="ambient-motes" aria-hidden="true"></div>
+
   <!-- Top Navigation Header -->
   <header class="site-header">
     <div class="folio-container">
@@ -2781,13 +2970,13 @@
     </section>
 
     <!-- SECTION DIVIDER -->
-    <hr class="section-divider">
+    <hr class="section-divider scroll-reveal">
 
     <!-- ========================================================================
          TIMETABLE OF CLASSES (#classes)
          Semantic HTML <table> that stacks cleanly into cards on mobile (< 768px)
          ======================================================================== -->
-    <section id="classes" class="folio-container">
+    <section id="classes" class="folio-container scroll-reveal">
       <div id="timetable" style="scroll-margin-top: 5rem;"></div>
       <div class="section-header">
         <span class="section-eyebrow">✦ The Curriculum ✦</span>
@@ -2954,13 +3143,13 @@
     </section>
 
     <!-- SECTION DIVIDER -->
-    <hr class="section-divider">
+    <hr class="section-divider scroll-reveal">
 
     <!-- ========================================================================
          SPELLBOOK (#spellbook)
          Clean 2-column grid (1-column on mobile)
          ======================================================================== -->
-    <section id="spellbook" class="folio-container">
+    <section id="spellbook" class="folio-container scroll-reveal">
       <div class="section-header">
         <span class="section-eyebrow">✦ The Grimoire ✦</span>
         <h2 class="section-title">The Spellbook</h2>
@@ -3077,13 +3266,13 @@
     </section>
 
     <!-- SECTION DIVIDER -->
-    <hr class="section-divider">
+    <hr class="section-divider scroll-reveal">
 
     <!-- ========================================================================
          APPRENTICESHIP & CREDENTIALS (#credentials)
          Compact two-column ledger section
          ======================================================================== -->
-    <section id="credentials" class="folio-container">
+    <section id="credentials" class="folio-container scroll-reveal">
       <div class="section-header">
         <span class="section-eyebrow">✦ Records & Ledger ✦</span>
         <h2 class="section-title">Apprenticeship & Credentials</h2>
@@ -3166,13 +3355,13 @@
     </section>
 
     <!-- SECTION DIVIDER -->
-    <hr class="section-divider">
+    <hr class="section-divider scroll-reveal">
 
     <!-- ========================================================================
          OWL POST (#owl-post)
          Centered contact section with gliding owl animation
          ======================================================================== -->
-    <section id="owl-post" class="folio-container">
+    <section id="owl-post" class="folio-container scroll-reveal">
       <div class="section-header">
         <span class="section-eyebrow">✦ Correspondence ✦</span>
         <h2 class="section-title">Owl Post</h2>
@@ -3284,10 +3473,10 @@
        FOOTER & COLOPHON
        ======================================================================== -->
   <footer class="site-footer">
-    <div class="folio-container">
+    <div class="folio-container footer-ink-surface" id="footer-ink-surface">
       <div class="footer-sigil">✦ ✦ ✦</div>
       <div class="footer-fan-note">
-        Mischief managed. An unofficial, fan-inspired design.
+        <button type="button" id="mischief-managed-btn" class="mischief-btn" title="Click to manage mischief" aria-label="Mischief managed — click to dissolve map ink">Mischief managed.</button> An unofficial, fan-inspired design.
       </div>
       <div class="footer-colophon">
         Crafted & Inscribed by <strong>Devanshi Patel</strong> · Gandhinagar, Gujarat
@@ -3305,6 +3494,7 @@
         <li><a href="mailto:devanshi1303@gmail.com">devanshi1303@gmail.com</a></li>
       </ul>
       <a href="#prologue" class="back-to-top">↑ Return to the Beginning</a>
+      <span id="mischief-announcement" class="sr-only" aria-live="polite"></span>
     </div>
   </footer>
 
@@ -3322,6 +3512,8 @@
       const candleGlow = document.getElementById('candle-glow');
       const mobileToggle = document.getElementById('mobile-toggle');
       const navMenu = document.getElementById('nav-menu');
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      const footerInkSurface = document.getElementById('footer-ink-surface');
 
       // Motion preference detection
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -3420,12 +3612,66 @@
 
       window.addEventListener('pointermove', onMouseMove, { passive: true });
 
-      // Disable or enable glow on motion preference changes
+      /**
+       * Atmospheric Background Motes Engine:
+       * Spawns 18 floating candle embers (dark mode) / sunlit dust specks (light mode)
+       */
+      const ambientMotesContainer = document.getElementById('ambient-motes');
+
+      function spawnAmbientMotes() {
+        if (!ambientMotesContainer || ambientMotesContainer.children.length > 0) return;
+        const moteCount = 18;
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < moteCount; i++) {
+          const mote = document.createElement('span');
+          mote.className = 'ambient-mote';
+          // Varying sizes from 2.0px to 4.8px
+          const size = (2.0 + (i % 5) * 0.7).toFixed(1);
+          // Distributed horizontally across viewport (2% to 98%)
+          const left = ((i * 5.5 + 2) % 96 + 2).toFixed(1);
+          // Slow tranquil movement (20s to 33.2s)
+          const duration = (20.0 + (i % 7) * 2.2).toFixed(1);
+          // Staggered negative delays so particles are already in mid-flight on load
+          const delay = (-(i * 1.8 + 0.5)).toFixed(1);
+          // Gentle horizontal sway between -25px and +25px
+          const sway = (((i % 2 === 0 ? 1 : -1) * (12 + (i % 4) * 4))).toFixed(0);
+          // Individual peak opacity
+          const peakOpacity = (0.5 + (i % 4) * 0.12).toFixed(2);
+
+          mote.style.width = size + 'px';
+          mote.style.height = size + 'px';
+          mote.style.left = left + 'vw';
+          mote.style.animationDuration = duration + 's';
+          mote.style.animationDelay = delay + 's';
+          mote.style.setProperty('--sway-x', sway + 'px');
+          mote.style.setProperty('--mote-peak-opacity', peakOpacity);
+
+          fragment.appendChild(mote);
+        }
+        ambientMotesContainer.appendChild(fragment);
+      }
+
+      if (!prefersReducedMotion.matches) {
+        spawnAmbientMotes();
+      }
+
+      // Disable or enable ambient effects on motion preference changes
       prefersReducedMotion.addEventListener('change', function (e) {
-        if (e.matches && candleGlow) {
-          candleGlow.style.display = 'none';
-        } else if (candleGlow) {
-          candleGlow.style.display = '';
+        if (e.matches) {
+          if (candleGlow) candleGlow.style.display = 'none';
+          if (ambientMotesContainer) ambientMotesContainer.style.display = 'none';
+          revealElements.forEach(function (el) {
+            el.classList.add('is-revealed');
+          });
+          if (footerInkSurface) {
+            footerInkSurface.classList.remove('ink-dissolved');
+          }
+        } else {
+          if (candleGlow) candleGlow.style.display = '';
+          if (ambientMotesContainer) {
+            ambientMotesContainer.style.display = '';
+            spawnAmbientMotes();
+          }
         }
       });
 
@@ -3747,6 +3993,69 @@
             cb();
           }
         }
+      }
+
+      /**
+       * ==========================================================================
+       * SCROLL INK-REVEAL ENGINE
+       * Major sections and gold dividers gently fade in and glide upward the first
+       * time they come into view.
+       * ==========================================================================
+       */
+      if (revealElements.length > 0) {
+        if (!prefersReducedMotion.matches && 'IntersectionObserver' in window) {
+          const revealObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -30px 0px'
+          });
+
+          revealElements.forEach(function (el) {
+            revealObserver.observe(el);
+          });
+        } else {
+          // Instantly reveal all elements if reduced-motion or observer unsupported
+          revealElements.forEach(function (el) {
+            el.classList.add('is-revealed');
+          });
+        }
+      }
+
+      /**
+       * ==========================================================================
+       * MISCHIEF MANAGED FOOTER EASTER EGG
+       * Clicking 'Mischief managed.' softly dissolves footer text like map ink
+       * for 2 seconds before fading back in.
+       * ==========================================================================
+       */
+      const mischiefBtn = document.getElementById('mischief-managed-btn');
+      const mischiefLive = document.getElementById('mischief-announcement');
+      let mischiefTimeout = null;
+
+      if (mischiefBtn && footerInkSurface) {
+        mischiefBtn.addEventListener('click', function () {
+          if (prefersReducedMotion.matches) return;
+          if (footerInkSurface.classList.contains('ink-dissolved')) return;
+
+          footerInkSurface.classList.add('ink-dissolved');
+          if (mischiefLive) {
+            mischiefLive.textContent = 'The footer ink softly fades from parchment...';
+          }
+
+          clearTimeout(mischiefTimeout);
+          mischiefTimeout = setTimeout(function () {
+            footerInkSurface.classList.remove('ink-dissolved');
+            if (mischiefLive) {
+              mischiefLive.textContent = 'The footer ink reappears on parchment.';
+            }
+          }, 2000);
+        });
       }
     })();
   </script>
