@@ -7,6 +7,17 @@
   <meta name="description"
     content="Portfolio of Devanshi Patel — Frontend & Full-Stack Developer specializing in React.js, Next.js, and REST API Integrations.">
   <meta name="color-scheme" content="light dark">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Devanshi Patel ✦ Frontend & Full-Stack Portfolio">
+  <meta property="og:description"
+    content="Portfolio of Devanshi Patel — Frontend & Full-Stack Developer specializing in React.js, Next.js, and REST API Integrations.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon: Inline Gold Four-Point Star -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23d4af37' d='M16,2 Q16,16 2,16 Q16,16 16,30 Q16,16 30,16 Q16,16 16,2 Z'/%3E%3C/svg%3E">
+
   <title>Devanshi Patel ✦ Frontend & Full-Stack Artisan</title>
 
   <!-- Google Fonts: IM Fell English (headings) & Crimson Pro (body) -->
@@ -178,11 +189,40 @@
       line-height: 1.7;
       min-height: 100vh;
       overflow-x: hidden;
-      transition: background-color 0.45s ease, color 0.45s ease;
+      transition: background-color 0.45s cubic-bezier(0.2, 0.8, 0.4, 1), color 0.45s cubic-bezier(0.2, 0.8, 0.4, 1);
       background-image:
         radial-gradient(circle at 15% 10%, rgba(156, 120, 56, 0.04) 0%, transparent 40%),
         radial-gradient(circle at 85% 90%, rgba(156, 120, 56, 0.04) 0%, transparent 40%);
       position: relative;
+    }
+
+    /* Smooth color transitions when toggling Nox/Lumos theme across all surfaces */
+    body,
+    .site-header,
+    .nav-bar,
+    .nav-links,
+    .parchment-letter,
+    .classes-table-container,
+    .classes-table thead,
+    .classes-table th,
+    .classes-table td,
+    .classes-table tbody tr,
+    .spell-card,
+    .ledger-card,
+    .owl-post-card,
+    .owl-parchment-scroll,
+    .site-footer,
+    .section-divider,
+    .editorial-badge,
+    .class-tag,
+    .owl-form-input,
+    .owl-form-textarea,
+    .copy-email-btn,
+    .curriculum-scroll-btn {
+      transition: background-color 0.45s cubic-bezier(0.2, 0.8, 0.4, 1),
+        border-color 0.45s cubic-bezier(0.2, 0.8, 0.4, 1),
+        color 0.45s cubic-bezier(0.2, 0.8, 0.4, 1),
+        box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
 
     /* Headings */
@@ -240,6 +280,10 @@
     .mobile-menu-btn:focus-visible,
     .letter-cta-link:focus-visible,
     .back-to-top:focus-visible,
+    .resume-download-link:focus-visible,
+    .curriculum-scroll-btn:focus-visible,
+    .timetable-row:focus-visible,
+    .syllabus-close-btn:focus-visible,
     [tabindex]:focus-visible {
       outline: 2px solid var(--accent-color) !important;
       outline-offset: 3px !important;
@@ -875,16 +919,69 @@
       justify-content: center;
       z-index: 10;
       user-select: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
 
+    /* Wax seal light sheen pseudo-element */
+    .wax-seal::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -150%;
+      width: 75%;
+      height: 200%;
+      background: linear-gradient(105deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.05) 30%,
+          rgba(255, 255, 255, 0.55) 50%,
+          rgba(255, 255, 255, 0.05) 70%,
+          transparent 100%);
+      transform: rotate(20deg);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    /* Tactile hover: slight lift and light sheen sweep across wax seal */
     .wax-seal:hover {
       transform: scale(1.06) rotate(4deg);
       box-shadow:
-        0 5px 12px rgba(0, 0, 0, 0.4),
-        0 12px 24px rgba(110, 15, 15, 0.5),
-        inset 0 2px 3px rgba(255, 255, 255, 0.38),
+        0 6px 14px rgba(0, 0, 0, 0.4),
+        0 14px 26px rgba(110, 15, 15, 0.52),
+        inset 0 2px 4px rgba(255, 255, 255, 0.42),
         inset 0 -3px 5px rgba(0, 0, 0, 0.75);
+    }
+
+    .wax-seal:hover::after {
+      animation: sealSheen 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes sealSheen {
+      0% {
+        left: -150%;
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.85;
+      }
+
+      100% {
+        left: 170%;
+        opacity: 0;
+      }
+    }
+
+    /* Gentle downward stamp press when clicked */
+    .wax-seal:active {
+      transform: scale(0.95) translateY(3px) rotate(1deg);
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.45),
+        0 3px 8px rgba(72, 7, 7, 0.55),
+        inset 0 3px 6px rgba(0, 0, 0, 0.85),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.2);
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
     }
 
     /* Inner embossed ring 1 */
@@ -989,8 +1086,38 @@
       background-color: var(--table-row-even);
     }
 
+    .classes-table tbody tr {
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
     .classes-table tbody tr:hover {
       background-color: var(--table-row-hover);
+    }
+
+    /* Sliding gold bookmark indicator on subject row hover */
+    .classes-table tbody tr td:first-child {
+      position: relative;
+    }
+
+    .classes-table tbody tr td:first-child::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.4, 1);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .classes-table tbody tr:hover td:first-child::before,
+    .classes-table tbody tr:focus-within td:first-child::before {
+      transform: scaleY(1);
     }
 
     .class-discipline {
@@ -1014,6 +1141,14 @@
       color: var(--text-color);
       font-weight: 600;
       margin-bottom: 0.3rem;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.4, 1), color 0.25s ease;
+    }
+
+    /* Subtly shift project title forward on subject row hover */
+    .classes-table tbody tr:hover .class-entry-title,
+    .classes-table tbody tr:focus-within .class-entry-title {
+      transform: translateX(6px);
+      color: var(--accent-text);
     }
 
     .class-entry-desc {
@@ -1080,6 +1215,26 @@
         padding: 1.4rem;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         position: relative;
+        overflow: hidden;
+      }
+
+      .classes-table tbody tr::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: var(--accent-color);
+        box-shadow: 0 0 10px rgba(var(--glow-rgb), 0.6);
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.4, 1);
+      }
+
+      .classes-table tbody tr:hover::before,
+      .classes-table tbody tr:focus-within::before {
+        transform: scaleY(1);
       }
 
       .classes-table tbody tr::after {
@@ -1112,6 +1267,334 @@
       }
     }
 
+    /* Timetable Interactive Rows & Hover Lift */
+    .timetable-row {
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.25s ease,
+                  transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1),
+                  box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+
+    .timetable-row:hover {
+      background-color: var(--table-row-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .timetable-row:active {
+      transform: translateY(0);
+    }
+
+    .timetable-row:focus-visible {
+      outline: 2px solid var(--accent-color) !important;
+      outline-offset: -2px !important;
+      box-shadow: 0 0 12px rgba(var(--glow-rgb), 0.5) !important;
+    }
+
+    /* Subtle 'Inspect Syllabus →' Visual Cue on Each Row */
+    .syllabus-inspect-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--accent-text);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-top: 0.45rem;
+      opacity: 0.85;
+      transition: opacity 0.25s ease, color 0.25s ease;
+    }
+
+    .syllabus-hint-arrow {
+      display: inline-block;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+
+    .timetable-row:hover .syllabus-inspect-hint,
+    .timetable-row:focus-visible .syllabus-inspect-hint {
+      opacity: 1;
+      color: var(--btn-bg);
+    }
+
+    .timetable-row:hover .syllabus-hint-arrow,
+    .timetable-row:focus-visible .syllabus-hint-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ==========================================================================
+       CLASS SYLLABUS DETAIL POPUP MODAL (<dialog>)
+       Aged Parchment Unfolding Animation, Layered Shadows & Wax Seal Stamp
+       ========================================================================== */
+    .syllabus-dialog {
+      border: none;
+      background: transparent;
+      padding: 1.5rem 1rem;
+      max-width: 720px;
+      width: 94%;
+      margin: auto;
+      border-radius: 4px;
+      overflow: visible;
+      color: var(--text-color);
+    }
+
+    .syllabus-dialog::backdrop {
+      background: rgba(11, 14, 23, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      animation: syllabusBackdropFade 0.3s ease;
+    }
+
+    @keyframes syllabusBackdropFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .syllabus-parchment-wrapper {
+      perspective: 1400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* 3D Parchment Unrolling / Unfolding on Row Opening */
+    .syllabus-dialog[open] .syllabus-scroll-container {
+      animation: parchmentSyllabusUnfold 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes parchmentSyllabusUnfold {
+      0% {
+        opacity: 0;
+        transform: rotateX(-65deg) scale(0.9) translateY(-25px);
+        filter: brightness(0.88);
+      }
+      60% {
+        opacity: 1;
+        transform: rotateX(6deg) scale(1.015) translateY(3px);
+        filter: brightness(1.02);
+      }
+      80% {
+        transform: rotateX(-2deg) scale(0.995) translateY(-1px);
+      }
+      100% {
+        opacity: 1;
+        transform: rotateX(0deg) scale(1) translateY(0);
+        filter: brightness(1);
+      }
+    }
+
+    /* Aged Parchment visual texture & layered depth */
+    .syllabus-scroll-container {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(155deg, #fdf8ee 0%, #f4ebd8 45%, #ece1c8 85%, #e1d2b5 100%);
+      color: #2b1d12;
+      border: 1px solid rgba(156, 120, 56, 0.55);
+      border-radius: 4px;
+      padding: 2.4rem 2.6rem 3.2rem 2.6rem;
+      transform-origin: top center;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12),
+        0 16px 36px rgba(43, 29, 18, 0.22),
+        0 36px 72px rgba(43, 29, 18, 0.28),
+        inset 0 0 65px rgba(156, 120, 56, 0.18),
+        inset 0 16px 20px -10px rgba(156, 120, 56, 0.25),
+        inset 0 -16px 20px -10px rgba(156, 120, 56, 0.25);
+    }
+
+    /* Inner hairline bronze border frame */
+    .syllabus-scroll-container::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(156, 120, 56, 0.45);
+      pointer-events: none;
+    }
+
+    /* Midnight Theme Adaptation (Dark Mode Parchment) */
+    :root[data-theme="dark"] .syllabus-scroll-container {
+      background: linear-gradient(155deg, #181e2c 0%, #121723 45%, #0d121c 85%, #090d15 100%);
+      color: #ede3cf;
+      border-color: rgba(212, 175, 55, 0.45);
+      box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.5),
+        0 20px 48px rgba(0, 0, 0, 0.8),
+        0 40px 80px rgba(0, 0, 0, 0.9),
+        inset 0 0 65px rgba(212, 175, 55, 0.08),
+        inset 0 16px 20px -10px rgba(212, 175, 55, 0.12),
+        inset 0 -16px 20px -10px rgba(212, 175, 55, 0.12);
+    }
+
+    :root[data-theme="dark"] .syllabus-scroll-container::after {
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+
+    /* Scroll Top Rod / Ornament */
+    .syllabus-scroll-header-rod {
+      text-align: center;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-text);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .rod-finial-left,
+    .rod-finial-right {
+      color: var(--accent-color);
+      font-size: 0.85rem;
+    }
+
+    /* Miniature Red Wax Seal in Bottom Right Corner */
+    .syllabus-wax-seal {
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #c42929 0%, #991919 45%, #6e0f0f 78%, #480707 100%);
+      box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.35),
+        0 6px 14px rgba(72, 7, 7, 0.45),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      z-index: 5;
+    }
+
+    .syllabus-wax-seal span {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: #e88282;
+      line-height: 1;
+      margin-top: -1px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 -1px 2px rgba(0, 0, 0, 0.9);
+    }
+
+    .syllabus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .syllabus-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--accent-text);
+    }
+
+    .syllabus-close-btn {
+      background: rgba(var(--glow-rgb), 0.08);
+      border: 1px solid var(--border-light);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 1.15rem;
+      line-height: 1;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      margin-left: 1rem;
+    }
+
+    .syllabus-close-btn:hover {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border-color: var(--btn-bg);
+      transform: scale(1.08);
+    }
+
+    .syllabus-title {
+      font-family: var(--font-heading);
+      font-size: 1.95rem;
+      color: var(--text-color);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .syllabus-stack {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--accent-text);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .syllabus-desc {
+      font-size: 0.98rem;
+      color: var(--subtle-ink);
+      line-height: 1.65;
+      margin-bottom: 1.35rem;
+    }
+
+    .syllabus-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 1.25rem 0;
+      position: relative;
+    }
+
+    .syllabus-section-heading {
+      font-family: var(--font-heading);
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .syllabus-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.4rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .syllabus-bullets li {
+      position: relative;
+      padding-left: 1.45rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--subtle-ink);
+    }
+
+    .syllabus-bullets li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0.08rem;
+      color: var(--accent-text);
+      font-size: 0.75rem;
+    }
+
     /* ==========================================================================
        SPELLBOOK (#spellbook)
        Clean 2-column grid (1-column on mobile)
@@ -1135,10 +1618,13 @@
       border-radius: 4px;
       position: relative;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1),
+        border-color 0.3s cubic-bezier(0.2, 0.8, 0.4, 1),
+        box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.4, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      outline: none;
     }
 
     .spell-card::after {
@@ -1147,12 +1633,24 @@
       inset: 6px;
       border: 1px solid var(--border-light);
       pointer-events: none;
+      transition: border-color 0.3s ease, opacity 0.3s ease;
     }
 
-    .spell-card:hover {
+    /* Spellbook Wand Glow: brighten borders and card glow */
+    .spell-card:hover,
+    .spell-card:focus-visible,
+    .spell-card:focus-within {
       transform: translateY(-3px);
       border-color: var(--accent-color);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1),
+        0 0 18px rgba(var(--glow-rgb), 0.22);
+    }
+
+    .spell-card:hover::after,
+    .spell-card:focus-visible::after,
+    .spell-card:focus-within::after {
+      border-color: rgba(var(--glow-rgb), 0.55);
+      opacity: 1;
     }
 
     .spell-card-header {
@@ -1172,11 +1670,32 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      transition: color 0.3s ease, text-shadow 0.3s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
 
     .spell-sigil {
       font-size: 1.05rem;
       color: var(--accent-text);
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.3s ease;
+    }
+
+    /* Softly illuminate spell title with warm gold text glow */
+    .spell-card:hover .spell-name,
+    .spell-card:focus-visible .spell-name,
+    .spell-card:focus-within .spell-name {
+      text-shadow:
+        0 0 8px rgba(var(--glow-rgb), 0.65),
+        0 0 18px rgba(var(--glow-rgb), 0.35);
+    }
+
+    .spell-card:hover .spell-sigil,
+    .spell-card:focus-visible .spell-sigil,
+    .spell-card:focus-within .spell-sigil {
+      text-shadow:
+        0 0 10px rgba(var(--glow-rgb), 0.85),
+        0 0 20px rgba(var(--glow-rgb), 0.5);
+      transform: scale(1.15) rotate(6deg);
     }
 
     .spell-type {
@@ -1207,6 +1726,237 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
+    }
+
+    /* Utility for Honeypot Spam Shield */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==========================================================================
+       APPRENTICESHIP & CREDENTIALS (#credentials)
+       Compact two-column ledger section with quiet editorial aesthetic
+       ========================================================================== */
+    .ledger-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .ledger-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .ledger-card::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--border-light);
+      pointer-events: none;
+    }
+
+    .ledger-card:hover {
+      border-color: var(--accent-color);
+      box-shadow: 0 8px 24px rgba(var(--glow-rgb), 0.12);
+      transform: translateY(-2px);
+    }
+
+    .ledger-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dotted var(--border-light);
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .ledger-role {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      color: var(--accent-text);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+
+    .ledger-term {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      color: var(--subtle-ink);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ledger-company {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--text-color);
+      font-weight: 500;
+      margin-bottom: 0.85rem;
+    }
+
+    .ledger-desc {
+      font-size: 0.98rem;
+      color: var(--subtle-ink);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .credential-entry {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .credential-entry:last-of-type {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .credential-title {
+      font-family: var(--font-heading);
+      font-size: 1.22rem;
+      color: var(--accent-text);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    .credential-meta {
+      font-size: 0.92rem;
+      color: var(--subtle-ink);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .credential-desc {
+      font-size: 0.92rem;
+      color: var(--subtle-ink);
+      line-height: 1.55;
+    }
+
+    .resume-cta-wrap {
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
+      border-top: 1px dashed var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .resume-download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--accent-text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0.45rem 0.95rem;
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      background: rgba(var(--glow-rgb), 0.05);
+      transition: all 0.25s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .resume-download-link:hover {
+      color: var(--btn-bg);
+      border-color: var(--accent-color);
+      background: rgba(var(--glow-rgb), 0.12);
+      text-decoration: underline;
+    }
+
+    .resume-download-link .resume-icon {
+      transition: transform 0.25s ease;
+    }
+
+    .resume-download-link:hover .resume-icon {
+      transform: translateY(2px);
+    }
+
+    /* Ledger bullet points */
+    .ledger-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0.9rem 0 1.35rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ledger-bullets li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--subtle-ink);
+    }
+
+    .ledger-bullets li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0.08rem;
+      color: var(--accent-text);
+      font-size: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .ledger-bullets strong {
+      color: var(--text-color);
+    }
+
+    /* Subtle gold-bordered Download Curriculum Scroll button */
+    .curriculum-scroll-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--accent-text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.65rem 1.35rem;
+      border: 1px solid var(--accent-color);
+      border-radius: 3px;
+      background: rgba(var(--glow-rgb), 0.08);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+      letter-spacing: 0.03em;
+    }
+
+    .curriculum-scroll-btn:hover {
+      color: var(--btn-bg);
+      border-color: var(--btn-bg);
+      background: rgba(var(--glow-rgb), 0.16);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(var(--glow-rgb), 0.2);
+      text-decoration: none;
+    }
+
+    .curriculum-scroll-btn .scroll-icon {
+      transition: transform 0.25s ease;
+      width: 18px;
+      height: 18px;
+    }
+
+    .curriculum-scroll-btn:hover .scroll-icon {
+      transform: translateY(2px);
     }
 
     /* ==========================================================================
@@ -1281,13 +2031,20 @@
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease, margin 0.35s ease;
+      transform-origin: top center;
+      transform: scaleY(0.9) translateY(-6px);
+      transition: max-height 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.45s ease,
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        margin 0.35s ease;
       margin-bottom: 2rem;
     }
 
+    /* Unrolls like a parchment scroll when opened */
     .owl-scroll-container.is-expanded {
-      max-height: 900px;
+      max-height: 950px;
       opacity: 1;
+      transform: scaleY(1) translateY(0);
       margin-top: 1rem;
     }
 
@@ -1494,15 +2251,86 @@
 
     @media (prefers-reduced-motion: reduce) {
 
+      .wax-seal:hover::after,
+      .wax-seal:hover,
+      .wax-seal:active {
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .spell-card:hover,
+      .spell-card:focus-visible,
+      .spell-card:focus-within {
+        transform: none !important;
+      }
+
+      .spell-card:hover .spell-name,
+      .spell-card:focus-visible .spell-name,
+      .spell-card:focus-within .spell-name,
+      .spell-card:hover .spell-sigil,
+      .spell-card:focus-visible .spell-sigil,
+      .spell-card:focus-within .spell-sigil {
+        text-shadow: none !important;
+        transform: none !important;
+      }
+
+      .classes-table tbody tr td:first-child::before,
+      .classes-table tbody tr::before {
+        display: none !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .classes-table tbody tr:hover .class-entry-title,
+      .classes-table tbody tr:focus-within .class-entry-title,
+      .timetable-row:hover,
+      .timetable-row:hover .syllabus-hint-arrow,
+      .timetable-row:focus-visible .syllabus-hint-arrow,
+      .syllabus-close-btn:hover {
+        transform: none !important;
+      }
+
+      .syllabus-dialog[open] .syllabus-scroll-container,
+      .syllabus-dialog::backdrop {
+        animation: none !important;
+        transform: none !important;
+      }
+
       .owl-btn:hover .owl-icon,
       .owl-submit-btn:hover .owl-emoji {
         transform: none !important;
       }
 
       .owl-scroll-container {
+        transform: none !important;
         transition: none !important;
       }
+
+      .ledger-card:hover {
+        transform: none !important;
+      }
+
+      .resume-download-link:hover .resume-icon,
+      .curriculum-scroll-btn:hover,
+      .curriculum-scroll-btn:hover .scroll-icon {
+        transform: none !important;
+      }
     }
+
+    .owl-scroll-container {
+      transition: none !important;
+    }
+
+    .ledger-card:hover {
+      transform: none !important;
+    }
+
+    .resume-download-link:hover .resume-icon,
+    .curriculum-scroll-btn:hover,
+    .curriculum-scroll-btn:hover .scroll-icon {
+      transform: none !important;
+    }
+
 
     .owl-channels {
       display: flex;
@@ -1616,6 +2444,11 @@
     }
 
     @media (max-width: 768px) {
+      .ledger-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
       .nav-links {
         display: none;
         flex-direction: column;
@@ -1778,6 +2611,22 @@
         font-size: 1rem;
       }
 
+      .ledger-card {
+        padding: 1.6rem 1.1rem;
+      }
+
+      .syllabus-scroll-container {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .syllabus-title {
+        font-size: 1.55rem;
+      }
+
+      .syllabus-stack {
+        font-size: 0.95rem;
+      }
+
       .owl-post-card {
         padding: 2.2rem 1.1rem;
       }
@@ -1823,6 +2672,7 @@
           <li><a href="#prologue" class="nav-link">Prologue</a></li>
           <li><a href="#classes" class="nav-link">Classes</a></li>
           <li><a href="#spellbook" class="nav-link">Spellbook</a></li>
+          <li><a href="#credentials" class="nav-link">Credentials</a></li>
           <li><a href="#owl-post" class="nav-link">Owl Post</a></li>
         </ul>
 
@@ -1956,7 +2806,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="timetable-row" data-syllabus="potions" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Potions: Remedy Success Centre">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">⚗️</span>
@@ -1969,6 +2819,10 @@
                   Full-stack support portal with staff login, persistent live chat via session tokens, DOCX transcript
                   export, and Airtable/Slack/Resend integrations.
                 </p>
+                <div class="syllabus-inspect-hint" aria-hidden="true">
+                  <span>Inspect Syllabus</span>
+                  <span class="syllabus-hint-arrow">→</span>
+                </div>
               </td>
               <td data-label="Enchanted Runes / Tags">
                 <div class="class-tags">
@@ -1980,7 +2834,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="timetable-row" data-syllabus="charms" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Charms: Review Builder & Listing Suite">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">✨</span>
@@ -1993,6 +2847,10 @@
                   Production Duda widgets with Google Reviews API, rating-based auto-approval, search, filtering, and
                   CSV export.
                 </p>
+                <div class="syllabus-inspect-hint" aria-hidden="true">
+                  <span>Inspect Syllabus</span>
+                  <span class="syllabus-hint-arrow">→</span>
+                </div>
               </td>
               <td data-label="Enchanted Runes / Tags">
                 <div class="class-tags">
@@ -2003,7 +2861,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="timetable-row" data-syllabus="transfiguration" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Transfiguration: Review Collector & Campaign Manager">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">📜</span>
@@ -2016,6 +2874,10 @@
                   Dual-mode campaign delivery and customer feedback routing integrated with RemedyConnect API and
                   Airtable.
                 </p>
+                <div class="syllabus-inspect-hint" aria-hidden="true">
+                  <span>Inspect Syllabus</span>
+                  <span class="syllabus-hint-arrow">→</span>
+                </div>
               </td>
               <td data-label="Enchanted Runes / Tags">
                 <div class="class-tags">
@@ -2026,7 +2888,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="timetable-row" data-syllabus="dark-arts" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Defence Against the Dark Arts: Session & Compliance Hardening">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">🛡️</span>
@@ -2038,6 +2900,10 @@
                 <p class="class-entry-desc">
                   Automated cookie-consent widgets, browser session token handling, and HIPAA-compliant workflows.
                 </p>
+                <div class="syllabus-inspect-hint" aria-hidden="true">
+                  <span>Inspect Syllabus</span>
+                  <span class="syllabus-hint-arrow">→</span>
+                </div>
               </td>
               <td data-label="Enchanted Runes / Tags">
                 <div class="class-tags">
@@ -2050,6 +2916,41 @@
           </tbody>
         </table>
       </div>
+
+      <!-- CLASS SYLLABUS DETAIL POPUP (<dialog>) -->
+      <dialog id="syllabus-dialog" class="syllabus-dialog" aria-labelledby="syllabus-title" aria-modal="true">
+        <div class="syllabus-parchment-wrapper">
+          <div class="syllabus-scroll-container" id="syllabus-scroll-container">
+            <!-- Scroll Top Rod & Header -->
+            <div class="syllabus-scroll-header-rod" aria-hidden="true">
+              <span class="rod-finial-left">✦</span>
+              <span class="rod-title">CURRICULUM SYLLABUS DISPATCH</span>
+              <span class="rod-finial-right">✦</span>
+            </div>
+
+            <div class="syllabus-header">
+              <div class="syllabus-eyebrow" id="syllabus-eyebrow">✦ Class Syllabus ✦</div>
+              <button type="button" class="syllabus-close-btn" id="syllabus-close-btn" aria-label="Close Syllabus">✕</button>
+            </div>
+
+            <div class="syllabus-body">
+              <h3 class="syllabus-title" id="syllabus-title">Project Title</h3>
+              <div class="syllabus-stack" id="syllabus-stack">Tech Stack & Platform Architecture</div>
+              <p class="syllabus-desc" id="syllabus-desc">Project Description</p>
+              <div class="syllabus-divider"></div>
+              <div class="syllabus-section-heading">Curriculum & Architecture Highlights</div>
+              <ul class="syllabus-bullets" id="syllabus-bullets"></ul>
+              <div class="syllabus-section-heading" style="margin-top: 1.25rem;">Enchanted Runes & Tooling</div>
+              <div class="class-tags" id="syllabus-tags"></div>
+            </div>
+
+            <!-- Miniature Red Wax Seal in Bottom Corner -->
+            <div class="syllabus-wax-seal" aria-hidden="true" title="Official Curriculum Seal">
+              <span>D</span>
+            </div>
+          </div>
+        </div>
+      </dialog>
     </section>
 
     <!-- SECTION DIVIDER -->
@@ -2069,7 +2970,7 @@
 
       <div class="spellbook-grid">
         <!-- Spell 1: Lumos -->
-        <article class="spell-card">
+        <article class="spell-card" tabindex="0">
           <div>
             <div class="spell-card-header">
               <h3 class="spell-name"><span class="spell-sigil">✦</span> Lumos</h3>
@@ -2090,7 +2991,7 @@
         </article>
 
         <!-- Spell 2: Accio -->
-        <article class="spell-card">
+        <article class="spell-card" tabindex="0">
           <div>
             <div class="spell-card-header">
               <h3 class="spell-name"><span class="spell-sigil">✦</span> Accio</h3>
@@ -2111,7 +3012,7 @@
         </article>
 
         <!-- Spell 3: Reparo -->
-        <article class="spell-card">
+        <article class="spell-card" tabindex="0">
           <div>
             <div class="spell-card-header">
               <h3 class="spell-name"><span class="spell-sigil">✦</span> Reparo</h3>
@@ -2132,7 +3033,7 @@
         </article>
 
         <!-- Spell 4: Protego -->
-        <article class="spell-card">
+        <article class="spell-card" tabindex="0">
           <div>
             <div class="spell-card-header">
               <h3 class="spell-name"><span class="spell-sigil">✦</span> Protego</h3>
@@ -2153,7 +3054,7 @@
         </article>
 
         <!-- Spell 5: Alohomora (Spans full width on desktop for balanced 2-column aesthetic) -->
-        <article class="spell-card" style="grid-column: 1 / -1;">
+        <article class="spell-card" tabindex="0" style="grid-column: 1 / -1;">
           <div>
             <div class="spell-card-header">
               <h3 class="spell-name"><span class="spell-sigil">✦</span> Alohomora</h3>
@@ -2170,6 +3071,95 @@
             <span class="class-tag">MongoDB</span>
             <span class="class-tag">SQL</span>
             <span class="class-tag">Data Modeling</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <hr class="section-divider">
+
+    <!-- ========================================================================
+         APPRENTICESHIP & CREDENTIALS (#credentials)
+         Compact two-column ledger section
+         ======================================================================== -->
+    <section id="credentials" class="folio-container">
+      <div class="section-header">
+        <span class="section-eyebrow">✦ Records & Ledger ✦</span>
+        <h2 class="section-title">Apprenticeship & Credentials</h2>
+        <p class="section-subtitle">Chronicles of professional apprenticeship, formal education, and healthcare
+          compliance certification.</p>
+      </div>
+
+      <div class="ledger-grid">
+        <!-- Left Column: Apprenticeship -->
+        <article class="ledger-card">
+          <div>
+            <div class="ledger-header">
+              <span class="editorial-badge">✦ Apprenticeship</span>
+              <span class="ledger-term">Jan 2026 – Present</span>
+            </div>
+            <h3 class="ledger-role">Developer Intern</h3>
+            <div class="ledger-company">Covrize IT Solutions Pvt. Ltd.</div>
+            <ul class="ledger-bullets">
+              <li>Building production Duda widgets tailored for responsive client deployments.</li>
+              <li>Integrating REST APIs like RemedyConnect, Airtable, and Google Services for reliable cross-platform
+                data pipelines.</li>
+              <li>Developing client-facing CRUD dashboards with sorting, filtering, and pagination.</li>
+            </ul>
+          </div>
+          <div class="class-tags" style="margin-top: 1rem;">
+            <span class="class-tag">Duda Widgets</span>
+            <span class="class-tag">REST APIs</span>
+            <span class="class-tag">RemedyConnect</span>
+            <span class="class-tag">Airtable</span>
+            <span class="class-tag">Google Services</span>
+            <span class="class-tag">CRUD Dashboards</span>
+          </div>
+        </article>
+
+        <!-- Right Column: Education & Credentials -->
+        <article class="ledger-card">
+          <div>
+            <div class="ledger-header">
+              <span class="editorial-badge">✦ Education & Credentials</span>
+              <span class="ledger-term">Accredited</span>
+            </div>
+
+            <!-- Degree -->
+            <div class="credential-entry">
+              <h3 class="credential-title">BSc in Data Management & Visual Insight</h3>
+              <div class="credential-meta">Gujarat University</div>
+              <p class="credential-desc">
+                Foundational study in structured information architecture, normalized relational databases, and data
+                visualization.
+              </p>
+            </div>
+
+            <!-- Training & Grade -->
+            <div class="credential-entry">
+              <h3 class="credential-title">HIPAA Security & Privacy Training</h3>
+              <div class="credential-meta">Grade: 90% · Healthcare Data Compliance</div>
+              <p class="credential-desc">
+                Certified proficiency in safeguarding Protected Health Information (PHI), browser session token
+                hardening, and privacy workflows.
+              </p>
+            </div>
+          </div>
+
+          <!-- Subtle gold-bordered button labelled 'Download Curriculum Scroll' -->
+          <div class="resume-cta-wrap">
+            <a href="./Devanshi_Patel_Resume.pdf" class="curriculum-scroll-btn" download="Devanshi_Patel_Resume.pdf"
+              target="_blank" rel="noopener noreferrer">
+              <svg class="scroll-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="12" y1="18" x2="12" y2="12" />
+                <line x1="9" y1="15" x2="15" y2="15" />
+              </svg>
+              <span>Download Curriculum Scroll</span>
+            </a>
           </div>
         </article>
       </div>
@@ -2217,8 +3207,9 @@
         <div class="owl-scroll-container" id="owl-scroll-container" aria-hidden="true">
           <div class="owl-parchment-scroll">
             <form id="owl-post-form" class="owl-form" method="POST" novalidate>
-              <input type="hidden" name="access_key" value="27599205-ad14-4ab9-bc08-5af031d61066">
+              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
               <input type="hidden" name="subject" value="New Owl Post from Portfolio">
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
 
               <div class="owl-form-fields" id="owl-form-fields">
                 <div class="owl-form-group">
@@ -2270,7 +3261,11 @@
           <div class="owl-channel-item">
             <span>✦ <strong>LinkedIn:</strong></span>
             <a href="https://www.linkedin.com/in/devanshipatel1103" target="_blank"
-              rel="noopener noreferrer">linkedin.com/in/devanshipatel1103 ↗</a>
+              rel="noopener noreferrer">/in/devanshipatel1103 ↗</a>
+          </div>
+          <div class="owl-channel-item">
+            <span>✦ <strong>GitHub:</strong></span>
+            <a href="https://github.com/Dpatel1103" target="_blank" rel="noopener noreferrer">/Dpatel1103 ↗</a>
           </div>
           <div class="owl-channel-item">
             <span>✦ <strong>Telephone:</strong></span>
@@ -2304,7 +3299,9 @@
         <li><a href="#prologue">Prologue</a></li>
         <li><a href="#classes">Classes</a></li>
         <li><a href="#spellbook">Spellbook</a></li>
+        <li><a href="#credentials">Credentials</a></li>
         <li><a href="#owl-post">Owl Post</a></li>
+        <li><a href="https://github.com/Dpatel1103" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         <li><a href="mailto:devanshi1303@gmail.com">devanshi1303@gmail.com</a></li>
       </ul>
       <a href="#prologue" class="back-to-top">↑ Return to the Beginning</a>
@@ -2452,6 +3449,158 @@
       }
 
       /**
+       * Class Syllabus Detail Popup Engine
+       * Handles dialog modal, keyboard focus management, Escape key, and backdrop click
+       */
+      const syllabusData = {
+        potions: {
+          eyebrow: "✦ Potions Syllabus · Advanced Web Brewing ✦",
+          title: "Remedy Success Centre",
+          stack: "Full-Stack Support Platform · Built with Next.js, React, REST API Routes, and Airtable",
+          description: "A centralized, full-stack customer support and ticketing portal architected for enterprise client satisfaction, real-time communication, and automated back-office workflows.",
+          highlights: [
+            "Staff authentication login system gating privileged tools, administrative views, and client communication channels.",
+            "Persistent live human support chat powered by browser-stored session tokens, featuring automated DOCX transcript generation upon chat conclusion.",
+            "Support and feature-request ticketing workflows connected to Airtable cloud database, Resend transactional email alerts, and live Slack webhook notifications."
+          ],
+          tags: ["Next.js", "React", "REST APIs", "Airtable", "Slack Notifications", "Resend Alerts", "Session Tokens", "DOCX Export"]
+        },
+        charms: {
+          eyebrow: "✦ Charms Syllabus · Production Platform Widgets ✦",
+          title: "Review Builder & Listing Suite",
+          stack: "Production Duda Platform Widgets · Built with JavaScript and Google Reviews API",
+          description: "High-performance embeddable client-facing widgets built for Duda platforms, empowering businesses to manage, filter, and showcase customer reviews dynamically.",
+          highlights: [
+            "Full CRUD review-source manager allowing administrators to add, update, and manage third-party review endpoints.",
+            "Rating-based auto-approval logic that automatically publishes verified 4-star and 5-star testimonials while holding critical reviews for staff triage.",
+            "Interactive listing dashboard featuring real-time client-side search, multi-filter sorting, responsive pagination, automated Google import sync, and one-click CSV export."
+          ],
+          tags: ["JavaScript", "Duda Platform", "Google Reviews API", "CRUD Manager", "Auto-Approval Logic", "Search & Filtering", "Pagination", "CSV Export"]
+        },
+        transfiguration: {
+          eyebrow: "✦ Transfiguration Syllabus · Campaign Transmutation ✦",
+          title: "Review Collector & Campaign Manager",
+          stack: "Dual-Mode Customer Feedback & Campaign Delivery · Built with JavaScript, RemedyConnect API, Webhooks, and Airtable",
+          description: "A dual-mode marketing automation system designed to transmute raw customer sentiment into targeted public testimonials or private resolution threads.",
+          highlights: [
+            "Dual-mode customer feedback collection and routing based on customer ratings: high ratings route to public platforms, while low ratings route privately for resolution.",
+            "Automated campaign delivery pipelines integrated with the RemedyConnect API, dispatching targeted SMS and email follow-ups.",
+            "Real-time campaign delivery tracking with comprehensive audit logs, asynchronous webhooks, and automatic record synchronization with Airtable."
+          ],
+          tags: ["JavaScript", "RemedyConnect API", "Webhooks", "Airtable", "Feedback Routing", "Campaign Delivery", "Audit Logs"]
+        },
+        "dark-arts": {
+          eyebrow: "✦ Defence Against the Dark Arts · Security & Wards ✦",
+          title: "Session & Compliance Hardening",
+          stack: "Security, Auth & Compliance Engineering · Auth Flows, Session Hardening & HIPAA Guidelines",
+          description: "Defensive web architecture safeguards and compliance protocols shielding healthcare applications from unauthorized access, session hijacking, and regulatory vulnerabilities.",
+          highlights: [
+            "Production cookie-consent automation tools ensuring strict adherence to global privacy regulations across client sites.",
+            "Secure browser session-token management across isolated staging, testing, and live production environments.",
+            "HIPAA-compliant data handling workflows enforcing Protected Health Information (PHI) encryption, safe payload transmission, and audit logging."
+          ],
+          tags: ["Auth Flows", "Session Tokens", "Cookie Consent", "HIPAA Compliance", "PHI Security", "Sanitization", "Environment Isolation"]
+        }
+      };
+
+      const syllabusDialog = document.getElementById('syllabus-dialog');
+      const syllabusScrollContainer = document.getElementById('syllabus-scroll-container');
+      const syllabusCloseBtn = document.getElementById('syllabus-close-btn');
+      let lastActiveTrigger = null;
+
+      function openSyllabus(key, triggerEl) {
+        const data = syllabusData[key];
+        if (!data || !syllabusDialog) return;
+
+        lastActiveTrigger = triggerEl;
+
+        document.getElementById('syllabus-eyebrow').textContent = data.eyebrow;
+        document.getElementById('syllabus-title').textContent = data.title;
+        document.getElementById('syllabus-stack').textContent = data.stack;
+        document.getElementById('syllabus-desc').textContent = data.description;
+
+        const bulletsContainer = document.getElementById('syllabus-bullets');
+        bulletsContainer.innerHTML = '';
+        data.highlights.forEach(function (h) {
+          const li = document.createElement('li');
+          li.textContent = h;
+          bulletsContainer.appendChild(li);
+        });
+
+        const tagsContainer = document.getElementById('syllabus-tags');
+        tagsContainer.innerHTML = '';
+        data.tags.forEach(function (t) {
+          const tag = document.createElement('span');
+          tag.className = 'class-tag';
+          tag.textContent = t;
+          tagsContainer.appendChild(tag);
+        });
+
+        if (typeof syllabusDialog.showModal === 'function') {
+          syllabusDialog.showModal();
+        } else {
+          syllabusDialog.setAttribute('open', '');
+        }
+
+        // Focus close button for effortless keyboard access
+        if (syllabusCloseBtn) {
+          setTimeout(function () {
+            syllabusCloseBtn.focus();
+          }, 50);
+        }
+      }
+
+      function closeSyllabus() {
+        if (!syllabusDialog) return;
+        if (typeof syllabusDialog.close === 'function') {
+          syllabusDialog.close();
+        } else {
+          syllabusDialog.removeAttribute('open');
+        }
+      }
+
+      if (syllabusDialog) {
+        // Return focus to triggering row on close
+        syllabusDialog.addEventListener('close', function () {
+          if (lastActiveTrigger) {
+            lastActiveTrigger.focus();
+          }
+        });
+
+        // Close on clicking backdrop (outside dialog card)
+        syllabusDialog.addEventListener('click', function (e) {
+          if (syllabusScrollContainer && !syllabusScrollContainer.contains(e.target)) {
+            closeSyllabus();
+          }
+        });
+
+        // Close on Escape key
+        syllabusDialog.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeSyllabus();
+          }
+        });
+      }
+
+      if (syllabusCloseBtn) {
+        syllabusCloseBtn.addEventListener('click', closeSyllabus);
+      }
+
+      // Attach click and keyboard listeners to timetable rows
+      document.querySelectorAll('.timetable-row').forEach(function (row) {
+        const key = row.getAttribute('data-syllabus');
+        row.addEventListener('click', function () {
+          openSyllabus(key, row);
+        });
+        row.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openSyllabus(key, row);
+          }
+        });
+      });
+
+      /**
        * Owl Post Form Toggle & Web3Forms Dispatch
        */
       const owlToggleBtn = document.getElementById('owl-toggle-btn');
@@ -2495,6 +3644,13 @@
 
           const formData = new FormData(owlPostForm);
           const formObject = Object.fromEntries(formData.entries());
+
+          // Spam Shield: Honeypot check
+          if (formObject.botcheck) {
+            handleSuccess();
+            return;
+          }
+
           const jsonBody = JSON.stringify(formObject);
 
           function handleSuccess() {
@@ -2527,7 +3683,7 @@
             .then(function (result) {
               if (result.status === 200 || (result.data && result.data.success)) {
                 handleSuccess();
-              } else if (formObject.access_key === '27599205-ad14-4ab9-bc08-5af031d61066') {
+              } else if (formObject.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
                 // Graceful handling when testing with placeholder access key
                 handleSuccess();
               } else {
@@ -2536,12 +3692,13 @@
             })
             .catch(function () {
               // Offline or network error
-              if (formObject.access_key === '27599205-ad14-4ab9-bc08-5af031d61066') {
+              if (formObject.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
                 handleSuccess();
               } else {
                 handleError('Network error dispatching owl. Please open in your default mail app below.');
               }
             });
+
         });
       }
 
