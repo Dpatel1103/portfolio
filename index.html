@@ -231,6 +231,7 @@
     .ledger-card,
     .owl-post-card,
     .owl-parchment-scroll,
+    .owl-counter-badge,
     .site-footer,
     .section-divider,
     .editorial-badge,
@@ -2179,6 +2180,40 @@
       margin-right: auto;
     }
 
+    /* ==========================================================================
+       OWL POST LIVE COUNTER BADGE
+       Quiet editorial counter badge matching the parchment theme
+       ========================================================================== */
+    .owl-counter-container {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .owl-counter-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.38rem 1.15rem;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--accent-text);
+      background-color: var(--tag-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease;
+    }
+
+    .owl-counter-sigil {
+      color: var(--accent-color);
+      font-size: 0.8rem;
+    }
+
+    .owl-counter-text {
+      font-weight: 500;
+    }
+
     .owl-btn-container {
       display: flex;
       flex-direction: column;
@@ -3375,6 +3410,15 @@
           complex RESTful data pipelines, my window is always open for an owl.
         </p>
 
+        <!-- Live Owl Dispatch Counter (Quiet Editorial Badge) -->
+        <div class="owl-counter-container">
+          <div class="owl-counter-badge" id="owl-counter-badge" aria-live="polite">
+            <span class="owl-counter-sigil" aria-hidden="true">✦</span>
+            <span id="owl-counter-text" class="owl-counter-text">Consulting the owleries...</span>
+            <span class="owl-counter-sigil" aria-hidden="true">✦</span>
+          </div>
+        </div>
+
         <div class="owl-btn-container">
           <button type="button" class="wax-btn owl-btn" id="owl-toggle-btn" aria-expanded="false"
             aria-controls="owl-scroll-container">
@@ -3396,9 +3440,7 @@
         <div class="owl-scroll-container" id="owl-scroll-container" aria-hidden="true">
           <div class="owl-parchment-scroll">
             <form id="owl-post-form" class="owl-form" method="POST" novalidate>
-              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-              <input type="hidden" name="subject" value="New Owl Post from Portfolio">
-              <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
 
               <div class="owl-form-fields" id="owl-form-fields">
                 <div class="owl-form-group">
@@ -3849,6 +3891,64 @@
       /**
        * Owl Post Form Toggle & Web3Forms Dispatch
        */
+      /**
+       * Owl Post API Configuration:
+       * Points to local backend in development, Render backend in production.
+       * Replace 'https://owl-post-backend.onrender.com' with your actual Render service URL after deployment.
+       */
+      const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000'
+        : 'https://owl-post-backend.onrender.com';
+
+      const owlCounterText = document.getElementById('owl-counter-text');
+      let currentOwlCount = null;
+
+      function updateCounterDisplay(count) {
+        if (!owlCounterText) return;
+        if (typeof count !== 'number' || isNaN(count)) {
+          owlCounterText.textContent = 'Owls dispatched across the realm';
+          return;
+        }
+        if (count === 1) {
+          owlCounterText.textContent = '1 owl dispatched to date';
+        } else {
+          owlCounterText.textContent = `${count} owls dispatched to date`;
+        }
+      }
+
+      function fetchOwlStats() {
+        if (!owlCounterText) return;
+        fetch(`${API_BASE_URL}/api/owl-post/stats`)
+          .then(function (res) {
+            if (!res.ok) throw new Error('Status route error');
+            return res.json();
+          })
+          .then(function (data) {
+            if (data && typeof data.totalOwls === 'number') {
+              currentOwlCount = data.totalOwls;
+              updateCounterDisplay(currentOwlCount);
+            } else {
+              owlCounterText.textContent = 'Owls dispatched across the realm';
+            }
+          })
+          .catch(function () {
+            // Quiet fallback if backend is spinning up on Render free tier or offline
+            owlCounterText.textContent = 'Owls dispatched across the realm';
+          });
+      }
+
+      function incrementOwlCount() {
+        if (typeof currentOwlCount === 'number') {
+          currentOwlCount++;
+          updateCounterDisplay(currentOwlCount);
+        } else {
+          fetchOwlStats();
+        }
+      }
+
+      // Fetch live stats on initial load
+      fetchOwlStats();
+
       const owlToggleBtn = document.getElementById('owl-toggle-btn');
       const owlScrollContainer = document.getElementById('owl-scroll-container');
       const owlPostForm = document.getElementById('owl-post-form');
@@ -3911,7 +4011,7 @@
             owlStatusMsg.textContent = errorMsg || 'The owl encountered a storm. Please use the fallback link below.';
           }
 
-          fetch('https://api.web3forms.com/submit', {
+          fetch(`${API_BASE_URL}/api/owl-post`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -3921,28 +4021,25 @@
           })
             .then(function (response) {
               return response.json().then(function (data) {
-                return { status: response.status, data: data };
+                return { ok: response.ok, status: response.status, data: data };
               }).catch(function () {
-                return { status: response.status, data: {} };
+                return { ok: response.ok, status: response.status, data: {} };
               });
             })
             .then(function (result) {
-              if (result.status === 200 || (result.data && result.data.success)) {
+              if (result.ok && result.data && result.data.success) {
                 handleSuccess();
-              } else if (formObject.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-                // Graceful handling when testing with placeholder access key
-                handleSuccess();
+                incrementOwlCount();
               } else {
-                handleError(result.data && result.data.message ? result.data.message : null);
+                const errorMsg = (result.data && result.data.message)
+                  ? result.data.message
+                  : 'The owl encountered a storm. Please use the fallback link below.';
+                handleError(errorMsg);
               }
             })
             .catch(function () {
-              // Offline or network error
-              if (formObject.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-                handleSuccess();
-              } else {
-                handleError('Network error dispatching owl. Please open in your default mail app below.');
-              }
+              // Graceful network fallback
+              handleError('The owl could not complete its journey across the network. Please use the direct mail link below.');
             });
 
         });

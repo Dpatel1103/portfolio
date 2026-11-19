@@ -1,0 +1,28 @@
+{
+  "name": "devanshi-patel-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "predev": "node -e \"try { fs.rmSync('.next', { recursive: true, force: true }); } catch (e) {}\"",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "clean": "node -e \"try { fs.rmSync('.next', { recursive: true, force: true }); } catch (e) {}\"",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "next": "^15.1.0",
+    "pg": "^8.13.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "resend": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "typescript": "^5.7.2"
+  }
+}
