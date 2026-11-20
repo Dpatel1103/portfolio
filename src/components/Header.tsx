@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useMischief } from '@/context/MischiefContext';
 
 export default function Header() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isFootstepsActive, toggleFootsteps } = useMischief();
 
   useEffect(() => {
     // Detect initial theme from localStorage or system preference
@@ -91,6 +93,32 @@ export default function Header() {
         </ul>
 
         <div className="nav-actions">
+          {/* Subtle Mischief Managed / Solemnly Swear Pill Toggle */}
+          <button
+            type="button"
+            className={`mischief-toggle-pill ${!isFootstepsActive ? 'is-calm' : ''}`}
+            id="mischief-pill-btn"
+            onClick={toggleFootsteps}
+            aria-pressed={isFootstepsActive}
+            aria-label={
+              isFootstepsActive
+                ? 'Mischief managed — click to dissolve background footsteps'
+                : 'I solemnly swear that I am up to no good — click to reveal background footsteps'
+            }
+            title={
+              isFootstepsActive
+                ? 'Mischief managed: Calm the parchment and dissolve footsteps'
+                : 'Solemnly swear: Reveal wandering footsteps on the parchment'
+            }
+          >
+            <span className="mischief-pill-sigil" aria-hidden="true">
+              {isFootstepsActive ? '✦' : '🪄'}
+            </span>
+            <span className="mischief-pill-text">
+              {isFootstepsActive ? 'Mischief managed.' : 'Solemnly swear'}
+            </span>
+          </button>
+
           <button
             type="button"
             className="spell-toggle-btn"

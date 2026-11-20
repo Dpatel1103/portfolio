@@ -1,28 +1,33 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { useMischief } from '@/context/MischiefContext';
 
-export default function Footer() {
+interface FooterProps {
+  onMischiefManaged?: () => void;
+}
+
+export default function Footer({ onMischiefManaged }: FooterProps) {
   const [isDissolved, setIsDissolved] = useState<boolean>(false);
   const [announcement, setAnnouncement] = useState<string>('');
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { toggleFootsteps } = useMischief();
 
   const handleMischief = () => {
-    if (typeof window !== 'undefined') {
-      const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (isReduced) return;
-    }
-
-    if (isDissolved) return;
-
     setIsDissolved(true);
-    setAnnouncement('The footer ink softly fades from parchment...');
+    setAnnouncement('The footer ink softly fades into the parchment...');
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setIsDissolved(false);
-      setAnnouncement('The footer ink reappears on parchment.');
+      setAnnouncement('');
     }, 2000);
+
+    toggleFootsteps();
+
+    if (onMischiefManaged) {
+      onMischiefManaged();
+    }
   };
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {

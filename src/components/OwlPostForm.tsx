@@ -10,6 +10,7 @@ export default function OwlPostForm() {
   const [statusMessage, setStatusMessage] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
+  const [owlFlightActive, setOwlFlightActive] = useState<boolean>(false);
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -17,7 +18,19 @@ export default function OwlPostForm() {
   const [botcheck, setBotcheck] = useState<boolean>(false);
 
   const firstInputRef = useRef<HTMLInputElement>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
+  const mischiefBtnRef = useRef<HTMLButtonElement>(null);
   const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Auto-focus mischief button when confirmation appears
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        mischiefBtnRef.current?.focus();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
 
   // Fetch owl stats on initial render
   useEffect(() => {
@@ -91,6 +104,48 @@ export default function OwlPostForm() {
     }, 100);
   };
 
+  const handleMischiefClose = () => {
+    const isReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Smoothly roll the scroll container closed
+    setIsExpanded(false);
+
+    // Return keyboard focus to the "Send an owl" toggle button
+    setTimeout(
+      () => {
+        toggleBtnRef.current?.focus();
+      },
+      isReduced ? 0 : 350
+    );
+
+    // Reset form state once the roll-up animation concludes
+    setTimeout(
+      () => {
+        setSubmitted(false);
+        setStatusMessage('');
+        setIsSuccess(false);
+        setName('');
+        setEmail('');
+        setMessage('');
+      },
+      isReduced ? 0 : 450
+    );
+  };
+
+  const triggerOwlFlight = () => {
+    const isReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!isReduced) {
+      setOwlFlightActive(true);
+      setTimeout(() => {
+        setOwlFlightActive(false);
+      }, 3400);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -108,6 +163,7 @@ export default function OwlPostForm() {
       setName('');
       setEmail('');
       setMessage('');
+      triggerOwlFlight();
       return;
     }
 
@@ -141,6 +197,7 @@ export default function OwlPostForm() {
         setName('');
         setEmail('');
         setMessage('');
+        triggerOwlFlight();
         if (typeof result.totalOwls === 'number') {
           setTotalOwls(result.totalOwls);
         } else {
@@ -202,6 +259,7 @@ export default function OwlPostForm() {
 
         <div className="owl-btn-container">
           <button
+            ref={toggleBtnRef}
             type="button"
             className="wax-btn owl-btn"
             id="owl-toggle-btn"
@@ -322,19 +380,40 @@ export default function OwlPostForm() {
                   </button>
                 </div>
               ) : (
-                <div style={{ textAlign: 'center', padding: '1rem 0' }}>
-                  <button
-                    type="button"
-                    className="wax-btn secondary"
-                    style={{ fontSize: '0.9rem', padding: '0.45rem 1.1rem' }}
-                    onClick={handleResetForm}
-                  >
-                    <span>✦ Send another dispatch</span>
-                  </button>
+                <div className="owl-mischief-reset-wrap">
+                  {statusMessage && (
+                    <div
+                      id="owl-status"
+                      className={`owl-status-msg ${isSuccess ? 'has-success' : ''}`}
+                      aria-live="polite"
+                    >
+                      {statusMessage}
+                    </div>
+                  )}
+                  <div className="owl-mischief-actions">
+                    <button
+                      ref={mischiefBtnRef}
+                      type="button"
+                      className="mischief-managed-owl-btn"
+                      id="owl-mischief-reset-btn"
+                      aria-label="Mischief managed — Seal parchment and roll up scroll"
+                      onClick={handleMischiefClose}
+                    >
+                      <span>Mischief managed — Seal &amp; Close Scroll ✦</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="owl-secondary-reset-btn"
+                      onClick={handleResetForm}
+                      aria-label="Send another dispatch without rolling up scroll"
+                    >
+                      <span>Send another dispatch</span>
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {statusMessage && (
+              {!submitted && statusMessage && (
                 <div
                   id="owl-status"
                   className={`owl-status-msg ${isSuccess ? 'has-success' : ''}`}
@@ -399,6 +478,47 @@ export default function OwlPostForm() {
           </div>
         </div>
       </div>
+
+      {/* Swooping Carrier Owl Silhouette on Successful Dispatch */}
+      {owlFlightActive && (
+        <div className="carrier-owl-flight-container" aria-hidden="true">
+          <div className="carrier-owl-sprite">
+            <svg
+              viewBox="0 0 120 70"
+              className="carrier-owl-svg"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Owl body & head */}
+              <path d="M 55 35 C 52 30 54 22 62 22 C 70 22 72 30 68 37 C 65 44 58 46 55 35 Z" />
+              <path d="M 68 28 L 73 30 L 68 32 Z" />
+              {/* Left wing (extended upward & back) */}
+              <path d="M 54 30 C 45 18 32 8 12 4 C 20 14 26 25 36 33 C 43 38 49 37 54 30 Z" />
+              {/* Right wing (extended forward & upward) */}
+              <path d="M 64 28 C 76 16 94 8 114 6 C 104 15 96 26 82 34 C 74 38 68 36 64 28 Z" />
+              {/* Tail feathers */}
+              <path d="M 52 42 C 46 48 40 52 34 55 C 42 52 48 48 54 44 Z" />
+              {/* Talons holding letter */}
+              <path d="M 60 44 L 62 50 L 66 49 L 64 43 Z" />
+              {/* Parchment letter in talons */}
+              <rect
+                x="58"
+                y="49"
+                width="16"
+                height="10"
+                rx="1.5"
+                fill="#fdfaf3"
+                stroke="currentColor"
+                strokeWidth="1.2"
+              />
+              <line x1="58" y1="49" x2="66" y2="54" stroke="currentColor" strokeWidth="0.9" />
+              <line x1="74" y1="49" x2="66" y2="54" stroke="currentColor" strokeWidth="0.9" />
+              {/* Red wax seal dot on letter */}
+              <circle cx="66" cy="54" r="2.2" fill="#c42929" />
+            </svg>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

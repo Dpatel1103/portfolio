@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react';
 
-export default function HeroLetter() {
+interface HeroLetterProps {
+  pulseSeal?: boolean;
+}
+
+export default function HeroLetter({ pulseSeal = false }: HeroLetterProps) {
   const [isPressed, setIsPressed] = useState(false);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -114,7 +118,8 @@ export default function HeroLetter() {
 
               {/* Realistic Circular Red Wax Seal with Shimmer & Click Press */}
               <div
-                className={`wax-seal ${isPressed ? 'pressed' : ''}`}
+                className={`wax-seal ${isPressed ? 'pressed' : ''} ${pulseSeal ? 'pulse-glow' : ''}`}
+                id="hero-wax-seal"
                 role="button"
                 tabIndex={0}
                 title="Official Seal of Devanshi Patel (Click to stamp)"

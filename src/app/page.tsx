@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import HeroLetter from '@/components/HeroLetter';
 import TimetableClasses from '@/components/TimetableClasses';

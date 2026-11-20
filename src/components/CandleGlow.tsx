@@ -6,6 +6,11 @@ export default function CandleGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Disable candle glow on touch-only devices or if reduced motion is enabled
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)');
+    if (prefersReducedMotion.matches || isTouchOnly.matches) return;
+
     const glowEl = glowRef.current;
     if (!glowEl) return;
 
@@ -13,18 +18,16 @@ export default function CandleGlow() {
     let targetX = -1000;
     let targetY = -1000;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
     const handleMouseMove = (e: MouseEvent) => {
-      if (prefersReducedMotion.matches) return;
+      if (prefersReducedMotion.matches || isTouchOnly.matches) return;
       targetX = e.clientX;
       targetY = e.clientY;
 
       if (!rafId) {
         rafId = requestAnimationFrame(() => {
           if (glowEl) {
-            glowEl.style.left = `${targetX}px`;
-            glowEl.style.top = `${targetY}px`;
+            glowEl.style.setProperty('--candle-x', `${targetX}px`);
+            glowEl.style.setProperty('--candle-y', `${targetY}px`);
           }
           rafId = null;
         });

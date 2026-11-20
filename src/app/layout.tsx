@@ -1,26 +1,13 @@
 import type { Metadata } from 'next';
-import { IM_Fell_English, Crimson_Pro } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
+import CastleBackdrop from '@/components/CastleBackdrop';
 import CandleGlow from '@/components/CandleGlow';
 import AmbientMotes from '@/components/AmbientMotes';
+import MaraudersFootsteps from '@/components/MaraudersFootsteps';
+import BroomstickSilhouettes from '@/components/BroomstickSilhouettes';
 import ScrollRevealInit from '@/components/ScrollRevealInit';
-
-const imFellEnglish = IM_Fell_English({
-  weight: ['400'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  variable: '--font-im-fell',
-  display: 'swap',
-});
-
-const crimsonPro = Crimson_Pro({
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  variable: '--font-crimson',
-  display: 'swap',
-});
+import { MischiefProvider } from '@/context/MischiefContext';
 
 export const metadata: Metadata = {
   title: 'Devanshi Patel · Full-Stack Developer & Software Apprentice',
@@ -70,16 +57,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${imFellEnglish.variable} ${crimsonPro.variable}`}>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap"
+          rel="stylesheet"
+        />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <CandleGlow />
-        <AmbientMotes />
-        <Header />
-        {children}
-        <ScrollRevealInit />
+        <MischiefProvider>
+          <CastleBackdrop />
+          <CandleGlow />
+          <AmbientMotes />
+          <MaraudersFootsteps />
+          <BroomstickSilhouettes />
+          <Header />
+          {children}
+          <ScrollRevealInit />
+        </MischiefProvider>
       </body>
     </html>
   );

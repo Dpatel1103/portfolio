@@ -4,8 +4,10 @@
        ========================================================================== */
     :root {
       /* Typography */
-      --font-heading: var(--font-im-fell), 'IM Fell English', Garamond, 'Palatino Linotype', 'Book Antiqua', serif;
-      --font-body: var(--font-crimson), 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      --font-im-fell: 'IM Fell English', Garamond, 'Palatino Linotype', 'Book Antiqua', serif;
+      --font-crimson: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      --font-heading: var(--font-im-fell), Garamond, serif;
+      --font-body: var(--font-crimson), Georgia, serif;
 
       /* Light Theme (Parchment) */
       --bg-color: #f4ebd8;
@@ -23,7 +25,7 @@
       --card-inner: rgba(255, 255, 255, 0.45);
       --card-border: rgba(156, 120, 56, 0.28);
       --subtle-ink: #543d2b;
-      --nav-bg: rgba(244, 235, 216, 0.92);
+      --nav-bg: rgba(244, 235, 216, 0.68);
       --border-light: rgba(156, 120, 56, 0.22);
       --table-header-bg: rgba(156, 120, 56, 0.12);
       --table-row-even: rgba(156, 120, 56, 0.05);
@@ -36,6 +38,11 @@
       --mote-bg: radial-gradient(circle, #b8914b 0%, rgba(156, 120, 56, 0.45) 60%, transparent 100%);
       --mote-shadow: 0 0 3px rgba(156, 120, 56, 0.22);
       --mote-opacity-scale: 0.32;
+
+      /* Atmospheric Castle Backdrop Watermark (Light - Warm Parchment) */
+      --castle-light-opacity: 0.28;
+      --castle-dark-opacity: 0;
+      --vignette-center-rgb: 244, 235, 216;
 
       color-scheme: light;
     }
@@ -59,7 +66,7 @@
         --card-inner: rgba(22, 29, 46, 0.65);
         --card-border: rgba(212, 175, 55, 0.25);
         --subtle-ink: #c2b79e;
-        --nav-bg: rgba(11, 14, 23, 0.93);
+        --nav-bg: rgba(11, 14, 23, 0.65);
         --border-light: rgba(212, 175, 55, 0.2);
         --table-header-bg: rgba(212, 175, 55, 0.14);
         --table-row-even: rgba(212, 175, 55, 0.04);
@@ -72,6 +79,11 @@
         --mote-bg: radial-gradient(circle, #fff3c4 0%, #d4af37 55%, rgba(212, 175, 55, 0.15) 100%);
         --mote-shadow: 0 0 6px rgba(212, 175, 55, 0.7), 0 0 14px rgba(212, 175, 55, 0.35);
         --mote-opacity-scale: 0.78;
+
+        /* Atmospheric Castle Backdrop Watermark (Dark - Moonlit Midnight) */
+        --castle-light-opacity: 0;
+        --castle-dark-opacity: 0.35;
+        --vignette-center-rgb: 11, 14, 23;
 
         color-scheme: dark;
       }
@@ -93,7 +105,7 @@
       --card-inner: rgba(22, 29, 46, 0.65);
       --card-border: rgba(212, 175, 55, 0.25);
       --subtle-ink: #c2b79e;
-      --nav-bg: rgba(11, 14, 23, 0.93);
+      --nav-bg: rgba(11, 14, 23, 0.65);
       --border-light: rgba(212, 175, 55, 0.2);
       --table-header-bg: rgba(212, 175, 55, 0.14);
       --table-row-even: rgba(212, 175, 55, 0.04);
@@ -106,6 +118,11 @@
       --mote-bg: radial-gradient(circle, #fff3c4 0%, #d4af37 55%, rgba(212, 175, 55, 0.15) 100%);
       --mote-shadow: 0 0 6px rgba(212, 175, 55, 0.7), 0 0 14px rgba(212, 175, 55, 0.35);
       --mote-opacity-scale: 0.78;
+
+      /* Atmospheric Castle Backdrop Watermark (Dark - Moonlit Midnight) */
+      --castle-light-opacity: 0;
+      --castle-dark-opacity: 0.35;
+      --vignette-center-rgb: 11, 14, 23;
 
       color-scheme: dark;
     }
@@ -126,7 +143,7 @@
       --card-inner: rgba(255, 255, 255, 0.45);
       --card-border: rgba(156, 120, 56, 0.28);
       --subtle-ink: #543d2b;
-      --nav-bg: rgba(244, 235, 216, 0.92);
+      --nav-bg: rgba(244, 235, 216, 0.68);
       --border-light: rgba(156, 120, 56, 0.22);
       --table-header-bg: rgba(156, 120, 56, 0.12);
       --table-row-even: rgba(156, 120, 56, 0.05);
@@ -139,6 +156,11 @@
       --mote-bg: radial-gradient(circle, #b8914b 0%, rgba(156, 120, 56, 0.45) 60%, transparent 100%);
       --mote-shadow: 0 0 3px rgba(156, 120, 56, 0.22);
       --mote-opacity-scale: 0.32;
+
+      /* Atmospheric Castle Backdrop Watermark (Light - Warm Parchment) */
+      --castle-light-opacity: 0.28;
+      --castle-dark-opacity: 0;
+      --vignette-center-rgb: 244, 235, 216;
 
       color-scheme: light;
     }
@@ -203,7 +225,7 @@
         box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
 
-    /* Headings */
+    /* Headings & Responsive Typography */
     h1,
     h2,
     h3,
@@ -215,11 +237,54 @@
       letter-spacing: 0.02em;
       line-height: 1.25;
       color: var(--text-color);
+      text-wrap: balance;
     }
 
-    p {
+    h1 {
+      font-size: clamp(2rem, 5vw + 0.4rem, 3.2rem);
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.8vw + 0.3rem, 2.5rem);
+    }
+
+    h3 {
+      font-size: clamp(1.3rem, 2.6vw + 0.2rem, 1.75rem);
+    }
+
+    p,
+    li {
       margin-bottom: 1.25rem;
       font-size: 1.05rem;
+      text-wrap: pretty;
+    }
+
+    body {
+      overflow-wrap: break-word;
+    }
+
+    :where(a, code) {
+      overflow-wrap: anywhere;
+    }
+
+    /* Tactile Tap & Active Press Feedback */
+    .timetable-row:active,
+    .spell-card:active,
+    .wax-btn:active,
+    .mischief-toggle-pill:active,
+    .spell-toggle-btn:active,
+    .mischief-managed-syllabus-btn:active,
+    .syllabus-inspect-hint:active {
+      transform: scale(0.982);
+      transition: transform 0.08s ease;
+    }
+
+    /* Touch Target Sizing (WCAG 2.5.5 / 2.5.8) */
+    @media (pointer: coarse) {
+      :where(button, .wax-btn, .mischief-toggle-pill, .spell-toggle-btn, .mobile-menu-btn, .syllabus-close-btn, .mischief-managed-syllabus-btn) {
+        min-height: 44px;
+        min-width: 44px;
+      }
     }
 
     a {
@@ -351,6 +416,501 @@
     }
 
     /* ==========================================================================
+       MARAUDER'S MAP WANDERING FOOTSTEPS ATMOSPHERE & NAVBAR TOGGLE
+       1. Non-Interactive Wandering Map Footsteps Layer
+       2. Navigation Bar 'Mischief Managed' Bordered Pill Toggle
+       3. Red Wax Seal Pulse Keyframes
+       ========================================================================== */
+
+    /* Non-interactive atmospheric background layer behind all page content */
+    .marauders-footsteps-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      overflow: hidden;
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .marauders-footsteps-layer.dissolving {
+      opacity: 0;
+    }
+
+    /* Individual Marauder's Map ink footprint */
+    .marauder-footstep {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      line-height: 0;
+      /* Ultra-subtle sepia ink in Light (Parchment) mode */
+      color: rgba(92, 61, 38, 0.38);
+      animation: footstepFadeInOut 7.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      filter: drop-shadow(0 0 1px rgba(92, 61, 38, 0.15));
+    }
+
+    /* Faint antique gold in Dark (Midnight) mode */
+    :root[data-theme='dark'] .marauder-footstep {
+      color: rgba(212, 175, 55, 0.36);
+      filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+    }
+
+    /* Soft organic appearance and fade-out */
+    @keyframes footstepFadeInOut {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      6% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      70% {
+        opacity: 0.95;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .footstep-svg {
+      display: block;
+      width: 12px;
+      height: 21px;
+    }
+
+    /* ==========================================================================
+       SUBTLE SILHOUETTE-STYLE MOVING CHARACTERS
+       1. Distant Broomstick Riders (Sky / Castle Horizon)
+       2. Swooping Carrier Owl on Owl Post Dispatch
+       3. Subtle Margin Spirit on Spellbook Hover
+       ========================================================================== */
+
+    /* 1. Distant Broomstick Silhouettes */
+    .broomstick-sky-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      overflow: hidden;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .broomstick-sky-layer.is-calm {
+      opacity: 0;
+    }
+
+    .broomstick-rider {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      color: rgba(92, 61, 38, 0.42);
+      filter: drop-shadow(0 0 1px rgba(92, 61, 38, 0.18));
+      will-change: transform, opacity;
+    }
+
+    :root[data-theme='dark'] .broomstick-rider {
+      color: rgba(212, 175, 55, 0.45);
+      filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.35));
+    }
+
+    .broomstick-svg {
+      display: block;
+      width: 32px;
+      height: 14px;
+    }
+
+    /* Rider 1: Higher altitude gliding left-to-right at wide intervals */
+    .rider-upper {
+      top: 14%;
+      left: -50px;
+      animation: broomstickGlideUpper 32s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation-delay: 3s;
+    }
+
+    @keyframes broomstickGlideUpper {
+      0% {
+        transform: translate3d(-60px, 0, 0) scale(0.92) rotate(-1deg);
+        opacity: 0;
+      }
+      4% {
+        opacity: 0.85;
+      }
+      45% {
+        transform: translate3d(50vw, 8px, 0) scale(0.95) rotate(1deg);
+        opacity: 0.9;
+      }
+      88% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate3d(calc(100vw + 60px), -6px, 0) scale(0.92) rotate(-0.5deg);
+        opacity: 0;
+      }
+    }
+
+    /* Rider 2: Lower horizon gliding right-to-left at wide staggered intervals */
+    .rider-lower {
+      top: 23%;
+      right: -50px;
+      animation: broomstickGlideLower 38s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation-delay: 18s;
+    }
+
+    .rider-lower .broomstick-svg {
+      transform: scaleX(-1);
+      width: 27px;
+      height: 12px;
+    }
+
+    @keyframes broomstickGlideLower {
+      0% {
+        transform: translate3d(60px, 0, 0) scale(0.85) rotate(1deg);
+        opacity: 0;
+      }
+      4% {
+        opacity: 0.78;
+      }
+      50% {
+        transform: translate3d(-50vw, -10px, 0) scale(0.88) rotate(-1deg);
+        opacity: 0.82;
+      }
+      88% {
+        opacity: 0.75;
+      }
+      100% {
+        transform: translate3d(calc(-100vw - 60px), 5px, 0) scale(0.85) rotate(0.5deg);
+        opacity: 0;
+      }
+    }
+
+    /* 2. Swooping Carrier Owl on Form Dispatch */
+    .carrier-owl-flight-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .carrier-owl-sprite {
+      position: absolute;
+      bottom: 25%;
+      left: 30%;
+      color: rgba(92, 61, 38, 0.75);
+      animation: carrierOwlSwoop 3.4s cubic-bezier(0.2, 0.8, 0.35, 1) forwards;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+      will-change: transform, opacity;
+    }
+
+    :root[data-theme='dark'] .carrier-owl-sprite {
+      color: #ede3cf;
+      filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45));
+    }
+
+    .carrier-owl-svg {
+      width: 68px;
+      height: 40px;
+      display: block;
+    }
+
+    @keyframes carrierOwlSwoop {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.65) rotate(-18deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.95;
+        transform: translate3d(40px, -45px, 0) scale(0.88) rotate(-10deg);
+      }
+      45% {
+        transform: translate3d(140px, -170px, 0) scale(1) rotate(-6deg);
+        opacity: 0.95;
+      }
+      80% {
+        opacity: 0.75;
+        transform: translate3d(280px, -330px, 0) scale(0.85) rotate(-14deg);
+      }
+      100% {
+        transform: translate3d(380px, -450px, 0) scale(0.7) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* 3. Subtle Margin Spirit on Spell Hover */
+    .spellbook-section {
+      position: relative;
+    }
+
+    .spellbook-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .spell-margin-spirit {
+      position: absolute;
+      top: 30%;
+      width: 48px;
+      height: 60px;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      z-index: 1;
+      color: rgba(156, 120, 56, 0.55);
+      filter: blur(0.3px) drop-shadow(0 0 8px rgba(156, 120, 56, 0.35));
+      transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px) scale(0.9);
+      will-change: transform, opacity;
+    }
+
+    :root[data-theme='dark'] .spell-margin-spirit {
+      color: rgba(220, 205, 160, 0.65);
+      filter: blur(0.2px) drop-shadow(0 0 12px rgba(212, 175, 55, 0.55));
+    }
+
+    .spell-margin-spirit.spirit-left {
+      left: -58px;
+    }
+
+    .spell-margin-spirit.spirit-right {
+      right: -58px;
+      transform: translateY(20px) scale(0.9) scaleX(-1);
+    }
+
+    .spell-margin-spirit.is-drifting {
+      opacity: 0.85;
+      transform: translateY(-28px) scale(1);
+    }
+
+    .spell-margin-spirit.spirit-right.is-drifting {
+      opacity: 0.85;
+      transform: translateY(-28px) scale(1) scaleX(-1);
+    }
+
+    .spell-spirit-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @media (max-width: 960px) {
+      .spell-margin-spirit {
+        display: none !important;
+      }
+    }
+
+    /* Navigation Bar 'Mischief Managed' Bordered Pill Button */
+    .mischief-toggle-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--subtle-ink);
+      font-family: var(--font-im-fell), 'IM Fell English', Georgia, serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .mischief-toggle-pill:hover {
+      background: rgba(var(--glow-rgb), 0.08);
+      border-color: var(--accent-color);
+      color: var(--text-color);
+      box-shadow: 0 0 8px rgba(var(--glow-rgb), 0.2);
+    }
+
+    .mischief-toggle-pill:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 3px;
+    }
+
+    .mischief-toggle-pill.is-calm {
+      border-style: dashed;
+      color: var(--subtle-ink);
+      opacity: 0.85;
+    }
+
+    .mischief-toggle-pill.is-calm:hover {
+      opacity: 1;
+      border-style: solid;
+    }
+
+    .mischief-pill-sigil {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+
+    .mischief-toggle-pill:hover .mischief-pill-sigil {
+      transform: scale(1.18);
+    }
+
+    .mischief-pill-text {
+      line-height: 1;
+    }
+
+    /* Red Wax Seal Golden Pulse */
+    @keyframes sealGlowPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 14px rgba(139, 26, 26, 0.5);
+      }
+      50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 34px 10px var(--gold-accent), 0 4px 22px rgba(139, 26, 26, 0.9);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 14px rgba(139, 26, 26, 0.5);
+      }
+    }
+
+    .wax-seal.pulse-glow {
+      animation: sealGlowPulse 1.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 3. Syllabus Modal Stamped Close Button */
+    .syllabus-mischief-footer {
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
+      padding-bottom: 0.6rem;
+      border-top: 1px dashed rgba(156, 120, 56, 0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    :root[data-theme="dark"] .syllabus-mischief-footer {
+      border-top-color: rgba(212, 175, 55, 0.35);
+    }
+
+    .mischief-managed-syllabus-btn {
+      background: rgba(156, 120, 56, 0.08);
+      border: 1px solid rgba(156, 120, 56, 0.65);
+      color: #2b1d12;
+      font-family: var(--font-im-fell), 'IM Fell English', Georgia, serif;
+      font-size: 1.02rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      padding: 0.55rem 1.45rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 2px 6px rgba(43, 29, 18, 0.1);
+    }
+
+    :root[data-theme="dark"] .mischief-managed-syllabus-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.6);
+      color: #ede3cf;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .mischief-managed-syllabus-btn:hover,
+    .mischief-managed-syllabus-btn:focus-visible {
+      background: rgba(139, 26, 26, 0.12);
+      border-color: #8b1a1a;
+      color: #8b1a1a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 26, 26, 0.22);
+    }
+
+    :root[data-theme="dark"] .mischief-managed-syllabus-btn:hover,
+    :root[data-theme="dark"] .mischief-managed-syllabus-btn:focus-visible {
+      background: rgba(212, 175, 55, 0.22);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+      box-shadow: 0 4px 14px rgba(var(--glow-rgb), 0.35);
+    }
+
+    .mischief-managed-syllabus-btn:active {
+      transform: translateY(0);
+    }
+
+    /* 4. Owl Post Parchment Reset Actions */
+    .owl-mischief-reset-wrap {
+      text-align: center;
+      padding: 1.25rem 0.5rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    .owl-mischief-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+
+    .mischief-managed-owl-btn {
+      background: var(--button-bg, #8b1a1a);
+      color: #fff9f0;
+      border: 1px solid rgba(212, 175, 55, 0.65);
+      font-family: var(--font-im-fell), 'IM Fell English', Georgia, serif;
+      font-size: 0.98rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(139, 26, 26, 0.35);
+    }
+
+    .mischief-managed-owl-btn:hover,
+    .mischief-managed-owl-btn:focus-visible {
+      background: var(--button-hover, #6d1414);
+      border-color: var(--gold-accent);
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 16px rgba(var(--glow-rgb), 0.35), 0 2px 10px rgba(139, 26, 26, 0.5);
+    }
+
+    .mischief-managed-owl-btn:active {
+      transform: translateY(0);
+    }
+
+    .owl-secondary-reset-btn {
+      background: transparent;
+      border: 1px solid rgba(var(--gold-rgb), 0.4);
+      color: var(--subtle-ink);
+      font-family: var(--font-crimson), 'Crimson Pro', Georgia, serif;
+      font-size: 0.92rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .owl-secondary-reset-btn:hover,
+    .owl-secondary-reset-btn:focus-visible {
+      border-color: var(--gold-accent);
+      color: var(--text-color);
+      background: rgba(var(--gold-rgb), 0.08);
+    }
+
+    /* ==========================================================================
        SECTION DIVIDERS REQUIREMENT:
        Separate major sections using 1px solid gold hairline borders with a centered ✦ diamond ornament via CSS pseudo-elements.
        ========================================================================== */
@@ -381,6 +941,69 @@
     }
 
     /* ==========================================================================
+       HOGWARTS CASTLE WATERMARK BACKDROP
+       Theme-switching watercolor artwork with soft edge vignette & parallax
+       ========================================================================== */
+    .castle-backdrop-container {
+      position: fixed;
+      top: -30px;
+      left: -15px;
+      right: -15px;
+      bottom: -30px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      overflow: hidden;
+      isolation: isolate;
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    .castle-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.4, 1);
+      will-change: opacity;
+    }
+
+    .castle-layer-light {
+      opacity: var(--castle-light-opacity, 0.16);
+      mix-blend-mode: multiply;
+      filter: sepia(16%) saturate(96%) contrast(98%);
+    }
+
+    .castle-layer-dark {
+      opacity: var(--castle-dark-opacity, 0);
+      mix-blend-mode: screen;
+      filter: brightness(108%) contrast(105%);
+    }
+
+    .castle-image {
+      object-fit: cover;
+      object-position: center 30%;
+      transform: scale(1.05);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Gentle Edge Vignette & Editorial Framing Overlay */
+    .castle-vignette-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        transparent 45%,
+        rgba(var(--vignette-center-rgb), 0.1) 80%,
+        rgba(var(--vignette-center-rgb), 0.22) 100%
+      );
+      transition: background 0.6s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+
+    /* ==========================================================================
        ATMOSPHERIC BACKGROUND MOTES
        Floating candle embers in Dark Mode / Sunlit parchment dust in Light Mode
        ========================================================================== */
@@ -391,7 +1014,7 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
       overflow: hidden;
       user-select: none;
     }
@@ -430,11 +1053,11 @@
       }
     }
 
-    /* Content layers strictly in front of ambient motes */
+    /* Content layers strictly in front of castle backdrop & ambient motes */
     main,
     footer.site-footer {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     /* ==========================================================================
@@ -497,6 +1120,16 @@
         opacity: 0 !important;
       }
 
+      /* Castle backdrop: disable parallax drift in reduced motion */
+      .castle-backdrop-container {
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .castle-layer {
+        transition: none !important;
+      }
+
       /* Disable Scroll Ink-Reveal, Nav Underline animations, & Footer ink dissolve */
       .scroll-reveal,
       .section-divider.scroll-reveal {
@@ -523,8 +1156,32 @@
       }
 
       .mischief-btn {
-        text-decoration: none;
-        cursor: default;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .marauders-footsteps-layer {
+        display: none !important;
+      }
+
+      .marauder-footstep {
+        animation: none !important;
+        opacity: 0 !important;
+      }
+
+      .mischief-toggle-pill {
+        transition: none !important;
+      }
+
+      .mischief-managed-owl-btn,
+      .mischief-managed-syllabus-btn {
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .wax-seal.pulse-glow {
+        animation: none !important;
+        box-shadow: 0 0 16px 3px var(--gold-accent) !important;
       }
 
       .parchment-letter {
@@ -542,16 +1199,23 @@
       padding: 0 1.75rem;
     }
 
-    /* Storybook Header Banner / Top Nav */
+    /* Storybook Header Banner / Top Nav (Transparent for clear backdrop visibility) */
     header.site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background-color: var(--nav-bg);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       border-bottom: 1px solid var(--border-light);
-      transition: background-color 0.4s ease, border-color 0.4s ease;
+      transition: border-color 0.4s ease;
+    }
+
+    .masthead-title,
+    .nav-link,
+    .footer-colophon,
+    .footer-fan-note {
+      text-shadow: 0 1px 3px rgba(var(--vignette-center-rgb), 0.7);
     }
 
     .nav-bar {
@@ -620,6 +1284,12 @@
     .nav-link:hover::after,
     .nav-link:focus-visible::after {
       width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
     }
 
     /* Nox / Lumos Toggle Button */
@@ -1474,17 +2144,22 @@
     .syllabus-dialog {
       border: none;
       background: transparent;
-      padding: 1.5rem 1rem;
-      max-width: 720px;
-      width: 94%;
+      padding: 0;
+      max-width: 660px;
+      width: 92%;
+      max-height: 86vh;
+      max-height: 86dvh;
       margin: auto;
       border-radius: 4px;
-      overflow: visible;
+      overflow: hidden;
       color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
     }
 
     .syllabus-dialog::backdrop {
-      background: rgba(11, 14, 23, 0.72);
+      background: rgba(11, 14, 23, 0.75);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       animation: syllabusBackdropFade 0.3s ease;
@@ -1498,9 +2173,14 @@
     .syllabus-parchment-wrapper {
       perspective: 1400px;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
       width: 100%;
+      max-height: 86vh;
+      max-height: 86dvh;
+      min-height: 0;
+      overflow: hidden;
     }
 
     /* 3D Parchment Unrolling / Unfolding on Row Opening */
@@ -1533,11 +2213,16 @@
     .syllabus-scroll-container {
       position: relative;
       width: 100%;
+      max-height: 86vh;
+      max-height: 86dvh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      box-sizing: border-box;
       background: linear-gradient(155deg, #fdf8ee 0%, #f4ebd8 45%, #ece1c8 85%, #e1d2b5 100%);
       color: #2b1d12;
       border: 1px solid rgba(156, 120, 56, 0.55);
       border-radius: 4px;
-      padding: 2.4rem 2.6rem 3.2rem 2.6rem;
+      padding: 1.8rem 2.2rem 2.2rem 2.2rem;
       transform-origin: top center;
       box-shadow:
         0 4px 12px rgba(0, 0, 0, 0.12),
@@ -1546,6 +2231,25 @@
         inset 0 0 65px rgba(156, 120, 56, 0.18),
         inset 0 16px 20px -10px rgba(156, 120, 56, 0.25),
         inset 0 -16px 20px -10px rgba(156, 120, 56, 0.25);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(156, 120, 56, 0.55) transparent;
+    }
+
+    .syllabus-scroll-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .syllabus-scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .syllabus-scroll-container::-webkit-scrollbar-thumb {
+      background: rgba(156, 120, 56, 0.45);
+      border-radius: 3px;
+    }
+
+    .syllabus-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 120, 56, 0.75);
     }
 
     /* Inner hairline bronze border frame */
@@ -1562,6 +2266,7 @@
       background: linear-gradient(155deg, #181e2c 0%, #121723 45%, #0d121c 85%, #090d15 100%);
       color: #ede3cf;
       border-color: rgba(212, 175, 55, 0.45);
+      scrollbar-color: rgba(212, 175, 55, 0.5) transparent;
       box-shadow:
         0 4px 14px rgba(0, 0, 0, 0.5),
         0 20px 48px rgba(0, 0, 0, 0.8),
@@ -1569,6 +2274,14 @@
         inset 0 0 65px rgba(212, 175, 55, 0.08),
         inset 0 16px 20px -10px rgba(212, 175, 55, 0.12),
         inset 0 -16px 20px -10px rgba(212, 175, 55, 0.12);
+    }
+
+    :root[data-theme="dark"] .syllabus-scroll-container::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.4);
+    }
+
+    :root[data-theme="dark"] .syllabus-scroll-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(212, 175, 55, 0.75);
     }
 
     :root[data-theme="dark"] .syllabus-scroll-container::after {
@@ -1602,10 +2315,10 @@
     /* Miniature Red Wax Seal in Bottom Right Corner */
     .syllabus-wax-seal {
       position: absolute;
-      bottom: 16px;
-      right: 20px;
-      width: 48px;
-      height: 48px;
+      bottom: 14px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, #c42929 0%, #991919 45%, #6e0f0f 78%, #480707 100%);
       box-shadow:
@@ -1618,7 +2331,7 @@
       justify-content: center;
       pointer-events: none;
       user-select: none;
-      z-index: 5;
+      z-index: 1;
     }
 
     .syllabus-wax-seal span {
@@ -2428,6 +3141,16 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .broomstick-sky-layer,
+      .broomstick-rider,
+      .carrier-owl-flight-container,
+      .carrier-owl-sprite,
+      .spell-margin-spirit {
+        display: none !important;
+        animation: none !important;
+        transform: none !important;
+        opacity: 0 !important;
+      }
 
       .wax-seal:hover::after,
       .wax-seal:hover,
@@ -2537,13 +3260,15 @@
     }
 
     /* ==========================================================================
-       SITE FOOTER & COLOPHON
+       SITE FOOTER & COLOPHON (Transparent for clear backdrop visibility)
        ========================================================================== */
     footer.site-footer {
       border-top: 1px solid var(--border-light);
       padding: 3.5rem 0 2.8rem 0;
       margin-top: 5rem;
-      background-color: var(--nav-bg);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       text-align: center;
       position: relative;
     }
@@ -2602,7 +3327,8 @@
     }
 
     /* ==========================================================================
-       RESPONSIVE ADAPTATIONS & ZERO OVERFLOW AT 375PX MOBILE WIDTH
+       RESPONSIVE ADAPTATIONS, TOUCH POLISH & ZERO OVERFLOW
+       Strict Mobile (375px+), Tablet & Desktop Fluid Architecture
        ========================================================================== */
     html,
     body {
@@ -2610,23 +3336,96 @@
       overflow-x: hidden;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
+    /* Tactile Tap Feedback on Touch & Click */
+    .spell-card:active,
+    .timetable-row:active,
+    .classes-table tbody tr:active,
+    .wax-btn:active,
+    .owl-btn:active,
+    .mischief-managed-syllabus-btn:active,
+    .mischief-managed-owl-btn:active,
+    .copy-email-btn:active {
+      transform: scale(0.982);
+      transition: transform 0.1s ease;
+    }
 
-      .hero-title {
-        font-size: 2.7rem;
+    /* Disable cursor-following candle glow on touch-only devices */
+    @media (hover: none) and (pointer: coarse) {
+      #candle-glow,
+      .candle-glow-layer,
+      .candle-glow-flare {
+        display: none !important;
       }
     }
 
-    @media (max-width: 768px) {
-      .ledger-grid {
+    /* WCAG 2.5.5 Touch Target Sizing (minimum 44x44px for touch interfaces) */
+    @media (pointer: coarse) {
+      .mischief-toggle-pill,
+      .spell-toggle-btn,
+      .mobile-menu-btn,
+      .syllabus-close-btn,
+      .mischief-managed-syllabus-btn,
+      .owl-submit-btn,
+      .mischief-managed-owl-btn,
+      .wax-btn,
+      .wax-seal,
+      .copy-email-btn {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+
+    /* Tablet & Medium Screen Stacking (<= 850px) */
+    @media (max-width: 850px) {
+      .hero-grid {
         grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+
+      .spellbook-grid {
+        grid-template-columns: 1fr !important;
         gap: 1.5rem;
       }
 
+      .ledger-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+      }
+
+      .owl-form-fields {
+        gap: 1rem;
+      }
+    }
+
+    /* Mobile Phones & Smaller Viewports (<= 768px) */
+    @media (max-width: 768px) {
+      /* Castle Watermark Mobile Framing & Tower Centering */
+      .castle-image {
+        object-position: center 22% !important;
+        transform: scale(1.12);
+      }
+
+      /* Reduced Watermark Opacity on Smaller Viewports for Crisp Contrast */
+      :root {
+        --castle-light-opacity: 0.18;
+      }
+
+      :root[data-theme="dark"] {
+        --castle-dark-opacity: 0.24;
+      }
+
+      /* Inner Card Backdrops for Editorial Legibility Over Backdrop */
+      .parchment-letter,
+      .classes-table tbody tr,
+      .spell-card,
+      .ledger-card,
+      .owl-post-card,
+      .owl-parchment-scroll {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Navigation Menu Dropdown */
       .nav-links {
         display: none;
         flex-direction: column;
@@ -2638,7 +3437,8 @@
         border-bottom: 1px solid var(--border-light);
         padding: 1.5rem;
         gap: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        z-index: 101;
       }
 
       .nav-links.open {
@@ -2646,18 +3446,76 @@
       }
 
       .mobile-menu-btn {
-        display: block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Mobile Input Auto-Zoom Prevention (strictly >= 16px font-size) */
+      .owl-form-input,
+      .owl-form-textarea,
+      input[type="text"],
+      input[type="email"],
+      textarea,
+      select {
+        font-size: 16px !important;
+      }
+
+      /* Mobile Syllabus Modal Adaptation */
+      .syllabus-dialog {
+        width: 95% !important;
+        max-width: 95vw !important;
+        max-height: 90vh !important;
+        max-height: 90dvh !important;
+        margin: auto;
+      }
+
+      .syllabus-parchment-wrapper {
+        max-height: 90vh !important;
+        max-height: 90dvh !important;
+      }
+
+      .syllabus-scroll-container {
+        max-height: 90vh !important;
+        max-height: 90dvh !important;
+        padding: 1.35rem 1.1rem 2rem 1.1rem !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .syllabus-mischief-footer {
+        position: sticky;
+        bottom: -1px;
+        background: inherit;
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+        margin-top: 1.4rem;
+        border-top: 1px dashed rgba(156, 120, 56, 0.4);
+        z-index: 10;
+      }
+
+      .mischief-managed-syllabus-btn {
+        width: 100% !important;
+        min-height: 44px !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .syllabus-close-btn {
+        min-width: 44px;
+        min-height: 44px;
       }
 
       .hero-title {
-        font-size: 2.25rem;
+        font-size: clamp(2.1rem, 6.5vw, 2.6rem);
       }
 
       .section-title {
-        font-size: 2rem;
+        font-size: clamp(1.85rem, 5.5vw, 2.2rem);
       }
     }
 
+    /* Small Mobile Viewports (<= 480px) */
     @media (max-width: 480px) {
       .folio-container {
         padding: 0 1rem;
@@ -2665,17 +3523,42 @@
 
       .nav-bar {
         padding: 0.75rem 0;
-        gap: 0.5rem;
+        gap: 0.6rem;
+        flex-wrap: wrap;
       }
 
       .masthead-title {
         font-size: 1.15rem;
       }
 
+      .nav-actions {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .mischief-toggle-pill {
+        min-height: 44px;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .spell-toggle-btn {
-        padding: 0.35rem 0.65rem;
-        font-size: 0.75rem;
+        min-height: 44px;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
         letter-spacing: 0.08em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu-btn {
+        min-height: 44px;
+        min-width: 44px;
       }
 
       .hero-section {
@@ -2707,6 +3590,7 @@
 
       .hero-actions .wax-btn {
         width: 100%;
+        min-height: 44px;
       }
 
       .parchment-letter-wrapper {
@@ -2794,7 +3678,18 @@
       }
 
       .syllabus-scroll-container {
-        padding: 1.6rem 1.2rem;
+        padding: 1.4rem 1.1rem 2.4rem 1.1rem;
+      }
+
+      .syllabus-wax-seal {
+        width: 36px;
+        height: 36px;
+        bottom: 10px;
+        right: 12px;
+      }
+
+      .syllabus-wax-seal span {
+        font-size: 16px;
       }
 
       .syllabus-title {
@@ -2812,6 +3707,7 @@
       .owl-btn {
         width: 100%;
         padding: 0.85rem 1.2rem;
+        min-height: 44px;
       }
 
       .owl-parchment-scroll {
@@ -2827,6 +3723,7 @@
       .footer-links {
         gap: 1rem;
         font-size: 0.74rem;
+        flex-wrap: wrap;
       }
     }
   
