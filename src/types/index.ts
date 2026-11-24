@@ -24,7 +24,8 @@ export interface OwlPostRequest {
   name: string;
   email: string;
   message: string;
-  botcheck?: string;
+  owlType?: string;
+  botcheck?: boolean | string;
 }
 
 export interface OwlPostResponse {

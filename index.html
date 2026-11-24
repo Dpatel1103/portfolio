@@ -457,16 +457,20 @@
         transform: translate3d(0, 105vh, 0);
         opacity: 0;
       }
+
       15% {
         opacity: calc(var(--mote-peak-opacity, 0.6) * var(--mote-opacity-scale, 1));
       }
+
       50% {
         transform: translate3d(var(--sway-x, 15px), 50vh, 0);
         opacity: calc(var(--mote-peak-opacity, 0.8) * var(--mote-opacity-scale, 1));
       }
+
       85% {
         opacity: calc(var(--mote-peak-opacity, 0.5) * var(--mote-opacity-scale, 1));
       }
+
       100% {
         transform: translate3d(calc(var(--sway-x, 15px) * -0.6), -10vh, 0);
         opacity: 0;
@@ -1459,8 +1463,8 @@
       cursor: pointer;
       outline: none;
       transition: background-color 0.25s ease,
-                  transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1),
-                  box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1),
+        box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
 
     .timetable-row:hover {
@@ -1534,8 +1538,13 @@
     }
 
     @keyframes syllabusBackdropFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .syllabus-parchment-wrapper {
@@ -1557,14 +1566,17 @@
         transform: rotateX(-65deg) scale(0.9) translateY(-25px);
         filter: brightness(0.88);
       }
+
       60% {
         opacity: 1;
         transform: rotateX(6deg) scale(1.015) translateY(3px);
         filter: brightness(1.02);
       }
+
       80% {
         transform: rotateX(-2deg) scale(0.995) translateY(-1px);
       }
+
       100% {
         opacity: 1;
         transform: rotateX(0deg) scale(1) translateY(0);
@@ -2148,326 +2160,2577 @@
 
     /* ==========================================================================
        OWL POST (#owl-post)
-       Centered contact section with gliding owl animation
+       Three-Column Wizarding World "Owl Post Desk & Perch" Architecture
+       - Left: Select Your Owl (Carrier Roost Cabinet with 4 Owls)
+       - Center: Unrolled Aged-Parchment Scroll with Embossed Red Wax Seal Button
+       - Right: Postal Ledger & Mechanical Live Counter with Inkwell Art & Direct Links
        ========================================================================== */
-    .owl-post-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 3.5rem 2.5rem;
-      border-radius: 4px;
+    .owl-desk-section {
       position: relative;
-      max-width: 780px;
-      margin: 0 auto;
-      text-align: center;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+      width: 100%;
     }
 
-    .owl-post-card::after {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border: 1px solid var(--border-light);
-      pointer-events: none;
+    .owl-desk-section.folio-container {
+      max-width: 1280px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
-    .owl-post-intro {
-      font-size: 1.12rem;
-      line-height: 1.7;
-      color: var(--subtle-ink);
-      margin-bottom: 2.2rem;
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ==========================================================================
-       OWL POST LIVE COUNTER BADGE
-       Quiet editorial counter badge matching the parchment theme
-       ========================================================================== */
-    .owl-counter-container {
-      text-align: center;
-      margin-bottom: 1.6rem;
-    }
-
-    .owl-counter-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      padding: 0.38rem 1.15rem;
-      font-family: var(--font-heading);
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      color: var(--accent-text);
-      background-color: var(--tag-bg);
-      border: 1px solid var(--border-light);
-      border-radius: 999px;
-      transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease;
-    }
-
-    .owl-counter-sigil {
-      color: var(--accent-color);
-      font-size: 0.8rem;
-    }
-
-    .owl-counter-text {
-      font-weight: 500;
-    }
-
-    .owl-btn-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .owl-btn {
-      font-size: 1rem;
-      padding: 0.95rem 2.4rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      border-radius: 2px;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-    }
-
-    .owl-btn .owl-icon {
-      display: inline-block;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      width: 22px;
-      height: 22px;
-    }
-
-    .owl-btn:hover .owl-icon {
-      transform: translate(6px, -6px);
-    }
-
-    /* Expandable parchment scroll container */
-    .owl-scroll-container {
-      max-height: 0;
-      opacity: 0;
+    .owl-mailroom-frame {
+      position: relative;
+      border: 2px solid #b8923b;
+      border-radius: 8px;
+      padding: 1.8rem 1.6rem 2.2rem;
+      margin-top: 2rem;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 252, 245, 0.92) 0%, rgba(246, 236, 214, 0.75) 100%),
+        repeating-linear-gradient(90deg,
+          rgba(184, 146, 59, 0.035) 0px,
+          rgba(184, 146, 59, 0.035) 4px,
+          transparent 4px,
+          transparent 12px),
+        linear-gradient(180deg, #ede0c6 0%, #dfcfaa 100%);
+      box-shadow:
+        0 16px 48px rgba(43, 29, 18, 0.22),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 6px rgba(120, 85, 30, 0.25);
+      transition: all 0.3s ease;
       overflow: hidden;
-      transform-origin: top center;
-      transform: scaleY(0.9) translateY(-6px);
-      transition: max-height 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.45s ease,
-        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-        margin 0.35s ease;
-      margin-bottom: 2rem;
     }
 
-    /* Unrolls like a parchment scroll when opened */
-    .owl-scroll-container.is-expanded {
-      max-height: 950px;
-      opacity: 1;
-      transform: scaleY(1) translateY(0);
-      margin-top: 1rem;
+    :root[data-theme="dark"] .owl-mailroom-frame {
+      border-color: #d4af37;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(24, 32, 48, 0.95) 0%, rgba(13, 17, 26, 0.98) 100%),
+        repeating-linear-gradient(90deg,
+          rgba(212, 175, 55, 0.025) 0px,
+          rgba(212, 175, 55, 0.025) 3px,
+          transparent 3px,
+          transparent 10px),
+        linear-gradient(180deg, #151a27 0%, #0c0f17 100%);
+      box-shadow:
+        0 20px 56px rgba(0, 0, 0, 0.8),
+        0 0 32px rgba(212, 175, 55, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.12),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.8);
     }
 
-    .owl-parchment-scroll {
-      background: var(--card-inner);
-      border: 1px solid var(--card-border);
-      border-radius: 4px;
-      padding: 2.2rem 2.4rem;
-      position: relative;
-      max-width: 580px;
-      margin: 0 auto;
-      text-align: left;
-      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.06);
+    /* Ambient Warm Mailroom Lantern Glow */
+    .desk-ambient-lamp-glow {
+      position: absolute;
+      top: -20px;
+      right: 40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 205, 90, 0.22) 0%, rgba(212, 175, 55, 0.08) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(16px);
+      animation: lanternFlicker 6.5s infinite ease-in-out;
     }
 
-    .owl-parchment-scroll::after {
+    @keyframes lanternFlicker {
+
+      0%,
+      100% {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      30% {
+        opacity: 0.95;
+        transform: scale(1.08);
+      }
+
+      50% {
+        opacity: 0.58;
+        transform: scale(0.96);
+      }
+
+      75% {
+        opacity: 0.85;
+        transform: scale(1.04);
+      }
+    }
+
+    .owl-mailroom-frame::before {
       content: "";
       position: absolute;
       inset: 6px;
-      border: 1px solid var(--border-light);
+      border: 1px dashed rgba(184, 146, 59, 0.55);
+      border-radius: 4px;
       pointer-events: none;
     }
 
-    .owl-form {
-      position: relative;
+    :root[data-theme="dark"] .owl-mailroom-frame::before {
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    /* Ambient Starlight & Firefly Particle Canvas */
+    .owl-vfx-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       z-index: 1;
     }
 
-    .owl-form-fields {
+    /* Celestial Corner Flourishes & Filigree Brackets */
+    .mailroom-corner-filigree {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      pointer-events: none;
+      z-index: 3;
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+    }
+
+    .mailroom-corner-filigree.top-left { top: 6px; left: 6px; }
+    .mailroom-corner-filigree.top-right { top: 6px; right: 6px; }
+    .mailroom-corner-filigree.bottom-left { bottom: 6px; left: 6px; }
+    .mailroom-corner-filigree.bottom-right { bottom: 6px; right: 6px; }
+    .mailroom-corner-filigree svg { width: 100%; height: 100%; display: block; }
+
+    /* Centered Celestial Compass Stars on Top/Bottom Border Rules */
+    .mailroom-border-star {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #d4af37;
+      font-size: 0.95rem;
+      text-shadow: 0 0 8px #ffd700;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .mailroom-border-star.top-center { top: 3px; }
+    .mailroom-border-star.bottom-center { bottom: 3px; }
+
+    /* 3D Wax Seal Shockwave Ripple Ring */
+    @keyframes shockwaveExpand {
+      0% {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 1;
+        border-width: 3px;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(2.4);
+        opacity: 0;
+        border-width: 1px;
+      }
+    }
+
+    .wax-seal-shockwave-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      box-shadow: 0 0 16px #d4af37, inset 0 0 12px #ffd700;
+      pointer-events: none;
+      z-index: 9;
+      animation: shockwaveExpand 0.65s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+    }
+
+    .mailroom-flourish {
+      position: absolute;
+      font-size: 1.15rem;
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.65);
+      pointer-events: none;
+      z-index: 3;
+      user-select: none;
+    }
+
+    .mailroom-flourish.top-left {
+      top: 9px;
+      left: 11px;
+    }
+
+    .mailroom-flourish.top-right {
+      top: 9px;
+      right: 11px;
+    }
+
+    .mailroom-flourish.bottom-left {
+      bottom: 9px;
+      left: 11px;
+    }
+
+    .mailroom-flourish.bottom-right {
+      bottom: 9px;
+      right: 11px;
+    }
+
+    .mailroom-rivet {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff2b2 0%, #d4af37 40%, #826022 80%, #3e2808 100%);
+      border: 0.5px solid rgba(0, 0, 0, 0.5);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .mailroom-rivet.rivet-tl {
+      top: 12px;
+      left: 28px;
+    }
+
+    .mailroom-rivet.rivet-tr {
+      top: 12px;
+      right: 28px;
+    }
+
+    .mailroom-rivet.rivet-bl {
+      bottom: 12px;
+      left: 28px;
+    }
+
+    .mailroom-rivet.rivet-br {
+      bottom: 12px;
+      right: 28px;
+    }
+
+    /* Column Super Headers & 3D Desk Architecture */
+    .owl-column-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .owl-column-super-header {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: #d4af37;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .super-header-rule {
+      flex-grow: 1;
+      max-width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #d4af37 100%);
+    }
+
+    .super-header-rule.right {
+      background: linear-gradient(270deg, transparent 0%, #d4af37 100%);
+    }
+
+    /* Main 3-Column Desk Layout Grid */
+    .owl-desk-layout {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr) 310px;
+      gap: 1.5rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1220px) {
+      .owl-desk-layout {
+        grid-template-columns: 310px minmax(0, 1fr) 280px;
+        gap: 1.1rem;
+      }
+    }
+
+    /* Roost Cabinet */
+    .owl-perch-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .roost-cabinet-box {
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(74, 44, 20, 0.035) 0px,
+          rgba(74, 44, 20, 0.035) 2px,
+          transparent 2px,
+          transparent 8px),
+        linear-gradient(175deg, rgba(74, 44, 20, 0.12) 0%, rgba(42, 24, 10, 0.18) 100%),
+        var(--card-bg);
+      border: 2px solid #8c6d3f;
+      border-radius: 6px;
+      padding: 1.6rem 1.2rem;
+      position: relative;
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.14),
+        0 2px 6px rgba(74, 44, 20, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 0 24px rgba(74, 44, 20, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-sizing: border-box;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    :root[data-theme="dark"] .roost-cabinet-box {
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(212, 175, 55, 0.02) 0px,
+          rgba(212, 175, 55, 0.02) 2px,
+          transparent 2px,
+          transparent 8px),
+        linear-gradient(175deg, rgba(28, 36, 52, 0.9) 0%, rgba(14, 18, 28, 0.97) 100%);
+      border-color: #a8843c;
+      box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(212, 175, 55, 0.1),
+        inset 0 1px 1px rgba(212, 175, 55, 0.22),
+        inset 0 0 30px rgba(0, 0, 0, 0.85);
+    }
+
+    .cabinet-bracket {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      z-index: 2;
+      border: 2.5px solid #d4af37;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+
+    .cabinet-bracket.top-left {
+      top: 5px;
+      left: 5px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .cabinet-bracket.top-right {
+      top: 5px;
+      right: 5px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .cabinet-bracket.bottom-left {
+      bottom: 5px;
+      left: 5px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .cabinet-bracket.bottom-right {
+      bottom: 5px;
+      right: 5px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .arched-cabinet-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 0.35rem;
+      padding: 0.55rem 0.8rem 0.45rem;
+      border-bottom: 1.5px solid var(--border-light);
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(180deg, rgba(var(--glow-rgb), 0.12) 0%, transparent 100%);
+      box-shadow: inset 0 1px 2px rgba(212, 175, 55, 0.2);
+    }
+
+    .perch-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      color: var(--text-color);
+      margin: 0;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .perch-header-sigil {
+      color: #d4af37;
+      font-size: 0.85rem;
+    }
+
+    .perch-subtitle {
+      font-size: 0.84rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+      text-align: center;
+      margin: 0 0 0.85rem 0;
+      line-height: 1.4;
+    }
+
+    .owl-roost-2x2-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+    }
+
+    .roost-card {
+      appearance: none;
+      background: var(--bg-color);
+      border: 1.5px solid var(--border-light);
+      border-radius: 6px;
+      padding: 0.9rem 0.65rem 0.85rem;
+      text-align: center;
+      transition: all 0.28s cubic-bezier(0.2, 0.8, 0.4, 1);
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+      min-height: 195px;
+      box-sizing: border-box;
+      outline: none;
+      color: var(--text-color);
+      font-family: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .roost-card:hover {
+      border-color: #d4af37;
+      background: rgba(var(--glow-rgb), 0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.4), 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .roost-card:focus-visible {
+      outline: 2px solid #d4af37;
+      outline-offset: 3px;
+      border-color: #d4af37;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.65);
+    }
+
+    .roost-card.is-selected {
+      border-color: #d4af37;
+      border-width: 2px;
+      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.08) 100%);
+      box-shadow:
+        0 0 22px rgba(212, 175, 55, 0.5),
+        0 6px 14px rgba(0, 0, 0, 0.18),
+        inset 0 0 16px rgba(212, 175, 55, 0.22);
+      transform: translateY(-3px);
+    }
+
+    :root[data-theme="dark"] .roost-card.is-selected {
+      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.28) 0%, rgba(212, 175, 55, 0.12) 100%);
+      box-shadow:
+        0 0 26px rgba(212, 175, 55, 0.6),
+        0 8px 18px rgba(0, 0, 0, 0.5),
+        inset 0 0 18px rgba(212, 175, 55, 0.28);
+    }
+
+    .owl-perch-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 0.4rem;
+    }
+
+    .owl-card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(var(--glow-rgb), 0.12);
+      border: 1.5px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-text);
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    @keyframes owlPerchBob {
+      0% {
+        transform: translateY(0) scale(1.08);
+      }
+
+      50% {
+        transform: translateY(-3px) scale(1.09) rotate(-1.5deg);
+      }
+
+      100% {
+        transform: translateY(0) scale(1.08);
+      }
+    }
+
+    .roost-card:hover .owl-card-icon {
+      animation: owlPerchBob 2.5s ease-in-out infinite alternate;
+      background: rgba(212, 175, 55, 0.24);
+      border-color: #d4af37;
+      color: var(--text-color);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.45);
+    }
+
+    .roost-card.is-selected .owl-card-icon {
+      transform: scale(1.08);
+      background: rgba(212, 175, 55, 0.24);
+      border-color: #d4af37;
+      color: var(--text-color);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.45);
+    }
+
+    .owl-card-icon.owl-icon-barn {
+      border-color: rgba(184, 146, 59, 0.45);
+    }
+
+    .owl-card-icon.owl-icon-snowy {
+      border-color: rgba(212, 175, 55, 0.6);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .owl-card-icon.owl-icon-horned {
+      border-color: rgba(140, 109, 63, 0.55);
+    }
+
+    .owl-card-icon.owl-icon-screech {
+      border-color: rgba(184, 146, 59, 0.45);
+    }
+
+    .owl-emblem-svg {
+      width: 44px;
+      height: 56px;
+      display: block;
+    }
+
+    .perch-branch-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 88%;
+      max-width: 90px;
+      height: 8px;
+      margin-top: -4px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .wood-perch-rod {
+      flex-grow: 1;
+      height: 6px;
+      background: linear-gradient(180deg, #6c4224 0%, #462813 50%, #2b180a 100%);
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    :root[data-theme="dark"] .wood-perch-rod {
+      background: linear-gradient(180deg, #482c16 0%, #2c1a0c 50%, #170c04 100%);
+    }
+
+    .brass-perch-tip {
+      width: 6px;
+      height: 8px;
+      border-radius: 2px;
+      background: radial-gradient(circle at 30% 30%, #fff6c8 0%, #d4af37 60%, #826022 100%);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+      flex-shrink: 0;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .roost-card:hover .brass-perch-tip,
+    .roost-card.is-selected .brass-perch-tip {
+      box-shadow: 0 0 8px #d4af37;
+    }
+
+    /* Circular Selection Badge inline beside Perch Bar */
+    .perch-inline-seal-wrap {
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+
+    .brass-ring-circle {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid #d4af37;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 246, 200, 0.2) 0%, transparent 80%);
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.5), inset 0 0 3px rgba(212, 175, 55, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .roost-card:hover .brass-ring-circle {
+      box-shadow: 0 0 10px #ffd700, inset 0 0 5px rgba(255, 215, 0, 0.6);
+      transform: scale(1.15);
+    }
+
+    /* Aged Parchment Cartouche Placard with Double Gold Border */
+    .owl-parchment-placard {
+      width: 100%;
+      background: linear-gradient(180deg, #fdfaf3 0%, #f4e9cf 100%);
+      border: 1.5px solid #b8923b;
+      box-shadow: inset 0 0 0 1px #d4af37, 0 3px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 3px;
+      padding: 0.45rem 0.35rem 0.4rem;
+      text-align: center;
+      margin-top: 0.35rem;
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .roost-card:hover .owl-parchment-placard,
+    .roost-card.is-selected .owl-parchment-placard {
+      box-shadow: inset 0 0 0 1px #ffd700, 0 0 12px rgba(212, 175, 55, 0.35);
+      border-color: #d4af37;
+    }
+
+    .placard-owl-name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2b1808;
+      letter-spacing: 0.05em;
+      display: block;
+      line-height: 1.25;
+    }
+
+    :root[data-theme="dark"] .placard-owl-name {
+      color: #1a0f04;
+    }
+
+    .placard-owl-desc1,
+    .placard-owl-desc2 {
+      font-size: 0.78rem;
+      color: #3b200b;
+      font-style: italic;
+      display: block;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    :root[data-theme="dark"] .placard-owl-desc1,
+    :root[data-theme="dark"] .placard-owl-desc2 {
+      color: #4a2d14;
+    }
+
+    .placard-owl-status {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7a5223;
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .placard-owl-status.is-selected {
+      color: #991919;
+      font-weight: 800;
+      text-shadow: 0 0 6px rgba(153, 25, 25, 0.4);
+    }
+
+    .owl-card-meta {
+      width: 100%;
+      text-align: center;
+      margin: 0.35rem 0 0.5rem;
+    }
+
+    .owl-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-color);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .owl-card-badge {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-text);
+      font-weight: 600;
+      margin: 0.2rem 0 0.25rem;
+      line-height: 1.25;
+    }
+
+    .owl-speed-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      color: var(--subtle-ink);
+      background: rgba(var(--glow-rgb), 0.12);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      padding: 0.1rem 0.45rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .owl-perch-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      color: var(--subtle-ink);
+      font-style: italic;
+    }
+
+    .status-indicator-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2b7a4b;
+      box-shadow: 0 0 6px #2b7a4b;
+      animation: perchDotPulse 2.4s infinite ease-in-out;
+    }
+
+    :root[data-theme="dark"] .status-indicator-dot {
+      background: #4cd984;
+      box-shadow: 0 0 6px #4cd984;
+    }
+
+    @keyframes perchDotPulse {
+
+      0%,
+      100% {
+        opacity: 0.8;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.3);
+      }
+    }
+
+    .owl-selection-seal-wrap {
+      margin-top: auto;
+      padding-top: 0.35rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    @keyframes waxStampBounce {
+      0% {
+        transform: scale(0.3) rotate(-15deg);
+        opacity: 0;
+      }
+
+      70% {
+        transform: scale(1.15) rotate(3deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .owl-wax-badge.selected {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 30%, #c42929 0%, #991919 55%, #6e0f0f 100%);
+      border: 1px solid #ffd700;
+      box-shadow: 0 2px 8px rgba(110, 15, 15, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      position: relative;
+      animation: waxStampBounce 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .wax-badge-text {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff3c4;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    }
+
+    .owl-brass-ring-badge.unselected {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(var(--glow-rgb), 0.1);
+      border: 1px solid var(--border-light);
+      font-size: 0.68rem;
+      color: var(--subtle-ink);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .roost-card:hover .owl-brass-ring-badge.unselected {
+      border-color: #d4af37;
+      color: var(--text-color);
+      background: rgba(212, 175, 55, 0.18);
+    }
+
+    .brass-ring-dot {
+      color: #d4af37;
+      font-size: 0.7rem;
+    }
+
+    /* Column 2: Center Parchment Scroll */
+    .owl-scroll-center-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .unrolled-parchment-scroll {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dimensional-spindle {
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 4;
+    }
+
+    .spindle-wood-cylinder {
+      height: 12px;
+      flex-grow: 1;
+      background: linear-gradient(180deg, #784824 0%, #542f15 40%, #361b09 85%, #1f0d04 100%);
+      border-radius: 4px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(184, 146, 59, 0.45);
+    }
+
+    :root[data-theme="dark"] .spindle-wood-cylinder {
+      background: linear-gradient(180deg, #4d2f19 0%, #301b0d 40%, #1c0e04 85%, #0e0601 100%);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .spindle-brass-cap {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff6c8 0%, #e6be44 35%, #b38b25 70%, #5e460e 100%);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      flex-shrink: 0;
+    }
+
+    .aged-texture-scroll {
+      background: linear-gradient(165deg, #fdf8ee 0%, #f6ecd6 40%, #ebdec3 80%, #dfd0b2 100%);
+      color: #2b1d12;
+      border-left: 2px solid rgba(184, 146, 59, 0.5);
+      border-right: 2px solid rgba(184, 146, 59, 0.5);
+      padding: 2.2rem 2.2rem 2.6rem;
+      position: relative;
+      flex-grow: 1;
+      box-shadow:
+        0 14px 40px rgba(43, 29, 18, 0.22),
+        inset 0 0 60px rgba(184, 146, 59, 0.14),
+        inset 0 6px 12px rgba(0, 0, 0, 0.1),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    :root[data-theme="dark"] .aged-texture-scroll {
+      background: linear-gradient(165deg, #182030 0%, #121824 40%, #0d121c 80%, #080c14 100%);
+      color: #ede3cf;
+      border-left: 2px solid rgba(212, 175, 55, 0.4);
+      border-right: 2px solid rgba(212, 175, 55, 0.4);
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.75),
+        inset 0 0 60px rgba(212, 175, 55, 0.08),
+        inset 0 6px 14px rgba(0, 0, 0, 0.7),
+        inset 0 -6px 14px rgba(0, 0, 0, 0.75);
+    }
+
+    .aged-texture-scroll::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(184, 146, 59, 0.4);
+      pointer-events: none;
+    }
+
+    :root[data-theme="dark"] .aged-texture-scroll::after {
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .parchment-watermark-seal {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 240px;
+      height: 240px;
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    :root[data-theme="dark"] .parchment-watermark-seal {
+      opacity: 0.06;
+      filter: invert(1);
+    }
+
+    .scroll-corner-flourish {
+      position: absolute;
+      font-size: 1.25rem;
+      color: #d4af37;
+      opacity: 0.65;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2;
+    }
+
+    .scroll-corner-flourish.top-left {
+      top: 12px;
+      left: 14px;
+    }
+
+    .scroll-corner-flourish.top-right {
+      top: 12px;
+      right: 14px;
+      transform: scaleX(-1);
+    }
+
+    .scroll-corner-flourish.bottom-left {
+      bottom: 12px;
+      left: 14px;
+      transform: scaleY(-1);
+    }
+
+    .scroll-corner-flourish.bottom-right {
+      bottom: 12px;
+      right: 14px;
+      transform: scale(-1);
+    }
+
+    .scroll-title-banner {
+      text-align: center;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .scroll-crest-sigil {
+      color: #d4af37;
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+    }
+
+    .calligraphy-heading {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: inherit;
+      margin: 0.25rem 0 0.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .calligraphy-subtitle {
+      font-size: 0.96rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+      margin: 0 0 0.75rem;
+    }
+
+    .scroll-chosen-owl-indicator {
+      display: inline-block;
+      font-size: 0.82rem;
+      padding: 0.25rem 0.95rem;
+      background: rgba(var(--glow-rgb), 0.1);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+    }
+
+    .indicator-label {
+      color: var(--subtle-ink);
+      font-style: italic;
+    }
+
+    .indicator-owl-name {
+      color: var(--accent-text);
+      font-weight: 700;
+    }
+
+    .owl-ink-form {
+      position: relative;
+      z-index: 2;
+    }
+
+    .owl-scroll-fields {
       display: flex;
       flex-direction: column;
       gap: 1.15rem;
     }
 
-    .owl-form-group {
+    .ink-field-group {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
     }
 
-    .owl-form-label {
+    .ink-field-label {
       font-family: var(--font-heading);
-      font-size: 1.05rem;
-      color: var(--text-color);
-      letter-spacing: 0.04em;
+      font-size: 1.02rem;
+      color: inherit;
+      letter-spacing: 0.03em;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      justify-content: space-between;
     }
 
-    .owl-form-label .required-mark {
-      color: var(--accent-text);
+    .ink-required-mark {
+      color: #991919;
       font-size: 0.9rem;
     }
 
-    .owl-form-input,
-    .owl-form-textarea {
+    .ink-input-slot-wrapper {
+      position: relative;
       width: 100%;
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-light);
+    }
+
+    .stylized-slot {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1.5px solid rgba(184, 146, 59, 0.45);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: inherit;
+      line-height: 1.5;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    :root[data-theme="dark"] .stylized-slot {
+      background: rgba(11, 15, 24, 0.75);
+      border-color: rgba(212, 175, 55, 0.35);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(212, 175, 55, 0.1);
+    }
+
+    .stylized-slot::placeholder {
+      color: var(--subtle-ink);
+      opacity: 0.68;
+      font-style: italic;
+    }
+
+    .stylized-slot:hover {
+      border-color: #d4af37;
+    }
+
+    .stylized-slot:focus {
+      border-color: #d4af37;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.45), inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    :root[data-theme="dark"] .stylized-slot:focus {
+      background: rgba(14, 20, 32, 0.92);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.5), inset 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .textarea-slot {
+      position: relative;
+    }
+
+    .textarea-slot textarea {
+      resize: vertical;
+      min-height: 98px;
+    }
+
+    .textarea-corner-flourish {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      color: #d4af37;
+      font-size: 0.75rem;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .ink-field-hint {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+      margin-top: 0.2rem;
+    }
+
+    /* 3D Stacked Curled Parchment Wings Behind Scroll */
+    .scroll-backdrop-wings {
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: -14px;
+      right: -14px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .scroll-wing-flap.left {
+      position: absolute;
+      top: 14%;
+      bottom: 18%;
+      left: 0;
+      width: 18px;
+      background: linear-gradient(90deg, #d8c292 0%, #e8d7b0 100%);
+      border-radius: 4px 0 0 4px;
+      box-shadow: -4px 6px 12px rgba(0, 0, 0, 0.25);
+      transform: rotate(-1.5deg);
+    }
+
+    .scroll-wing-flap.right {
+      position: absolute;
+      top: 18%;
+      bottom: 14%;
+      right: 0;
+      width: 18px;
+      background: linear-gradient(270deg, #d8c292 0%, #e8d7b0 100%);
+      border-radius: 0 4px 4px 0;
+      box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.25);
+      transform: rotate(1.5deg);
+    }
+
+    :root[data-theme="dark"] .scroll-wing-flap.left {
+      background: linear-gradient(90deg, #101622 0%, #1a2233 100%);
+      box-shadow: -4px 6px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    :root[data-theme="dark"] .scroll-wing-flap.right {
+      background: linear-gradient(270deg, #101622 0%, #1a2233 100%);
+      box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    .scroll-crest-calligraphy-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+    }
+
+    .scroll-calligraphy-wing {
+      color: #d4af37;
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* Inset Aged Parchment Slots with Double Gold Borders & Corner Notches */
+    .parchment-notched-slot {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1.5px solid #b8923b;
       border-radius: 3px;
       padding: 0.75rem 1rem;
       font-family: var(--font-body);
       font-size: 1rem;
-      color: var(--text-color);
+      color: inherit;
       line-height: 1.5;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      transition: all 0.25s ease;
       box-sizing: border-box;
+      outline: none;
+      box-shadow:
+        inset 0 0 0 2px rgba(212, 175, 55, 0.22),
+        inset 0 2px 4px rgba(0, 0, 0, 0.06);
     }
 
-    .owl-form-input::placeholder,
-    .owl-form-textarea::placeholder {
+    :root[data-theme="dark"] .parchment-notched-slot {
+      background: rgba(14, 20, 32, 0.85);
+      border-color: rgba(212, 175, 55, 0.45);
+      box-shadow:
+        inset 0 0 0 2px rgba(212, 175, 55, 0.15),
+        inset 0 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .parchment-notched-slot::placeholder {
       color: var(--subtle-ink);
-      opacity: 0.65;
+      opacity: 0.68;
       font-style: italic;
     }
 
-    .owl-form-input:hover,
-    .owl-form-textarea:hover {
-      border-color: var(--accent-color);
+    .parchment-notched-slot:focus {
+      border-color: #ffd700;
+      box-shadow:
+        0 0 14px rgba(212, 175, 55, 0.5),
+        inset 0 0 0 2px rgba(212, 175, 55, 0.4);
     }
 
-    .owl-form-textarea {
-      resize: vertical;
-      min-height: 90px;
+    .slot-corner {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1.5px solid #d4af37;
+      pointer-events: none;
+      z-index: 3;
     }
 
-    .owl-submit-btn {
-      width: 100%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.9rem 1.8rem;
-      font-size: 1.05rem;
-      cursor: pointer;
-      border-radius: 2px;
-      margin-top: 0.5rem;
-      border: none;
-      font-family: inherit;
+    .slot-corner.tl { top: 3px; left: 3px; border-right: none; border-bottom: none; }
+    .slot-corner.tr { top: 3px; right: 3px; border-left: none; border-bottom: none; }
+    .slot-corner.bl { bottom: 3px; left: 3px; border-right: none; border-top: none; }
+    .slot-corner.br { bottom: 3px; right: 3px; border-left: none; border-top: none; }
+
+    .hanging-seal {
+      margin-bottom: -28px;
+      position: relative;
+      z-index: 10;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
     }
 
-    .owl-submit-btn .owl-emoji {
-      display: inline-block;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-
-    .owl-submit-btn:hover:not(:disabled) .owl-emoji {
-      transform: translate(6px, -4px) rotate(-6deg);
-    }
-
-    .owl-submit-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      filter: grayscale(0.2);
-    }
-
-    .owl-status-msg {
-      margin-top: 1.25rem;
-      font-family: var(--font-heading);
-      font-size: 1.12rem;
-      color: var(--accent-text);
-      text-align: center;
-      line-height: 1.6;
-      padding: 0.5rem;
-    }
-
-    .owl-status-msg.has-success {
-      padding: 1.25rem;
-      background: rgba(var(--glow-rgb), 0.08);
-      border: 1px solid var(--border-light);
-      border-radius: 3px;
-    }
-
-    .owl-fallback-container {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px dashed var(--border-light);
+    /* Shelf Rolled Banner & Plaque */
+    .shelf-banner-scroll {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      font-size: 0.95rem;
-      text-align: center;
       position: relative;
+      background: linear-gradient(180deg, #fdfaf3 0%, #f4e9cf 100%);
+      border: 1.5px solid #b8923b;
+      border-radius: 4px;
+      padding: 0.4rem 0.95rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), inset 0 0 0 1px #d4af37;
+      margin-bottom: 0.65rem;
+    }
+
+    :root[data-theme="dark"] .shelf-banner-scroll {
+      background: linear-gradient(180deg, #1c2638 0%, #121926 100%);
+      border-color: #d4af37;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(212, 175, 55, 0.35);
+    }
+
+    .banner-scroll-text {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #2b1808;
+      text-transform: uppercase;
+    }
+
+    :root[data-theme="dark"] .banner-scroll-text {
+      color: #f7e6a4;
+    }
+
+    .banner-pin {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff2b2 0%, #d4af37 60%, #5e460e 100%);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      margin: 0 0.4rem;
+    }
+
+    .plaque-shelf-container {
+      margin-top: auto;
+      position: relative;
+    }
+
+    .plaque-screw {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff2b2 0%, #d4af37 60%, #462f09 100%);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .plaque-screw.top-left { top: 6px; left: 6px; }
+    .plaque-screw.top-right { top: 6px; right: 6px; }
+    .plaque-screw.bottom-left { bottom: 6px; left: 6px; }
+    .plaque-screw.bottom-right { bottom: 6px; right: 6px; }
+
+    .plaque-star-sparkle {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      color: #d4af37;
+      font-size: 1.15rem;
+      animation: starTwinkle 3s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes starTwinkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.25) rotate(15deg); filter: drop-shadow(0 0 8px #d4af37); }
+    }
+
+    .desk-scrolls-stack-svg {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .wax-seal-dispatch-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: 1.6rem;
+    }
+
+    .feather-burst-animation-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .feather-burst-particle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.35rem;
+      color: #ffd700;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.9));
+      animation: featherFloatUp 1.8s cubic-bezier(0.2, 0.8, 0.35, 1) forwards;
+      pointer-events: none;
+    }
+
+    .feather-burst-particle.f1 {
+      --tx: -42px;
+      --ty: -70px;
+      --rot: -35deg;
+      animation-delay: 0s;
+    }
+
+    .feather-burst-particle.f2 {
+      --tx: 38px;
+      --ty: -78px;
+      --rot: 30deg;
+      animation-delay: 0.08s;
+    }
+
+    .feather-burst-particle.f3 {
+      --tx: -20px;
+      --ty: -94px;
+      --rot: -18deg;
+      animation-delay: 0.16s;
+    }
+
+    .feather-burst-particle.f4 {
+      --tx: 24px;
+      --ty: -102px;
+      --rot: 24deg;
+      animation-delay: 0.12s;
+    }
+
+    .feather-burst-particle.f5 {
+      --tx: -58px;
+      --ty: -35px;
+      --rot: -48deg;
+      animation-delay: 0.06s;
+    }
+
+    .feather-burst-particle.f6 {
+      --tx: 54px;
+      --ty: -38px;
+      --rot: 42deg;
+      animation-delay: 0.1s;
+    }
+
+    .feather-burst-particle.f7 {
+      --tx: -12px;
+      --ty: -115px;
+      --rot: -8deg;
+      animation-delay: 0.18s;
+    }
+
+    .feather-burst-particle.f8 {
+      --tx: 18px;
+      --ty: -118px;
+      --rot: 14deg;
+      animation-delay: 0.14s;
+    }
+
+    @keyframes featherFloatUp {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(0, 0) scale(0.3) rotate(0deg);
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--tx, 0px), var(--ty, -60px)) scale(1.2) rotate(var(--rot, 25deg));
+      }
+    }
+
+    .char-counter {
+      font-style: normal;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--subtle-ink);
+    }
+
+    .validation-scroll-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.65rem 0.95rem;
+      background: rgba(163, 28, 28, 0.12);
+      border: 1.5px solid #a31c1c;
+      border-radius: 4px;
+      color: #8c1010;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      text-align: center;
+      margin-top: 0.6rem;
+      animation: bannerShake 0.4s ease-in-out;
+    }
+
+    :root[data-theme="dark"] .validation-scroll-banner {
+      background: rgba(209, 44, 44, 0.22);
+      border-color: #f87171;
+      color: #fca5a5;
+    }
+
+    @keyframes bannerShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
+    }
+
+    .embossed-crimson-seal {
+      width: 118px;
+      height: 118px;
+      min-width: 118px;
+      min-height: 118px;
+      border-radius: 50%;
+      position: relative;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      outline: none;
+      user-select: none;
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.4, 1);
+      overflow: visible;
+    }
+
+    .embossed-crimson-seal:focus-visible {
+      outline: 2px solid #d4af37;
+      outline-offset: 4px;
+    }
+
+    .embossed-crimson-seal::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: linear-gradient(45deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.32) 50%,
+          transparent 60%);
+      transform: rotate(25deg) translateY(-100%);
+      transition: transform 0.65s ease;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .embossed-crimson-seal:hover::after {
+      transform: rotate(25deg) translateY(100%);
+    }
+
+    .wax-outer-rim {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #d12c2c 0%, #a31c1c 45%, #750e0e 75%, #4a0606 100%);
+      box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.4),
+        0 10px 28px rgba(74, 6, 6, 0.45),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.75);
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.2s ease;
+    }
+
+    .wax-inner-bevel {
+      position: absolute;
+      inset: 9px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 240, 190, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .wax-emblem-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15rem;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+
+    .wax-owl-sigil {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85));
+    }
+
+    .wax-seal-label {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #fff4d1;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
+      white-space: nowrap;
+      line-height: 1.1;
+      margin-top: 1px;
+    }
+
+    .wax-seal-label.loading-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: #ffe6a3;
+    }
+
+    .wax-flight-spinner {
+      font-size: 1.5rem;
+      animation: spinOwlFlight 1.4s infinite ease-in-out;
+      display: inline-block;
+      filter: drop-shadow(0 0 6px #ffd700);
+    }
+
+    @keyframes spinOwlFlight {
+      0% { transform: rotate(0deg) scale(0.9); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(0.9); }
+    }
+
+    .wax-seal-sublabel {
+      font-size: 0.58rem;
+      color: #ffcccc;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.85);
+      white-space: nowrap;
+    }
+
+    .wax-stamp-letter {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      color: #ffd700;
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+      letter-spacing: 0.1em;
+    }
+
+    .embossed-crimson-seal:hover .wax-outer-rim {
+      transform: scale(1.06);
+      box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.45),
+        0 0 28px rgba(209, 44, 44, 0.65),
+        inset 0 2px 5px rgba(255, 255, 255, 0.5),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .embossed-crimson-seal:active .wax-outer-rim,
+    .embossed-crimson-seal.is-pressed .wax-outer-rim {
+      transform: scale(0.92) translateY(3px) !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7), inset 0 5px 12px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    .embossed-crimson-seal:disabled {
+      opacity: 0.85;
+      cursor: wait;
+    }
+
+    @keyframes sealGlowPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 18px rgba(209, 44, 44, 0.5), 0 6px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 32px rgba(212, 175, 55, 0.8), 0 8px 24px rgba(209, 44, 44, 0.8);
+      }
+    }
+
+    .embossed-crimson-seal:disabled .wax-outer-rim {
+      animation: sealGlowPulse 1.8s infinite ease-in-out;
+    }
+
+    .scroll-confirmation-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 0.5rem;
+      gap: 1.15rem;
+      text-align: center;
+    }
+
+    .confirmation-header-emblem {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.5));
+    }
+
+    .confirmation-parchment-title {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      color: var(--accent-text);
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .flight-path-tracker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: rgba(var(--glow-rgb), 0.1);
+      border: 1px dashed var(--border-light);
+      border-radius: 6px;
+      margin: 0.35rem 0 0.75rem;
+      width: 100%;
+      max-width: 440px;
+      box-sizing: border-box;
+    }
+
+    .flight-station {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-color);
+      white-space: nowrap;
+    }
+
+    .flight-path-line {
+      flex-grow: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg,
+          #d4af37 0px,
+          #d4af37 4px,
+          transparent 4px,
+          transparent 8px);
+      position: relative;
+      min-width: 60px;
+    }
+
+    .flight-path-owl-icon {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.95rem;
+      animation: flightProgressGlider 2.2s infinite ease-in-out alternate;
+    }
+
+    @keyframes flightProgressGlider {
+      0% {
+        left: 15%;
+        transform: translateX(-50%) translateY(-2px);
+      }
+
+      100% {
+        left: 85%;
+        transform: translateX(-50%) translateY(2px);
+      }
+    }
+
+    .scroll-status-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 1rem 1.2rem;
+      background: rgba(var(--glow-rgb), 0.09);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--accent-text);
+      line-height: 1.5;
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    .scroll-status-banner.has-success {
+      background: rgba(var(--glow-rgb), 0.12);
+      border-color: #d4af37;
+    }
+
+    .scroll-reset-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      width: 100%;
+    }
+
+    .mischief-managed-scroll-btn {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1px solid #d4af37;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      padding: 0.75rem 1.6rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .mischief-managed-scroll-btn:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+      border-color: #ffd700;
+    }
+
+    .send-another-dispatch-link {
+      background: none;
+      border: none;
+      color: var(--accent-text);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .send-another-dispatch-link:hover {
+      color: var(--text-color);
+    }
+
+    /* Column 3: Postal Ledger & Counter */
+    .owl-ledger-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .postal-shelving-unit {
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(74, 44, 20, 0.035) 0px,
+          rgba(74, 44, 20, 0.035) 2px,
+          transparent 2px,
+          transparent 8px),
+        linear-gradient(175deg, rgba(74, 44, 20, 0.12) 0%, rgba(42, 24, 10, 0.18) 100%),
+        var(--card-bg);
+      border: 2px solid #8c6d3f;
+      border-radius: 6px;
+      padding: 1.6rem 1.2rem;
+      position: relative;
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.14),
+        0 2px 6px rgba(74, 44, 20, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 0 24px rgba(74, 44, 20, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-sizing: border-box;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    :root[data-theme="dark"] .postal-shelving-unit {
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(212, 175, 55, 0.02) 0px,
+          rgba(212, 175, 55, 0.02) 2px,
+          transparent 2px,
+          transparent 8px),
+        linear-gradient(175deg, rgba(28, 36, 52, 0.9) 0%, rgba(14, 18, 28, 0.97) 100%);
+      border-color: #a8843c;
+      box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(212, 175, 55, 0.1),
+        inset 0 1px 1px rgba(212, 175, 55, 0.22),
+        inset 0 0 30px rgba(0, 0, 0, 0.85);
+    }
+
+    .hanging-parchment-banner {
+      position: relative;
+      margin-bottom: 1.15rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .banner-cord {
+      position: absolute;
+      top: -12px;
+      width: 2px;
+      height: 14px;
+      background: #8c6d3f;
+    }
+
+    .banner-cord.cord-left {
+      left: 24%;
+    }
+
+    .banner-cord.cord-right {
+      right: 24%;
+    }
+
+    .banner-parchment-tag {
+      background: linear-gradient(180deg, #fbf5e6 0%, #eee1c4 100%);
+      border: 1.5px solid #b8923b;
+      border-radius: 3px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    :root[data-theme="dark"] .banner-parchment-tag {
+      background: linear-gradient(180deg, #222b3d 0%, #171d29 100%);
+      border-color: #d4af37;
+    }
+
+    .banner-text {
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-color);
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .shelf-tier {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .shelf-tier.shelf-top {
+      margin-bottom: 1rem;
+    }
+
+    .shelf-tier-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-text);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.45rem;
+    }
+
+    .registry-status-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2b7a4b;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    :root[data-theme="dark"] .registry-status-pill {
+      color: #4cd984;
+    }
+
+    .registry-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4cd984;
+      box-shadow: 0 0 6px #4cd984;
+      animation: registryDotGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes registryDotGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: scale(1.35);
+        opacity: 1;
+        box-shadow: 0 0 10px #4cd984;
+      }
+    }
+
+    .vintage-counter-box {
+      background: linear-gradient(135deg, #a8843c 0%, #826022 45%, #634512 85%, #462f09 100%);
+      border: 2px solid #d4af37;
+      border-radius: 6px;
+      padding: 1.1rem 0.9rem;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.35), inset 0 -1px 3px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .vintage-counter-box:hover {
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.32),
+        0 0 18px rgba(212, 175, 55, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+
+    :root[data-theme="dark"] .vintage-counter-box {
+      background: linear-gradient(135deg, #6e5424 0%, #4a3614 45%, #30210a 85%, #1a1104 100%);
+      border-color: #d4af37;
+    }
+
+    .plate-screw {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #e6c875 30%, #543f0c 100%);
+      border: 0.5px solid rgba(0, 0, 0, 0.4);
+    }
+
+    .plate-screw.top-left {
+      top: 6px;
+      left: 6px;
+    }
+
+    .plate-screw.top-right {
+      top: 6px;
+      right: 6px;
+    }
+
+    .plate-screw.bottom-left {
+      bottom: 6px;
+      left: 6px;
+    }
+
+    .plate-screw.bottom-right {
+      bottom: 6px;
+      right: 6px;
+    }
+
+    .register-header-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #ffd700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+      margin-bottom: 0.65rem;
+    }
+
+    .counter-tumbler-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.45rem;
+      margin-bottom: 0.65rem;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .tumbler-digit-cell {
+      width: 38px;
+      height: 52px;
+      background: linear-gradient(180deg, #05070a 0%, #151922 45%, #1c2230 50%, #151922 55%, #05070a 100%);
+      border: 2px solid #d4af37;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .tumbler-digit-cell::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgba(212, 175, 55, 0.25);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .tumbler-digit {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #fff6c8;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.7), 0 1px 2px rgba(0, 0, 0, 0.8);
+      line-height: 1;
+      z-index: 2;
+      transition: transform 0.4s ease;
+    }
+
+    .tumbler-roll .tumbler-digit {
+      animation: tumblerDigitRoll 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+
+    @keyframes tumblerDigitRoll {
+      0% {
+        transform: translateY(-80%);
+        opacity: 0.2;
+        filter: blur(1px);
+      }
+      60% {
+        transform: translateY(6%);
+        opacity: 1;
+        filter: none;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .tumbler-reflection {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 100%);
+      pointer-events: none;
       z-index: 1;
     }
 
-    .owl-fallback-link {
+    .tumbler-axle-shadow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 25%;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .register-stamp {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #f7e6a4;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    }
+
+    /* MIDDLE SHELF: Detailed Still Life Art & Session Recent Dispatches */
+    .shelf-middle {
+      margin-bottom: 1.15rem;
+    }
+
+    .ledger-shelf-header {
+      margin-bottom: 0.35rem;
+      text-align: center;
+    }
+
+    .ledger-dispatches-container {
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 4px;
+      padding: 0.55rem 0.65rem;
+      margin-bottom: 0.6rem;
+      min-height: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    :root[data-theme="dark"] .ledger-dispatches-container {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: rgba(212, 175, 55, 0.2);
+    }
+
+    .empty-ledger-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.15rem;
+      padding: 0.25rem 0;
+    }
+
+    .empty-ledger-icon {
+      font-size: 1.1rem;
+      color: #d4af37;
+      opacity: 0.8;
+    }
+
+    .empty-ledger-text {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 600;
       color: var(--accent-text);
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .empty-ledger-sub {
+      font-size: 0.66rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+    }
+
+    .dispatches-log-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .dispatch-log-item {
+      background: rgba(var(--glow-rgb), 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 3px;
+      padding: 0.3rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      animation: dispatchItemFadeIn 0.35s ease-out;
+    }
+
+    @keyframes dispatchItemFadeIn {
+      0% { opacity: 0; transform: translateY(-4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .dispatch-log-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dispatch-owl-name {
+      font-family: var(--font-heading);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--accent-text);
+    }
+
+    .dispatch-time {
+      font-size: 0.65rem;
+      color: var(--subtle-ink);
+    }
+
+    .dispatch-log-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dispatch-recipient {
+      font-size: 0.68rem;
+      color: var(--text-color);
+      font-style: italic;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dispatch-badge-status {
+      font-size: 0.65rem;
+      color: #4cd984;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .ledger-inkwell-illustration {
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .ledger-inkwell-illustration:hover .tactile-shelving-art {
+      filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.35));
+    }
+
+    .tactile-shelving-art {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+
+    .shelf-bottom {
+      margin-top: auto;
+    }
+
+    .wooden-brass-plaque {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(240, 230, 210, 0.5) 100%);
+      border: 1.5px solid #b8923b;
+      border-radius: 4px;
+      padding: 0.85rem 0.95rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    :root[data-theme="dark"] .wooden-brass-plaque {
+      background: linear-gradient(180deg, rgba(16, 22, 33, 0.8) 0%, rgba(10, 14, 22, 0.9) 100%);
+      border-color: #d4af37;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(212, 175, 55, 0.15);
+    }
+
+    .plaque-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px dotted var(--border-light);
+    }
+
+    .plaque-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-color);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .plaque-dot {
+      color: #d4af37;
+      font-size: 0.72rem;
+    }
+
+    .plaque-channel-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .plaque-channel-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      padding: 0.3rem 0.45rem;
+      border-radius: 3px;
+      transition: background 0.2s ease;
+    }
+
+    .plaque-channel-item:hover {
+      background: rgba(var(--glow-rgb), 0.12);
+    }
+
+    .plaque-sigil {
+      color: #d4af37;
+      font-size: 0.72rem;
+      margin-top: 2px;
+    }
+
+    .plaque-channel-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .plaque-label {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--subtle-ink);
+      line-height: 1.2;
+    }
+
+    .plaque-link,
+    .plaque-email,
+    .plaque-email-link {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent-text);
+      word-break: break-all;
+      overflow-wrap: anywhere;
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+      line-height: 1.3;
+    }
+
+    .plaque-link:hover,
+    .plaque-email-link:hover {
       text-decoration: underline;
       text-underline-offset: 3px;
-      transition: color 0.2s ease;
-      font-weight: 500;
+      color: #ffd700;
     }
 
-    .owl-fallback-link:hover {
-      color: var(--btn-bg);
-    }
-
-    .fallback-sep {
-      color: var(--subtle-ink);
-      opacity: 0.6;
-    }
-
-    .copy-email-btn {
-      background: transparent;
-      border: 1px dotted var(--border-light);
-      color: var(--subtle-ink);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
+    .plaque-copy-action-row {
+      display: flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.35rem 0.85rem;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .plaque-copy-btn {
+      background: rgba(var(--glow-rgb), 0.12);
+      border: 1px solid var(--border-light);
       border-radius: 3px;
-      transition: all 0.25s ease;
-      letter-spacing: 0.02em;
-    }
-
-    .copy-email-btn:hover {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
       color: var(--accent-text);
-      border-color: var(--accent-color);
-      background: rgba(var(--glow-rgb), 0.08);
-      text-decoration: underline;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      font-family: inherit;
     }
 
-    .copy-email-btn.copied {
+    .plaque-copy-btn:hover {
+      background: rgba(var(--glow-rgb), 0.22);
+      border-color: #d4af37;
+      transform: translateY(-1px);
+    }
+
+    .plaque-copy-btn.is-copied {
       color: #2b7a4b;
       border-color: #2b7a4b;
-      font-weight: 600;
-      background: rgba(43, 122, 75, 0.1);
+      background: rgba(43, 122, 75, 0.16);
+      font-weight: 700;
     }
 
-    :root[data-theme="dark"] .copy-email-btn.copied {
+    :root[data-theme="dark"] .plaque-copy-btn.is-copied {
       color: #4cd984;
       border-color: #4cd984;
-      background: rgba(76, 217, 132, 0.12);
+      background: rgba(76, 217, 132, 0.2);
+    }
+
+    .plaque-mail-btn {
+      font-size: 0.8rem;
+      color: var(--subtle-ink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .plaque-mail-btn:hover {
+      color: var(--accent-text);
+    }
+
+    .plaque-hours-note {
+      text-align: center;
+      font-size: 0.65rem;
+      font-style: italic;
+      color: var(--subtle-ink);
+      margin-top: 0.45rem;
+    }
+
+    /* Carrier Owl Flight Styles */
+    .carrier-owl-flight-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .carrier-owl-sprite {
+      position: absolute;
+      bottom: 25%;
+      left: 30%;
+      color: rgba(92, 61, 38, 0.75);
+      animation: carrierOwlSwoop 3.4s cubic-bezier(0.2, 0.8, 0.35, 1) forwards;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+      will-change: transform, opacity;
+    }
+
+    :root[data-theme='dark'] .carrier-owl-sprite {
+      color: #ede3cf;
+      filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45));
+    }
+
+    .carrier-owl-svg {
+      width: 68px;
+      height: 40px;
+      display: block;
+    }
+
+    @keyframes carrierOwlSwoop {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.65) rotate(-18deg);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.95;
+        transform: translate3d(40px, -45px, 0) scale(0.88) rotate(-10deg);
+      }
+
+      45% {
+        transform: translate3d(140px, -170px, 0) scale(1) rotate(-6deg);
+        opacity: 0.95;
+      }
+
+      80% {
+        opacity: 0.75;
+        transform: translate3d(280px, -330px, 0) scale(0.85) rotate(-14deg);
+      }
+
+      100% {
+        transform: translate3d(380px, -450px, 0) scale(0.7) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* color: var(--accent-text);
+    } */
+
+    /* Stacking on mobile (< 1024px) */
+    @media (max-width: 1023px) {
+      .owl-mailroom-frame {
+        padding: 1.4rem 1rem 1.8rem;
+      }
+
+      .owl-desk-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2rem;
+      }
+
+      .owl-column-wrapper.col-letter,
+      .owl-scroll-center-column {
+        order: 1 !important;
+        width: 100%;
+        max-width: 660px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .owl-column-wrapper.col-owl,
+      .owl-perch-column {
+        order: 2 !important;
+        width: 100%;
+        max-width: 660px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .owl-column-wrapper.col-ledger,
+      .owl-ledger-column {
+        order: 3 !important;
+        width: 100%;
+        max-width: 660px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .roost-cabinet-box,
+      .postal-shelving-unit {
+        padding: 1.4rem 1rem;
+      }
+
+      .aged-texture-scroll {
+        padding: 1.8rem 1.25rem 2.4rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .owl-roost-2x2-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+
+      .roost-card {
+        min-height: auto;
+        padding: 1rem 0.85rem;
+      }
+
+      .owl-mailroom-frame {
+        padding: 1.2rem 0.75rem 1.6rem;
+        margin-top: 1.5rem;
+      }
+
+      .mailroom-flourish.top-right,
+      .mailroom-flourish.bottom-right,
+      .mailroom-rivet.rivet-tr,
+      .mailroom-rivet.rivet-br {
+        right: 8px;
+      }
+
+      .mailroom-flourish.top-left,
+      .mailroom-flourish.bottom-left,
+      .mailroom-rivet.rivet-tl,
+      .mailroom-rivet.rivet-bl {
+        left: 8px;
+      }
+
+      .calligraphy-heading {
+        font-size: 1.55rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3030,7 +5293,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="timetable-row" data-syllabus="potions" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Potions: Remedy Success Centre">
+            <tr class="timetable-row" data-syllabus="potions" tabindex="0" role="button" aria-haspopup="dialog"
+              aria-label="Inspect syllabus for Potions: Remedy Success Centre">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">⚗️</span>
@@ -3058,7 +5322,8 @@
               </td>
             </tr>
 
-            <tr class="timetable-row" data-syllabus="charms" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Charms: Review Builder & Listing Suite">
+            <tr class="timetable-row" data-syllabus="charms" tabindex="0" role="button" aria-haspopup="dialog"
+              aria-label="Inspect syllabus for Charms: Review Builder & Listing Suite">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">✨</span>
@@ -3085,7 +5350,8 @@
               </td>
             </tr>
 
-            <tr class="timetable-row" data-syllabus="transfiguration" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Transfiguration: Review Collector & Campaign Manager">
+            <tr class="timetable-row" data-syllabus="transfiguration" tabindex="0" role="button" aria-haspopup="dialog"
+              aria-label="Inspect syllabus for Transfiguration: Review Collector & Campaign Manager">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">📜</span>
@@ -3112,7 +5378,8 @@
               </td>
             </tr>
 
-            <tr class="timetable-row" data-syllabus="dark-arts" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Inspect syllabus for Defence Against the Dark Arts: Session & Compliance Hardening">
+            <tr class="timetable-row" data-syllabus="dark-arts" tabindex="0" role="button" aria-haspopup="dialog"
+              aria-label="Inspect syllabus for Defence Against the Dark Arts: Session & Compliance Hardening">
               <td data-label="Discipline">
                 <div class="class-discipline">
                   <span class="class-discipline-icon">🛡️</span>
@@ -3154,7 +5421,8 @@
 
             <div class="syllabus-header">
               <div class="syllabus-eyebrow" id="syllabus-eyebrow">✦ Class Syllabus ✦</div>
-              <button type="button" class="syllabus-close-btn" id="syllabus-close-btn" aria-label="Close Syllabus">✕</button>
+              <button type="button" class="syllabus-close-btn" id="syllabus-close-btn"
+                aria-label="Close Syllabus">✕</button>
             </div>
 
             <div class="syllabus-body">
@@ -3396,116 +5664,711 @@
          OWL POST (#owl-post)
          Centered contact section with gliding owl animation
          ======================================================================== -->
-    <section id="owl-post" class="folio-container scroll-reveal">
+    <section id="owl-post" class="folio-container scroll-reveal owl-desk-section">
       <div class="section-header">
-        <span class="section-eyebrow">✦ Correspondence ✦</span>
-        <h2 class="section-title">Owl Post</h2>
-        <p class="section-subtitle">Dispatch a message regarding engineering opportunities, full-stack portals, or
-          technical collaborations.</p>
+        <span class="section-eyebrow">✦ The Owlery Registry ✦</span>
+        <h2 class="section-title">The Owl Post Desk &amp; Perch</h2>
+        <p class="section-subtitle">
+          Select your messenger from the roost, inscribe your correspondence upon the unrolled scroll, and inspect the
+          ministry postal ledger.
+        </p>
       </div>
 
-      <div class="owl-post-card">
-        <p class="owl-post-intro">
-          Whether you are looking to build responsive React/Next.js platforms, engineer custom widgets, or integrate
-          complex RESTful data pipelines, my window is always open for an owl.
-        </p>
+      <!-- Dimensional Mailroom Container with Filigree Frame & Celestial Flourishes -->
+      <div class="owl-mailroom-frame">
+        <!-- Ambient Warm Mailroom Lantern Glow & Starlight Particle Canvas -->
+        <div class="desk-ambient-lamp-glow" aria-hidden="true"></div>
+        <canvas id="owl-vfx-canvas" class="owl-vfx-canvas" aria-hidden="true"></canvas>
 
-        <!-- Live Owl Dispatch Counter (Quiet Editorial Badge) -->
-        <div class="owl-counter-container">
-          <div class="owl-counter-badge" id="owl-counter-badge" aria-live="polite">
-            <span class="owl-counter-sigil" aria-hidden="true">✦</span>
-            <span id="owl-counter-text" class="owl-counter-text">Consulting the owleries...</span>
-            <span class="owl-counter-sigil" aria-hidden="true">✦</span>
-          </div>
+        <!-- Celestial Corner Flourishes & Stars -->
+        <div class="mailroom-corner-filigree top-left" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af37" stroke-width="1.4">
+            <path d="M 4 4 L 4 32 C 4 20 12 12 24 12 C 16 12 12 8 12 4 Z" fill="rgba(212,175,55,0.15)"></path>
+            <path d="M 4 4 L 32 4 C 20 4 12 12 12 24 C 12 16 8 12 4 12 Z" fill="rgba(212,175,55,0.15)"></path>
+            <circle cx="6" cy="6" r="2.5" fill="#d4af37"></circle>
+            <circle cx="28" cy="4" r="1.5" fill="#d4af37"></circle>
+            <circle cx="4" cy="28" r="1.5" fill="#d4af37"></circle>
+            <polygon points="12,12 15,9 18,12 15,15" fill="#ffd700"></polygon>
+          </svg>
+        </div>
+        <div class="mailroom-corner-filigree top-right" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af37" stroke-width="1.4">
+            <path d="M 44 4 L 44 32 C 44 20 36 12 24 12 C 32 12 36 8 36 4 Z" fill="rgba(212,175,55,0.15)"></path>
+            <path d="M 44 4 L 16 4 C 28 4 36 12 36 24 C 36 16 40 12 44 12 Z" fill="rgba(212,175,55,0.15)"></path>
+            <circle cx="42" cy="6" r="2.5" fill="#d4af37"></circle>
+            <circle cx="20" cy="4" r="1.5" fill="#d4af37"></circle>
+            <circle cx="44" cy="28" r="1.5" fill="#d4af37"></circle>
+            <polygon points="36,12 33,9 30,12 33,15" fill="#ffd700"></polygon>
+          </svg>
+        </div>
+        <div class="mailroom-corner-filigree bottom-left" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af37" stroke-width="1.4">
+            <path d="M 4 44 L 4 16 C 4 28 12 36 24 36 C 16 36 12 40 12 44 Z" fill="rgba(212,175,55,0.15)"></path>
+            <path d="M 4 44 L 32 44 C 20 44 12 36 12 24 C 12 32 8 36 4 36 Z" fill="rgba(212,175,55,0.15)"></path>
+            <circle cx="6" cy="42" r="2.5" fill="#d4af37"></circle>
+            <circle cx="28" cy="44" r="1.5" fill="#d4af37"></circle>
+            <circle cx="4" cy="20" r="1.5" fill="#d4af37"></circle>
+            <polygon points="12,36 15,33 18,36 15,39" fill="#ffd700"></polygon>
+          </svg>
+        </div>
+        <div class="mailroom-corner-filigree bottom-right" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af37" stroke-width="1.4">
+            <path d="M 44 44 L 44 16 C 44 28 36 36 24 36 C 32 36 36 40 36 44 Z" fill="rgba(212,175,55,0.15)"></path>
+            <path d="M 44 44 L 16 44 C 28 44 36 36 36 24 C 36 32 40 36 44 36 Z" fill="rgba(212,175,55,0.15)"></path>
+            <circle cx="42" cy="42" r="2.5" fill="#d4af37"></circle>
+            <circle cx="20" cy="44" r="1.5" fill="#d4af37"></circle>
+            <circle cx="44" cy="20" r="1.5" fill="#d4af37"></circle>
+            <polygon points="36,36 33,33 30,36 33,39" fill="#ffd700"></polygon>
+          </svg>
         </div>
 
-        <div class="owl-btn-container">
-          <button type="button" class="wax-btn owl-btn" id="owl-toggle-btn" aria-expanded="false"
-            aria-controls="owl-scroll-container">
-            <span>Send an owl</span>
-            <svg class="owl-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path
-                d="M12 2C7.5 2 4 5.5 4 10c0 4.5 3 7.5 5 11 1.5 2.5 3 2.5 3 2.5s1.5 0 3-2.5c2-3.5 5-6.5 5-11 0-4.5-3.5-8-8-8z" />
-              <circle cx="9" cy="8" r="1.5" fill="currentColor" />
-              <circle cx="15" cy="8" r="1.5" fill="currentColor" />
-              <path d="M12 11.5l-1 2h2l-1-2z" fill="currentColor" />
-              <path d="M5 10c-1.5 2-2 4-2 5.5 2.5.5 5-1 6-2" />
-              <path d="M19 10c1.5 2 2 4 2 5.5-2.5.5-5-1-6-2" />
-            </svg>
-          </button>
-        </div>
+        <!-- Centered Celestial Compass Stars on Top and Bottom Borders -->
+        <div class="mailroom-border-star top-center" aria-hidden="true">✦</div>
+        <div class="mailroom-border-star bottom-center" aria-hidden="true">✦</div>
 
-        <!-- COMPACT PARCHMENT SCROLL FORM CONTAINER -->
-        <div class="owl-scroll-container" id="owl-scroll-container" aria-hidden="true">
-          <div class="owl-parchment-scroll">
-            <form id="owl-post-form" class="owl-form" method="POST" novalidate>
-              <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
+        <div class="mailroom-rivet rivet-tl" aria-hidden="true"></div>
+        <div class="mailroom-rivet rivet-tr" aria-hidden="true"></div>
+        <div class="mailroom-rivet rivet-bl" aria-hidden="true"></div>
+        <div class="mailroom-rivet rivet-br" aria-hidden="true"></div>
 
-              <div class="owl-form-fields" id="owl-form-fields">
-                <div class="owl-form-group">
-                  <label for="owl-sender-name" class="owl-form-label">
-                    Sender Name <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <input type="text" id="owl-sender-name" name="name" class="owl-form-input"
-                    placeholder="e.g. Albus Dumbledore" required autocomplete="name">
+        <!-- 3-Column Desk Layout Grid -->
+        <div class="owl-desk-layout">
+
+          <!-- =========================================================================
+              COLUMN 1: SELECT YOUR OWL (ROOST CABINET)
+              ========================================================================= -->
+          <div class="owl-column-wrapper col-owl">
+            <div class="owl-column-super-header">
+              <span class="super-header-rule left" aria-hidden="true"></span>
+              <span class="super-header-text">SELECT YOUR OWL</span>
+              <span class="super-header-rule right" aria-hidden="true"></span>
+            </div>
+
+            <aside class="owl-perch-column" aria-label="Roost Cabinet: Choose an Owl">
+              <div class="perch-panel-frame roost-cabinet-box">
+                <!-- Brass Corner Brackets -->
+                <span class="cabinet-bracket top-left" aria-hidden="true"></span>
+                <span class="cabinet-bracket top-right" aria-hidden="true"></span>
+                <span class="cabinet-bracket bottom-left" aria-hidden="true"></span>
+                <span class="cabinet-bracket bottom-right" aria-hidden="true"></span>
+
+                <!-- Arched Cabinet Header: '✦ CHOOSE AN OWL ✦' -->
+                <div class="perch-panel-header arched-cabinet-header">
+                  <span class="perch-header-sigil" aria-hidden="true">✦</span>
+                  <h3 class="perch-title">CHOOSE AN OWL</h3>
+                  <span class="perch-header-sigil" aria-hidden="true">✦</span>
+                </div>
+                <p class="perch-subtitle">
+                  Select your courier from the roosting cabinet:
+                </p>
+
+                <!-- 2x2 Roosting Perch Grid -->
+                <div class="owl-roost-2x2-grid" role="radiogroup" aria-label="Available Carrier Owls">
+                  <!-- Barn Owl -->
+                  <button type="button" role="radio" aria-checked="false" tabindex="-1" id="owl-perch-barn"
+                    class="owl-perch-card roost-card" data-owl-id="barn" data-owl-name="Barn Owl"
+                    data-owl-title="Quick Flight" data-owl-subtitle="Direct Dispatch"
+                    aria-label="Barn Owl — Quick Flight / Direct Dispatch. Click to select">
+                    <div class="owl-perch-stage">
+                      <div class="owl-card-icon owl-icon-barn" aria-hidden="true">
+                        <svg viewBox="0 0 48 64" class="owl-emblem-svg" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <radialGradient id="barnFaceGrad" cx="50%" cy="40%" r="50%">
+                              <stop offset="0%" stop-color="#ffffff" />
+                              <stop offset="75%" stop-color="#faf2e3" />
+                              <stop offset="100%" stop-color="#e8cf9c" />
+                            </radialGradient>
+                            <linearGradient id="barnWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stop-color="#d49b43" />
+                              <stop offset="40%" stop-color="#b87a28" />
+                              <stop offset="70%" stop-color="#805626" />
+                              <stop offset="100%" stop-color="#543714" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M 24 6 C 14 6 10 14 10 28 C 10 42 16 55 24 57 C 32 55 38 42 38 28 C 38 14 34 6 24 6 Z" fill="url(#barnWingGrad)" />
+                          <path d="M 24 19 C 18 19 15 25 15 36 C 15 47 19 52 24 54 C 29 52 33 47 33 36 C 33 25 30 19 24 19 Z" fill="#fffcf5" />
+                          <path d="M 24 9 C 20 5 13 8 13 14 C 13 22 24 28 24 28 C 24 28 35 22 35 14 C 35 8 28 5 24 9 Z" fill="url(#barnFaceGrad)" stroke="#c2944b" stroke-width="1.2" />
+                          <ellipse cx="20" cy="16" rx="2" ry="2.5" fill="#1b1108" />
+                          <ellipse cx="28" cy="16" rx="2" ry="2.5" fill="#1b1108" />
+                          <circle cx="19.3" cy="15.2" r="0.7" fill="#ffffff" />
+                          <circle cx="27.3" cy="15.2" r="0.7" fill="#ffffff" />
+                          <path d="M 24 16 L 22.8 21 L 25.2 21 Z" fill="#e5c158" stroke="#a67822" stroke-width="0.4" />
+                          <circle cx="24" cy="32" r="0.8" fill="#8c5828" opacity="0.7" />
+                          <circle cx="21" cy="37" r="0.8" fill="#8c5828" opacity="0.6" />
+                          <circle cx="27" cy="37" r="0.8" fill="#8c5828" opacity="0.6" />
+                          <circle cx="24" cy="42" r="0.8" fill="#8c5828" opacity="0.7" />
+                          <path d="M 21 53 L 20 57 M 23 54 L 23 58 M 25 54 L 25 58 M 27 53 L 28 57" stroke="#d4af37" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                      </div>
+                      <div class="perch-branch-bar" aria-hidden="true">
+                        <span class="brass-perch-tip left"></span>
+                        <span class="wood-perch-rod"></span>
+                        <span class="brass-perch-tip right"></span>
+                        <div class="perch-inline-seal-wrap">
+                          <span class="owl-brass-ring-badge unselected" aria-hidden="true">
+                            <span class="brass-ring-circle"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="owl-parchment-placard">
+                      <span class="placard-owl-name">BARN OWL</span>
+                      <span class="placard-owl-desc1">Galick Flight</span>
+                      <span class="placard-owl-desc2">Direct Dispatch</span>
+                      <span class="placard-owl-status">Ready on Perch</span>
+                    </div>
+                  </button>
+
+                  <!-- Snowy Owl (Selected by default) -->
+                  <button type="button" role="radio" aria-checked="true" tabindex="0" id="owl-perch-snowy"
+                    class="owl-perch-card roost-card is-selected" data-owl-id="snowy" data-owl-name="Snowy Owl"
+                    data-owl-title="Priority Delivery" data-owl-subtitle="Express"
+                    aria-label="Snowy Owl — Priority Delivery / Express. Currently Selected">
+                    <div class="owl-perch-stage">
+                      <div class="owl-card-icon owl-icon-snowy" aria-hidden="true">
+                        <svg viewBox="0 0 48 64" class="owl-emblem-svg" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="snowyBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stop-color="#ffffff" />
+                              <stop offset="60%" stop-color="#f5f7fa" />
+                              <stop offset="100%" stop-color="#e2e8f0" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M 24 6 C 14 6 11 14 11 28 C 11 42 16 54 24 56 C 32 54 37 42 37 28 C 37 14 34 6 24 6 Z" fill="url(#snowyBodyGrad)" stroke="#cbd5e1" stroke-width="0.8" />
+                          <circle cx="19" cy="18" r="3.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.6" />
+                          <circle cx="29" cy="18" r="3.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.6" />
+                          <circle cx="19" cy="18" r="1.6" fill="#0f172a" />
+                          <circle cx="29" cy="18" r="1.6" fill="#0f172a" />
+                          <circle cx="18.3" cy="17.3" r="0.6" fill="#ffffff" />
+                          <circle cx="28.3" cy="17.3" r="0.6" fill="#ffffff" />
+                          <path d="M 24 18 L 22.3 23 L 25.7 23 Z" fill="#1e293b" />
+                          <path d="M 20 28 L 22 30 M 26 30 L 28 28 M 19 35 L 22 37 M 26 37 L 29 35 M 22 41 L 24 43 L 26 41 M 20 46 L 22 47 M 26 47 L 28 46" stroke="#334155" stroke-width="1.3" stroke-linecap="round" />
+                          <path d="M 20 53 L 20 57 M 22 54 L 22 58 M 26 54 L 26 58 M 28 53 L 28 57" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                      </div>
+                      <div class="perch-branch-bar" aria-hidden="true">
+                        <span class="brass-perch-tip left"></span>
+                        <span class="wood-perch-rod"></span>
+                        <span class="brass-perch-tip right"></span>
+                        <div class="perch-inline-seal-wrap">
+                          <span class="owl-wax-badge selected" aria-label="Currently Selected">
+                            <span class="wax-badge-rim"></span>
+                            <span class="wax-badge-text">SELECTED</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="owl-parchment-placard">
+                      <span class="placard-owl-name">SNOWY OWL</span>
+                      <span class="placard-owl-desc1">Priority Delivery</span>
+                      <span class="placard-owl-desc2">Express</span>
+                      <span class="placard-owl-status is-selected">SELECTED</span>
+                    </div>
+                  </button>
+
+                  <!-- Great Horned Owl -->
+                  <button type="button" role="radio" aria-checked="false" tabindex="-1" id="owl-perch-horned"
+                    class="owl-perch-card roost-card" data-owl-id="horned" data-owl-name="Great Horned Owl"
+                    data-owl-title="Heavier Correspondence" data-owl-subtitle="Long Distance"
+                    aria-label="Great Horned Owl — Heavier Correspondence / Long Distance. Click to select">
+                    <div class="owl-perch-stage">
+                      <div class="owl-card-icon owl-icon-horned" aria-hidden="true">
+                        <svg viewBox="0 0 48 64" class="owl-emblem-svg" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="hornedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stop-color="#4a2e12" />
+                              <stop offset="50%" stop-color="#6e471f" />
+                              <stop offset="100%" stop-color="#2c1808" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M 15 15 L 10 2 L 20 10 Z" fill="#2c1808" stroke="#d4af37" stroke-width="0.5" />
+                          <path d="M 33 15 L 38 2 L 28 10 Z" fill="#2c1808" stroke="#d4af37" stroke-width="0.5" />
+                          <path d="M 24 8 C 14 8 11 15 11 29 C 11 42 16 55 24 57 C 32 55 37 42 37 29 C 37 15 34 8 24 8 Z" fill="url(#hornedGrad)" />
+                          <path d="M 16 16 Q 24 19 32 16" stroke="#d4af37" stroke-width="1.4" fill="none" stroke-linecap="round" />
+                          <circle cx="19" cy="20" r="3" fill="#f59e0b" stroke="#78350f" stroke-width="0.6" />
+                          <circle cx="29" cy="20" r="3" fill="#f59e0b" stroke="#78350f" stroke-width="0.6" />
+                          <circle cx="19" cy="20" r="1.4" fill="#0f0702" />
+                          <circle cx="29" cy="20" r="1.4" fill="#0f0702" />
+                          <circle cx="18.5" cy="19.5" r="0.5" fill="#ffffff" />
+                          <circle cx="28.5" cy="19.5" r="0.5" fill="#ffffff" />
+                          <path d="M 24 20 L 22 26 L 26 26 Z" fill="#1b120a" />
+                          <path d="M 20 27 Q 24 29 28 27 Q 24 32 20 27 Z" fill="#f8fafc" opacity="0.9" />
+                          <path d="M 17 34 Q 24 36 31 34 M 16 38 Q 24 40 32 38 M 18 43 Q 24 45 30 43 M 19 48 Q 24 50 29 48" fill="none" stroke="#d4af37" stroke-width="1.3" stroke-linecap="round" />
+                          <path d="M 20 54 L 19 58 M 22 55 L 22 58 M 26 55 L 26 58 M 28 54 L 29 58" stroke="#1b120a" stroke-width="1.6" stroke-linecap="round" />
+                        </svg>
+                      </div>
+                      <div class="perch-branch-bar" aria-hidden="true">
+                        <span class="brass-perch-tip left"></span>
+                        <span class="wood-perch-rod"></span>
+                        <span class="brass-perch-tip right"></span>
+                        <div class="perch-inline-seal-wrap">
+                          <span class="owl-brass-ring-badge unselected" aria-hidden="true">
+                            <span class="brass-ring-circle"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="owl-parchment-placard">
+                      <span class="placard-owl-name">GREAT HORNED</span>
+                      <span class="placard-owl-desc1">Heavier Correspondence</span>
+                      <span class="placard-owl-desc2">Long Distance</span>
+                      <span class="placard-owl-status">Ready on Perch</span>
+                    </div>
+                  </button>
+
+                  <!-- Screech Owl -->
+                  <button type="button" role="radio" aria-checked="false" tabindex="-1" id="owl-perch-screech"
+                    class="owl-perch-card roost-card" data-owl-id="screech" data-owl-name="Screech Owl"
+                    data-owl-title="Brief Inquiries" data-owl-subtitle="Quick Note"
+                    aria-label="Screech Owl — Brief Inquiries / Quick Note. Click to select">
+                    <div class="owl-perch-stage">
+                      <div class="owl-card-icon owl-icon-screech" aria-hidden="true">
+                        <svg viewBox="0 0 48 64" class="owl-emblem-svg" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="screechGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stop-color="#5a422b" />
+                              <stop offset="50%" stop-color="#7d5c3d" />
+                              <stop offset="100%" stop-color="#3b2715" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M 17 14 L 14 6 L 21 12 Z" fill="#3b2715" stroke="#b8923b" stroke-width="0.4" />
+                          <path d="M 31 14 L 34 6 L 27 12 Z" fill="#3b2715" stroke="#b8923b" stroke-width="0.4" />
+                          <path d="M 24 10 C 15 10 12 16 12 29 C 12 42 16 53 24 55 C 32 53 36 42 36 29 C 36 16 33 10 24 10 Z" fill="url(#screechGrad)" />
+                          <circle cx="19" cy="20" r="3.2" fill="#eab308" stroke="#713f12" stroke-width="0.6" />
+                          <circle cx="29" cy="20" r="3.2" fill="#eab308" stroke="#713f12" stroke-width="0.6" />
+                          <circle cx="19" cy="20" r="1.5" fill="#140c06" />
+                          <circle cx="29" cy="20" r="1.5" fill="#140c06" />
+                          <circle cx="18.4" cy="19.4" r="0.5" fill="#ffffff" />
+                          <circle cx="28.4" cy="19.4" r="0.5" fill="#ffffff" />
+                          <path d="M 24 21 L 22.5 25.5 L 25.5 25.5 Z" fill="#a16207" />
+                          <path d="M 18 30 L 21 29 M 27 29 L 30 30 M 20 35 L 23 36 M 25 36 L 28 35 M 19 40 L 23 42 M 25 42 L 29 40 M 22 46 L 26 46" stroke="#d4af37" stroke-width="1.2" stroke-linecap="round" />
+                          <path d="M 21 53 L 20 57 M 23 54 L 23 57 M 25 54 L 25 57 M 27 53 L 28 57" stroke="#a16207" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                      </div>
+                      <div class="perch-branch-bar" aria-hidden="true">
+                        <span class="brass-perch-tip left"></span>
+                        <span class="wood-perch-rod"></span>
+                        <span class="brass-perch-tip right"></span>
+                        <div class="perch-inline-seal-wrap">
+                          <span class="owl-brass-ring-badge unselected" aria-hidden="true">
+                            <span class="brass-ring-circle"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="owl-parchment-placard">
+                      <span class="placard-owl-name">SCREECH OWL</span>
+                      <span class="placard-owl-desc1">Brief Inquiries</span>
+                      <span class="placard-owl-desc2">Quick Note</span>
+                      <span class="placard-owl-status">Ready on Perch</span>
+                    </div>
+                  </button>
                 </div>
 
-                <div class="owl-form-group">
-                  <label for="owl-sender-email" class="owl-form-label">
-                    Return Owl / Email <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <input type="email" id="owl-sender-email" name="email" class="owl-form-input"
-                    placeholder="e.g. albus@hogwarts.edu" required autocomplete="email">
+                <div class="cabinet-roost-footer" aria-hidden="true">
+                  <span>✦ Eeylops Owl Registry · Ready for Flight ✦</span>
                 </div>
-
-                <div class="owl-form-group">
-                  <label for="owl-message" class="owl-form-label">
-                    Message <span class="required-mark" aria-hidden="true">*</span>
-                  </label>
-                  <textarea id="owl-message" name="message" class="owl-form-textarea" rows="3"
-                    placeholder="Inscribe your parchment dispatch here..." required></textarea>
-                </div>
-
-                <button type="submit" class="wax-btn owl-submit-btn" id="owl-submit-btn">
-                  <span>Dispatch Owl <span class="owl-emoji" aria-hidden="true">🦉</span></span>
-                </button>
               </div>
+            </aside>
+          </div>
 
-              <div id="owl-status" class="owl-status-msg" aria-live="polite"></div>
-            </form>
+          <!-- =========================================================================
+              COLUMN 2: THE LETTER (PARCHMENT SCROLL)
+              ========================================================================= -->
+          <div class="owl-column-wrapper col-letter">
+            <div class="owl-column-super-header">
+              <span class="super-header-rule left" aria-hidden="true"></span>
+              <span class="super-header-text">THE LETTER</span>
+              <span class="super-header-rule right" aria-hidden="true"></span>
+            </div>
 
-            <div class="owl-fallback-container">
-              <a href="mailto:devanshi1303@gmail.com?subject=Owl%20Post%20for%20Devanshi" class="owl-fallback-link">
-                Or open in your default mail app
-              </a>
-              <span class="fallback-sep" aria-hidden="true">·</span>
-              <button type="button" class="copy-email-btn" id="copy-email-btn"
-                aria-label="Copy email address devanshi1303@gmail.com to clipboard">
-                <span id="copy-text">devanshi1303@gmail.com</span>
-              </button>
+            <div class="owl-scroll-center-column">
+              <div class="unrolled-parchment-scroll">
+                <!-- 3D Stacked Parchment Wings Behind Scroll -->
+                <div class="scroll-backdrop-wings" aria-hidden="true">
+                  <span class="scroll-wing-flap left"></span>
+                  <span class="scroll-wing-flap right"></span>
+                </div>
+
+                <!-- Realistic Wooden Spindle Roller Top with Brass Endcaps -->
+                <div class="scroll-finial-top dimensional-spindle" aria-hidden="true">
+                  <span class="spindle-brass-cap left"></span>
+                  <span class="spindle-wood-cylinder"></span>
+                  <span class="spindle-brass-cap right"></span>
+                </div>
+
+                <!-- Dimensional Aged Parchment Scroll Body -->
+                <div class="scroll-parchment-body aged-texture-scroll">
+                  <!-- Vintage Watermark Crest -->
+                  <div class="parchment-watermark-seal" aria-hidden="true">
+                    <svg viewBox="0 0 100 100" fill="currentColor">
+                      <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-dasharray="3,3"></circle>
+                      <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1"></circle>
+                      <path d="M 50 22 C 40 22 35 28 35 38 C 35 48 42 58 50 62 C 58 58 65 48 65 38 C 65 28 60 22 50 22 Z"
+                        fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      <circle cx="45" cy="33" r="2.5" fill="none" stroke="currentColor" stroke-width="1"></circle>
+                      <circle cx="55" cy="33" r="2.5" fill="none" stroke="currentColor" stroke-width="1"></circle>
+                      <path d="M 50 36 L 48 41 L 52 41 Z" fill="currentColor"></path>
+                      <path d="M 32 40 C 26 44 26 55 32 64 C 36 60 40 55 42 48" fill="none" stroke="currentColor"
+                        stroke-width="1.2"></path>
+                      <path d="M 68 40 C 74 44 74 55 68 64 C 64 60 60 55 58 48" fill="none" stroke="currentColor"
+                        stroke-width="1.2"></path>
+                      <text x="50" y="78" font-size="5.5" font-family="serif" text-anchor="middle" letter-spacing="0.1em"
+                        fill="currentColor">MINISTRY OF MAGIC</text>
+                      <text x="50" y="86" font-size="4.5" font-family="serif" text-anchor="middle" letter-spacing="0.15em"
+                        fill="currentColor">✦ OWL POST ✦</text>
+                    </svg>
+                  </div>
+
+                  <!-- Elaborate Serif Calligraphy Header with Wings -->
+                  <div class="scroll-title-banner">
+                    <div class="scroll-crest-calligraphy-row">
+                      <span class="scroll-calligraphy-wing left" aria-hidden="true">❧ ✦</span>
+                      <h3 class="scroll-main-title calligraphy-heading">THE OWL POST</h3>
+                      <span class="scroll-calligraphy-wing right" aria-hidden="true">✦ ❧</span>
+                    </div>
+                    <p class="scroll-main-subtitle calligraphy-subtitle">
+                      Dispatch Your Message across the Realm
+                    </p>
+                    <div class="scroll-chosen-owl-indicator">
+                      <span class="indicator-label">Assigned Messenger:</span>
+                      <strong class="indicator-owl-name" id="assigned-owl-label">Snowy Owl (Priority Delivery)</strong>
+                    </div>
+                  </div>
+
+                  <form id="owl-post-form" class="owl-ink-form" novalidate>
+                    <!-- Invisible Honeypot Spam Shield -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1"
+                      autocomplete="off">
+                    <input type="hidden" name="owlType" id="selected-owl-input" value="Snowy Owl">
+
+                    <div class="owl-scroll-fields" id="owl-form-fields-container">
+                      <!-- Field 1: Sender Name & Title -->
+                      <div class="ink-field-group">
+                        <label for="owl-sender-name" class="ink-field-label">
+                          SENDER NAME &amp; TITLE
+                        </label>
+                        <div class="ink-input-slot-wrapper">
+                          <input type="text" id="owl-sender-name" name="name" class="ink-field-input parchment-notched-slot"
+                            placeholder="Your name or guild..." required autocomplete="name" onfocus="playOwlSound('scratch')">
+                          <span class="slot-corner tl" aria-hidden="true"></span>
+                          <span class="slot-corner tr" aria-hidden="true"></span>
+                          <span class="slot-corner bl" aria-hidden="true"></span>
+                          <span class="slot-corner br" aria-hidden="true"></span>
+                        </div>
+                      </div>
+
+                      <!-- Field 2: Return Owl / Email Address -->
+                      <div class="ink-field-group">
+                        <label for="owl-sender-email" class="ink-field-label">
+                          RETURN OWL / EMAIL ADDRESS
+                        </label>
+                        <div class="ink-input-slot-wrapper">
+                          <input type="email" id="owl-sender-email" name="email" class="ink-field-input parchment-notched-slot"
+                            placeholder="Where our owl should return..." required autocomplete="email" onfocus="playOwlSound('scratch')">
+                          <span class="slot-corner tl" aria-hidden="true"></span>
+                          <span class="slot-corner tr" aria-hidden="true"></span>
+                          <span class="slot-corner bl" aria-hidden="true"></span>
+                          <span class="slot-corner br" aria-hidden="true"></span>
+                        </div>
+                      </div>
+
+                      <!-- Field 3: Your Correspondence -->
+                      <div class="ink-field-group">
+                        <label for="owl-message" class="ink-field-label">
+                          YOUR CORRESPONDENCE
+                        </label>
+                        <div class="ink-input-slot-wrapper textarea-slot">
+                          <textarea id="owl-message" name="message" class="ink-field-textarea parchment-notched-slot" rows="4"
+                            placeholder="Inscribe your message..." required onfocus="playOwlSound('scratch')"></textarea>
+                          <span class="slot-corner tl" aria-hidden="true"></span>
+                          <span class="slot-corner tr" aria-hidden="true"></span>
+                          <span class="slot-corner bl" aria-hidden="true"></span>
+                          <span class="slot-corner br" aria-hidden="true"></span>
+                        </div>
+                        <div class="ink-field-hint">
+                          <span>✦ Inscribed in enchanted indelible ink</span>
+                          <span class="char-counter" id="char-counter">0 / 500 characters</span>
+                        </div>
+                      </div>
+
+                      <!-- Hanging Crimson Wax Seal Button stamped with Owl & 'D' insignia -->
+                      <div class="wax-seal-dispatch-wrapper">
+                        <span class="wax-seal-shockwave-ring" id="wax-seal-shockwave-ring" style="display: none;" aria-hidden="true"></span>
+                        <div class="feather-burst-animation-container" id="feather-burst-container" style="display: none;"
+                          aria-hidden="true">
+                          <span class="feather-burst-particle f1">🪶</span>
+                          <span class="feather-burst-particle f2">✦</span>
+                          <span class="feather-burst-particle f3">🪶</span>
+                          <span class="feather-burst-particle f4">✦</span>
+                          <span class="feather-burst-particle f5">🪶</span>
+                          <span class="feather-burst-particle f6">✦</span>
+                          <span class="feather-burst-particle f7">🪶</span>
+                          <span class="feather-burst-particle f8">✦</span>
+                        </div>
+                        <button type="submit" class="wax-seal-dispatch-btn embossed-crimson-seal hanging-seal" id="dispatch-seal-btn"
+                          aria-label="Dispatch Owl — Press to Seal and Send">
+                          <span class="wax-outer-rim"></span>
+                          <span class="wax-inner-bevel">
+                            <span class="wax-emblem-container" id="wax-emblem-container">
+                              <span class="wax-owl-sigil" aria-hidden="true">
+                                <svg viewBox="0 0 32 24" width="30" height="22" fill="#ffd700">
+                                  <path d="M 16 2 C 11 -3 2 -1 0 5 C 4 7 8 9 12 14 C 14 16 15 19 16 21 C 17 19 18 16 20 14 C 24 9 28 7 32 5 C 30 -1 21 -3 16 2 Z"></path>
+                                  <circle cx="13" cy="8" r="1.2" fill="#3a0505"></circle>
+                                  <circle cx="19" cy="8" r="1.2" fill="#3a0505"></circle>
+                                  <text x="16" y="19" font-size="6.5" font-family="serif" font-weight="bold" text-anchor="middle" fill="#fffdf0">D</text>
+                                </svg>
+                              </span>
+                              <span class="wax-seal-label" id="wax-seal-label">Dispatch Owl</span>
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div id="owl-status" class="validation-scroll-banner" style="display: none;" role="alert" aria-live="polite"></div>
+
+                    <div class="scroll-confirmation-area" id="owl-confirmation-container" style="display: none;">
+                      <div class="confirmation-header-emblem" aria-hidden="true">
+                        <span class="winged-seal-symbol">🪶</span>
+                      </div>
+                      <h4 class="confirmation-parchment-title">✦ Owl Dispatched! ✦</h4>
+                      <div class="flight-path-tracker" aria-hidden="true">
+                        <span class="flight-station">🏛️ Owlery Roost</span>
+                        <div class="flight-path-line">
+                          <span class="flight-path-owl-icon">🪶</span>
+                        </div>
+                        <span class="flight-station">✉️ Recipient's Desk</span>
+                      </div>
+                      <p class="status-text" id="confirmation-status-text">✦ Your owl has taken flight! Devanshi will
+                        reply to your return address soon.</p>
+                      <div class="scroll-reset-actions">
+                        <button type="button" class="mischief-managed-scroll-btn" id="owl-mischief-reset-btn"
+                          aria-label="Mischief managed — Seal &amp; Close Scroll">
+                          <span>Mischief managed — Seal &amp; Close Scroll ✦</span>
+                        </button>
+                        <button type="button" class="send-another-dispatch-link" id="owl-send-another-btn">
+                          <span>Inscribe another parchment dispatch</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Realistic Wooden Spindle Roller Bottom with Brass Endcaps -->
+                <div class="scroll-finial-bottom dimensional-spindle" aria-hidden="true">
+                  <span class="spindle-brass-cap left"></span>
+                  <span class="spindle-wood-cylinder"></span>
+                  <span class="spindle-brass-cap right"></span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="owl-channels">
-          <div class="owl-channel-item">
-            <span>✦ <strong>LinkedIn:</strong></span>
-            <a href="https://www.linkedin.com/in/devanshipatel1103" target="_blank"
-              rel="noopener noreferrer">/in/devanshipatel1103 ↗</a>
+          <!-- =========================================================================
+              COLUMN 3: POSTAL LEDGER & COUNTER
+              ========================================================================= -->
+          <div class="owl-column-wrapper col-ledger">
+            <div class="owl-column-super-header">
+              <span class="super-header-rule left" aria-hidden="true"></span>
+              <span class="super-header-text">POSTAL LEDGER &amp; COUNTER</span>
+              <span class="super-header-rule right" aria-hidden="true"></span>
+            </div>
+
+            <aside class="owl-ledger-column" aria-label="Postal Ledger &amp; Counter Shelving">
+              <div class="ledger-shelf-frame postal-shelving-unit">
+                <!-- Brass Corner Brackets -->
+                <span class="cabinet-bracket top-left" aria-hidden="true"></span>
+                <span class="cabinet-bracket top-right" aria-hidden="true"></span>
+                <span class="cabinet-bracket bottom-left" aria-hidden="true"></span>
+                <span class="cabinet-bracket bottom-right" aria-hidden="true"></span>
+
+                <!-- SHELF 1: TOP TIER — Hanging Rolled Banner & Vintage Mechanical Brass Counter Box -->
+                <div class="shelf-tier shelf-top">
+                  <!-- Rolled Parchment Header Banner -->
+                  <div class="shelf-banner-scroll">
+                    <span class="banner-pin left" aria-hidden="true"></span>
+                    <span class="banner-scroll-text" id="ledger-banner-text">
+                      ✦ 0 OWLS DISPATCHED ✦
+                    </span>
+                    <span class="banner-pin right" aria-hidden="true"></span>
+                  </div>
+
+                  <!-- Mechanical Brass Register Plate -->
+                  <div class="mechanical-counter-wrapper">
+                    <div class="brass-register-plate vintage-counter-box">
+                      <div class="plate-screw top-left" aria-hidden="true"></div>
+                      <div class="plate-screw top-right" aria-hidden="true"></div>
+                      <div class="plate-screw bottom-left" aria-hidden="true"></div>
+                      <div class="plate-screw bottom-right" aria-hidden="true"></div>
+
+                      <!-- 5 Rotating Number Wheels with 3D Tumbler Appearance -->
+                      <div class="counter-tumbler-row" aria-live="polite" aria-atomic="true">
+                        <div class="tumbler-digit-cell">
+                          <span class="tumbler-digit" id="digit-0">0</span>
+                          <span class="tumbler-reflection" aria-hidden="true"></span>
+                          <span class="tumbler-axle-shadow" aria-hidden="true"></span>
+                        </div>
+                        <div class="tumbler-digit-cell">
+                          <span class="tumbler-digit" id="digit-1">0</span>
+                          <span class="tumbler-reflection" aria-hidden="true"></span>
+                          <span class="tumbler-axle-shadow" aria-hidden="true"></span>
+                        </div>
+                        <div class="tumbler-digit-cell">
+                          <span class="tumbler-digit" id="digit-2">0</span>
+                          <span class="tumbler-reflection" aria-hidden="true"></span>
+                          <span class="tumbler-axle-shadow" aria-hidden="true"></span>
+                        </div>
+                        <div class="tumbler-digit-cell">
+                          <span class="tumbler-digit" id="digit-3">0</span>
+                          <span class="tumbler-reflection" aria-hidden="true"></span>
+                          <span class="tumbler-axle-shadow" aria-hidden="true"></span>
+                        </div>
+                        <div class="tumbler-digit-cell">
+                          <span class="tumbler-digit" id="digit-4">0</span>
+                          <span class="tumbler-reflection" aria-hidden="true"></span>
+                          <span class="tumbler-axle-shadow" aria-hidden="true"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SHELF 2: MIDDLE TIER — Session Dispatches Log or Themed Empty State -->
+                <div class="shelf-tier shelf-middle session-dispatches-shelf">
+                  <div class="shelf-plank-surface" aria-hidden="true"></div>
+                  <div class="ledger-shelf-header">
+                    <span class="ledger-shelf-title">RECENT DISPATCHES</span>
+                    <span class="ledger-shelf-badge">Current Session</span>
+                  </div>
+                  <div class="ledger-dispatches-container" id="session-dispatches-container">
+                    <div class="empty-ledger-state" id="empty-ledger-state">
+                      <span class="empty-ledger-icon" aria-hidden="true">🪶</span>
+                      <p class="empty-ledger-text">No owls have left the perch yet</p>
+                      <span class="empty-ledger-subtext">Dispatches will be recorded here</span>
+                    </div>
+                    <ul class="dispatches-log-list" id="session-dispatches-list" style="display: none;" aria-label="Session dispatches log"></ul>
+                  </div>
+                </div>
+
+                <!-- SHELF 3: BOTTOM TIER — Rolled Scroll, Inkwell, Feather Quill, Wax Sticks & Seal -->
+                <div class="shelf-tier shelf-bottom">
+                  <div class="shelf-plank-surface" aria-hidden="true"></div>
+                  <div class="ledger-inkwell-illustration" aria-hidden="true">
+                    <svg viewBox="0 0 240 85" class="desk-still-life-svg tactile-shelving-art"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="120" cy="80" rx="110" ry="4" fill="#000000" opacity="0.3" />
+                      <g>
+                        <rect x="14" y="52" width="76" height="16" rx="3" fill="#f8f1df" stroke="#a88544" stroke-width="1.2" />
+                        <ellipse cx="14" cy="60" rx="3.5" ry="8" fill="#e8d9be" stroke="#a88544" stroke-width="1.2" />
+                        <line x1="48" y1="52" x2="48" y2="68" stroke="#8c6239" stroke-width="2.8" />
+                        <line x1="47" y1="52" x2="49" y2="68" stroke="#d4af37" stroke-width="1" stroke-dasharray="2,2" />
+                        <circle cx="48" cy="60" r="2.5" fill="#7a4f23" />
+                      </g>
+                      <g transform="translate(108, 62)">
+                        <circle cx="10" cy="8" r="9" fill="#991919" stroke="#540a0a" stroke-width="0.8" />
+                        <circle cx="10" cy="8" r="7" fill="none" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="3,1" />
+                        <text x="10" y="11" font-size="7.5" font-family="serif" text-anchor="middle" fill="#fff3c4" font-weight="bold">D</text>
+                      </g>
+                      <g transform="translate(142, 38)">
+                        <rect x="14" y="10" width="16" height="5" rx="1.5" fill="#c9a44b" stroke="#7a5518" stroke-width="0.8" />
+                        <path d="M 8 36 L 12 15 L 32 15 L 36 36 Z" fill="#2d3748" stroke="#8c6d3f" stroke-width="1.2" />
+                        <path d="M 11 34 L 14 18 L 30 18 L 33 34 Z" fill="#090d14" />
+                        <path d="M 14 17 L 16 32" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.45" stroke-linecap="round" />
+                      </g>
+                      <g transform="translate(146, 2) rotate(22 14 48)">
+                        <line x1="14" y1="2" x2="14" y2="52" stroke="#e2d4bc" stroke-width="1.8" stroke-linecap="round" />
+                        <line x1="14" y1="46" x2="14" y2="52" stroke="#120c06" stroke-width="2" stroke-linecap="round" />
+                        <path d="M 14 4 C 6 12 4 26 14 42 C 14 42 14 4 14 4 Z" fill="#e8dec8" stroke="#a39274" stroke-width="0.8" />
+                        <path d="M 14 4 C 22 13 24 28 14 44 C 14 44 14 4 14 4 Z" fill="#d9cdb4" stroke="#a39274" stroke-width="0.8" />
+                        <line x1="14" y1="14" x2="7" y2="20" stroke="#a39274" stroke-width="0.7" opacity="0.6" />
+                        <line x1="14" y1="22" x2="6" y2="28" stroke="#a39274" stroke-width="0.7" opacity="0.6" />
+                        <line x1="14" y1="30" x2="8" y2="36" stroke="#a39274" stroke-width="0.7" opacity="0.6" />
+                        <line x1="14" y1="16" x2="21" y2="22" stroke="#a39274" stroke-width="0.7" opacity="0.6" />
+                        <line x1="14" y1="25" x2="22" y2="31" stroke="#a39274" stroke-width="0.7" opacity="0.6" />
+                      </g>
+                      <g transform="translate(182, 58)">
+                        <rect x="0" y="5" width="26" height="8" rx="1.2" fill="#991919" stroke="#540a0a" stroke-width="0.8" />
+                        <line x1="3" y1="7.5" x2="23" y2="7.5" stroke="#c42929" stroke-width="1" />
+                        <rect x="6" y="-3" width="26" height="7.5" rx="1.2" fill="#b01f1f" stroke="#540a0a" stroke-width="0.8" transform="rotate(14 18 0)" />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- BOTTOM PLAQUE: Direct Post & Portals with Screws and Star Sparkle -->
+                <div class="plaque-shelf-container">
+                  <div class="wooden-brass-plaque">
+                    <span class="plaque-screw top-left" aria-hidden="true"></span>
+                    <span class="plaque-screw top-right" aria-hidden="true"></span>
+                    <span class="plaque-screw bottom-left" aria-hidden="true"></span>
+                    <span class="plaque-screw bottom-right" aria-hidden="true"></span>
+
+                    <ul class="plaque-channel-list">
+                      <li class="plaque-channel-item">
+                        <span class="plaque-sigil" aria-hidden="true">✦</span>
+                        <div class="plaque-channel-content">
+                          <span class="plaque-label">LinkedIn</span>
+                          <a href="https://www.linkedin.com/in/devanshipatel1103" target="_blank" rel="noopener noreferrer"
+                            class="plaque-link">/in/devanshipatel1103</a>
+                        </div>
+                      </li>
+                      <li class="plaque-channel-item">
+                        <span class="plaque-sigil" aria-hidden="true">✦</span>
+                        <div class="plaque-channel-content">
+                          <span class="plaque-label">GitHub</span>
+                          <a href="https://github.com/Dpatel1103" target="_blank" rel="noopener noreferrer"
+                            class="plaque-link">/Dpatel1103</a>
+                        </div>
+                      </li>
+                      <li class="plaque-channel-item">
+                        <span class="plaque-sigil" aria-hidden="true">✦</span>
+                        <div class="plaque-channel-content">
+                          <span class="plaque-label">Direct Owl Post</span>
+                          <a href="mailto:devanshi1303@gmail.com" class="plaque-link plaque-email-link">devanshi1303@gmail.com</a>
+                        </div>
+                      </li>
+                    </ul>
+
+                    <div class="plaque-copy-action-row">
+                      <button type="button" class="plaque-copy-btn" id="plaque-copy-email-btn"
+                        aria-label="Copy email address devanshi1303@gmail.com to clipboard">
+                        <span>Copy Email Address</span>
+                      </button>
+                      <a href="mailto:devanshi1303@gmail.com?subject=Owl%20Post%20for%20Devanshi"
+                        class="plaque-mail-btn">Open Mail App ↗</a>
+                    </div>
+
+                    <!-- 4-Point Diamond Star Sparkle in Corner -->
+                    <span class="plaque-star-sparkle" aria-hidden="true">✦</span>
+                  </div>
+                </div>
+
+              </div>
+            </aside>
           </div>
-          <div class="owl-channel-item">
-            <span>✦ <strong>GitHub:</strong></span>
-            <a href="https://github.com/Dpatel1103" target="_blank" rel="noopener noreferrer">/Dpatel1103 ↗</a>
-          </div>
-          <div class="owl-channel-item">
-            <span>✦ <strong>Telephone:</strong></span>
-            <a href="tel:+919316661187">+91 93166 61187</a>
-          </div>
-          <div class="owl-channel-item">
-            <span>✦ <strong>Location:</strong></span>
-            <span>Gandhinagar, Gujarat, India</span>
-          </div>
+
+        </div>
+      </div>
+
+      <!-- Swooping Carrier Owl Silhouette -->
+      <div id="carrier-owl-flight-box" class="carrier-owl-flight-container snowy" style="display: none;"
+        aria-hidden="true">
+        <div class="carrier-owl-sprite sprite-snowy" id="carrier-owl-sprite">
+          <svg viewBox="0 0 120 70" class="carrier-owl-svg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 55 35 C 52 30 54 22 62 22 C 70 22 72 30 68 37 C 65 44 58 46 55 35 Z"></path>
+            <path d="M 68 28 L 73 30 L 68 32 Z"></path>
+            <path d="M 54 30 C 45 18 32 8 12 4 C 20 14 26 25 36 33 C 43 38 49 37 54 30 Z"></path>
+            <path d="M 64 28 C 76 16 94 8 114 6 C 104 15 96 26 82 34 C 74 38 68 36 64 28 Z"></path>
+            <path d="M 52 42 C 46 48 40 52 34 55 C 42 52 48 48 54 44 Z"></path>
+            <path d="M 60 44 L 62 50 L 66 49 L 64 43 Z"></path>
+            <rect x="58" y="49" width="16" height="10" rx="1.5" fill="#fdfaf3" stroke="currentColor" stroke-width="1.2">
+            </rect>
+            <line x1="58" y1="49" x2="66" y2="54" stroke="currentColor" stroke-width="0.9"></line>
+            <line x1="74" y1="49" x2="66" y2="54" stroke="currentColor" stroke-width="0.9"></line>
+            <circle cx="66" cy="54" r="2.2" fill="#a62626"></circle>
+          </svg>
         </div>
       </div>
     </section>
@@ -3518,7 +6381,9 @@
     <div class="folio-container footer-ink-surface" id="footer-ink-surface">
       <div class="footer-sigil">✦ ✦ ✦</div>
       <div class="footer-fan-note">
-        <button type="button" id="mischief-managed-btn" class="mischief-btn" title="Click to manage mischief" aria-label="Mischief managed — click to dissolve map ink">Mischief managed.</button> An unofficial, fan-inspired design.
+        <button type="button" id="mischief-managed-btn" class="mischief-btn" title="Click to manage mischief"
+          aria-label="Mischief managed — click to dissolve map ink">Mischief managed.</button> An unofficial,
+        fan-inspired design.
       </div>
       <div class="footer-colophon">
         Crafted & Inscribed by <strong>Devanshi Patel</strong> · Gandhinagar, Gujarat
@@ -3889,35 +6754,69 @@
       });
 
       /**
-       * Owl Post Form Toggle & Web3Forms Dispatch
-       */
-      /**
-       * Owl Post API Configuration:
-       * Points to local backend in development, Render backend in production.
-       * Replace 'https://owl-post-backend.onrender.com' with your actual Render service URL after deployment.
+       * Owl Post Desk & Perch: Owl Selection, Mechanical Counter & Dispatch
        */
       const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:3000'
         : 'https://owl-post-backend.onrender.com';
 
-      const owlCounterText = document.getElementById('owl-counter-text');
-      let currentOwlCount = null;
+      // --- 1. Mechanical Counter & Stats ---
+      const digit0 = document.getElementById('digit-0');
+      const digit1 = document.getElementById('digit-1');
+      const digit2 = document.getElementById('digit-2');
+      const digit3 = document.getElementById('digit-3');
+      const digit4 = document.getElementById('digit-4');
+      const ledgerBannerText = document.getElementById('ledger-banner-text');
 
-      function updateCounterDisplay(count) {
-        if (!owlCounterText) return;
-        if (typeof count !== 'number' || isNaN(count)) {
-          owlCounterText.textContent = 'Owls dispatched across the realm';
-          return;
+      // Initialize from localStorage (default 0)
+      let currentOwlCount = 0;
+      try {
+        const stored = localStorage.getItem('owl_post_dispatched_count');
+        if (stored !== null) {
+          const parsed = parseInt(stored, 10);
+          if (!isNaN(parsed) && parsed >= 0) currentOwlCount = parsed;
         }
-        if (count === 1) {
-          owlCounterText.textContent = '1 owl dispatched to date';
-        } else {
-          owlCounterText.textContent = `${count} owls dispatched to date`;
+      } catch (_) {}
+
+      function getDigits(num) {
+        const val = Math.max(0, parseInt(num, 10) || 0);
+        return val.toString().padStart(5, '0').slice(-5).split('');
+      }
+
+      function updateCounterDisplay(count, animate) {
+        if (typeof count !== 'number' || isNaN(count)) return;
+        currentOwlCount = count;
+        try {
+          localStorage.setItem('owl_post_dispatched_count', String(count));
+        } catch (_) {}
+
+        if (animate) {
+          const row = document.querySelector('.counter-tumbler-row');
+          if (row) {
+            row.classList.remove('tumbler-roll');
+            void row.offsetWidth; // trigger reflow
+            row.classList.add('tumbler-roll');
+            setTimeout(function () {
+              row.classList.remove('tumbler-roll');
+            }, 850);
+          }
+        }
+
+        const digits = getDigits(count);
+        if (digit0) digit0.textContent = digits[0];
+        if (digit1) digit1.textContent = digits[1];
+        if (digit2) digit2.textContent = digits[2];
+        if (digit3) digit3.textContent = digits[3];
+        if (digit4) digit4.textContent = digits[4];
+        if (ledgerBannerText) {
+          ledgerBannerText.textContent = `✦ ${count} ${count === 1 ? 'OWL' : 'OWLS'} DISPATCHED ✦`;
         }
       }
 
+      // Initial display
+      updateCounterDisplay(currentOwlCount, false);
+
       function fetchOwlStats() {
-        if (!owlCounterText) return;
         fetch(`${API_BASE_URL}/api/owl-post/stats`)
           .then(function (res) {
             if (!res.ok) throw new Error('Status route error');
@@ -3925,90 +6824,423 @@
           })
           .then(function (data) {
             if (data && typeof data.totalOwls === 'number') {
-              currentOwlCount = data.totalOwls;
-              updateCounterDisplay(currentOwlCount);
-            } else {
-              owlCounterText.textContent = 'Owls dispatched across the realm';
+              const highest = Math.max(currentOwlCount, data.totalOwls);
+              updateCounterDisplay(highest, false);
             }
           })
           .catch(function () {
-            // Quiet fallback if backend is spinning up on Render free tier or offline
-            owlCounterText.textContent = 'Owls dispatched across the realm';
+            // Quiet fallback: retain current count
           });
       }
 
       function incrementOwlCount() {
-        if (typeof currentOwlCount === 'number') {
-          currentOwlCount++;
-          updateCounterDisplay(currentOwlCount);
-        } else {
-          fetchOwlStats();
-        }
+        updateCounterDisplay(currentOwlCount + 1, true);
       }
 
-      // Fetch live stats on initial load
+      // Web Audio Procedural Wizarding Sound Engine
+      function playOwlSound(type) {
+        try {
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          const ctx = new AudioContextClass();
+          if (ctx.state === 'suspended') ctx.resume();
+          const now = ctx.currentTime;
+          if (type === 'perch') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(460, now);
+            osc.frequency.exponentialRampToValueAtTime(740, now + 0.14);
+            gain.gain.setValueAtTime(0.07, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.22);
+          } else if (type === 'scratch') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(310, now);
+            osc.frequency.setValueAtTime(420, now + 0.04);
+            gain.gain.setValueAtTime(0.012, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.08);
+          } else if (type === 'seal') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(140, now);
+            osc.frequency.exponentialRampToValueAtTime(45, now + 0.22);
+            gain.gain.setValueAtTime(0.18, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.32);
+
+            const osc2 = ctx.createOscillator();
+            const gain2 = ctx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(659.25, now + 0.05);
+            osc2.frequency.exponentialRampToValueAtTime(1318.5, now + 0.3);
+            gain2.gain.setValueAtTime(0.06, now + 0.05);
+            gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(now + 0.05);
+            osc2.stop(now + 0.42);
+          } else if (type === 'wing') {
+            const bufferSize = Math.floor(ctx.sampleRate * 0.45);
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+            const noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(340, now);
+            filter.frequency.exponentialRampToValueAtTime(860, now + 0.16);
+            filter.frequency.exponentialRampToValueAtTime(220, now + 0.42);
+            const gain = ctx.createGain();
+            gain.gain.setValueAtTime(0.09, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+            noise.start(now);
+            noise.stop(now + 0.42);
+          }
+        } catch (e) {}
+      }
+
+      // Ambient Canvas Starlight Dust & Firefly Embers
+      (function initOwlCanvas() {
+        const canvas = document.getElementById('owl-vfx-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = (canvas.width = canvas.parentElement ? canvas.parentElement.clientWidth : 1000);
+        let height = (canvas.height = canvas.parentElement ? canvas.parentElement.clientHeight : 600);
+
+        window.addEventListener('resize', function () {
+          if (canvas.parentElement) {
+            width = canvas.width = canvas.parentElement.clientWidth;
+            height = canvas.height = canvas.parentElement.clientHeight;
+          }
+        });
+
+        const particles = [];
+        for (let i = 0; i < 35; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 2.2 + 0.8,
+            speedX: (Math.random() - 0.5) * 0.35,
+            speedY: -Math.random() * 0.4 - 0.15,
+            opacity: Math.random() * 0.6 + 0.2,
+            maxOpacity: Math.random() * 0.5 + 0.4,
+            pulseSpeed: Math.random() * 0.02 + 0.01,
+            isSparkle: Math.random() > 0.6
+          });
+        }
+
+        let isVisible = true;
+        if ('IntersectionObserver' in window) {
+          const obs = new IntersectionObserver(function (entries) {
+            isVisible = entries[0].isIntersecting;
+          });
+          obs.observe(canvas);
+        }
+
+        function render() {
+          if (isVisible) {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+              const p = particles[i];
+              p.x += p.speedX;
+              p.y += p.speedY;
+              p.opacity += Math.sin(Date.now() * p.pulseSpeed * 0.05) * 0.01;
+
+              if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+              if (p.x < -10) p.x = width + 10;
+              if (p.x > width + 10) p.x = -10;
+
+              const clampedOpacity = Math.max(0.1, Math.min(p.maxOpacity, p.opacity));
+              ctx.save();
+              if (p.isSparkle) {
+                ctx.fillStyle = 'rgba(255, 235, 160, ' + clampedOpacity + ')';
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = '#d4af37';
+                ctx.beginPath();
+                const r = p.size * 1.5;
+                ctx.moveTo(p.x, p.y - r);
+                ctx.lineTo(p.x + r * 0.3, p.y - r * 0.3);
+                ctx.lineTo(p.x + r, p.y);
+                ctx.lineTo(p.x + r * 0.3, p.y + r * 0.3);
+                ctx.lineTo(p.x, p.y + r);
+                ctx.lineTo(p.x - r * 0.3, p.y + r * 0.3);
+                ctx.lineTo(p.x - r, p.y);
+                ctx.lineTo(p.x - r * 0.3, p.y - r * 0.3);
+                ctx.closePath();
+                ctx.fill();
+              } else {
+                const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+                grad.addColorStop(0, 'rgba(255, 220, 120, ' + clampedOpacity + ')');
+                grad.addColorStop(0.5, 'rgba(212, 175, 55, ' + (clampedOpacity * 0.6) + ')');
+                grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+                ctx.fill();
+              }
+              ctx.restore();
+            }
+          }
+          requestAnimationFrame(render);
+        }
+        render();
+      })();
+
       fetchOwlStats();
 
-      const owlToggleBtn = document.getElementById('owl-toggle-btn');
-      const owlScrollContainer = document.getElementById('owl-scroll-container');
-      const owlPostForm = document.getElementById('owl-post-form');
-      const owlFormFields = document.getElementById('owl-form-fields');
-      const owlSubmitBtn = document.getElementById('owl-submit-btn');
-      const owlStatusMsg = document.getElementById('owl-status');
+      // --- 2. Interactive Owl Selection (Roost Cabinet) ---
+      const roostCards = Array.from(document.querySelectorAll('.roost-card'));
+      const assignedOwlLabel = document.getElementById('assigned-owl-label');
+      const selectedOwlInput = document.getElementById('selected-owl-input');
 
-      if (owlToggleBtn && owlScrollContainer) {
-        owlToggleBtn.addEventListener('click', function () {
-          const isCurrentlyExpanded = owlToggleBtn.getAttribute('aria-expanded') === 'true';
-          const nextExpanded = !isCurrentlyExpanded;
-          owlToggleBtn.setAttribute('aria-expanded', String(nextExpanded));
-          owlScrollContainer.setAttribute('aria-hidden', String(!nextExpanded));
-          owlScrollContainer.classList.toggle('is-expanded', nextExpanded);
-
-          if (nextExpanded) {
-            setTimeout(function () {
-              const firstInput = owlScrollContainer.querySelector('input:not([type="hidden"])');
-              if (firstInput) firstInput.focus();
-            }, 300);
+      function selectOwl(card) {
+        if (!card) return;
+        roostCards.forEach(function (c) {
+          c.classList.remove('is-selected');
+          c.setAttribute('aria-checked', 'false');
+          c.setAttribute('tabindex', '-1');
+          const sealWrap = c.querySelector('.perch-inline-seal-wrap');
+          if (sealWrap) {
+            sealWrap.innerHTML = '<span class="owl-brass-ring-badge unselected" aria-hidden="true"><span class="brass-ring-circle"></span></span>';
           }
+          const placardStatus = c.querySelector('.placard-owl-status');
+          if (placardStatus) {
+            placardStatus.classList.remove('is-selected');
+            placardStatus.textContent = 'Ready on Perch';
+          }
+        });
+
+        card.classList.add('is-selected');
+        card.setAttribute('aria-checked', 'true');
+        card.setAttribute('tabindex', '0');
+        const activeSealWrap = card.querySelector('.perch-inline-seal-wrap');
+        if (activeSealWrap) {
+          activeSealWrap.innerHTML = '<span class="owl-wax-badge selected" aria-label="Currently Selected"><span class="wax-badge-rim"></span><span class="wax-badge-text">SELECTED</span></span>';
+        }
+        const activePlacardStatus = card.querySelector('.placard-owl-status');
+        if (activePlacardStatus) {
+          activePlacardStatus.classList.add('is-selected');
+          activePlacardStatus.textContent = 'SELECTED';
+        }
+
+        const owlName = card.getAttribute('data-owl-name') || 'Snowy Owl';
+        const owlTitle = card.getAttribute('data-owl-title') || 'Priority Delivery';
+        const owlId = card.getAttribute('data-owl-id') || 'snowy';
+        if (assignedOwlLabel) {
+          assignedOwlLabel.textContent = `${owlName} (${owlTitle})`;
+        }
+        if (selectedOwlInput) {
+          selectedOwlInput.value = owlName;
+        }
+
+        const carrierOwlBox = document.getElementById('carrier-owl-flight-box');
+        const carrierOwlSprite = document.getElementById('carrier-owl-sprite');
+        if (carrierOwlBox) {
+          carrierOwlBox.className = 'carrier-owl-flight-container ' + owlId;
+        }
+        if (carrierOwlSprite) {
+          carrierOwlSprite.className = 'carrier-owl-sprite sprite-' + owlId;
+        }
+
+        playOwlSound('perch');
+      }
+
+      roostCards.forEach(function (card, index) {
+        card.addEventListener('click', function () {
+          selectOwl(card);
+        });
+
+        card.addEventListener('keydown', function (e) {
+          let nextIndex = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextIndex = (index + 1) % roostCards.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            nextIndex = (index - 1 + roostCards.length) % roostCards.length;
+          } else if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            selectOwl(card);
+            return;
+          }
+          if (nextIndex !== null) {
+            roostCards[nextIndex].focus();
+            selectOwl(roostCards[nextIndex]);
+          }
+        });
+      });
+
+      // --- 3. Parchment Letter Form Submission & Wax Seal Button ---
+      const owlPostForm = document.getElementById('owl-post-form');
+      const owlFormFields = document.getElementById('owl-form-fields-container');
+      const dispatchSealBtn = document.getElementById('dispatch-seal-btn');
+      const featherBurstContainer = document.getElementById('feather-burst-container');
+      const carrierOwlBox = document.getElementById('carrier-owl-flight-box');
+      const owlStatus = document.getElementById('owl-status');
+      const owlConfirmation = document.getElementById('owl-confirmation-container');
+      const confirmationStatusText = document.getElementById('confirmation-status-text');
+      const mischiefResetBtn = document.getElementById('owl-mischief-reset-btn');
+      const sendAnotherBtn = document.getElementById('owl-send-another-btn');
+      const waxSealLabel = document.getElementById('wax-seal-label');
+      const owlMessageInput = document.getElementById('owl-message');
+      const charCounter = document.getElementById('char-counter');
+
+      // Live character counter
+      if (owlMessageInput && charCounter) {
+        owlMessageInput.addEventListener('input', function () {
+          charCounter.textContent = `${this.value.length} / 500 characters`;
         });
       }
 
-      if (owlPostForm && owlSubmitBtn && owlStatusMsg) {
+      // Functional session dispatches logger
+      function logSessionDispatch(owlName, senderName) {
+        const emptyState = document.getElementById('empty-ledger-state');
+        const list = document.getElementById('session-dispatches-list');
+        if (!list) return;
+        if (emptyState) emptyState.style.display = 'none';
+        list.style.display = 'flex';
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const li = document.createElement('li');
+        li.className = 'dispatch-log-item';
+        li.innerHTML = `
+          <div class="dispatch-log-header">
+            <span class="dispatch-owl-name">✦ ${owlName || 'Snowy Owl'}</span>
+            <span class="dispatch-time">${timeStr}</span>
+          </div>
+          <div class="dispatch-log-recipient">
+            <span>To: ${senderName || 'Anonymous Traveler'}</span>
+            <span class="dispatch-badge-status">Dispatched</span>
+          </div>
+        `;
+        list.insertBefore(li, list.firstChild);
+      }
+
+      if (owlPostForm && dispatchSealBtn) {
         owlPostForm.addEventListener('submit', function (e) {
           e.preventDefault();
 
-          if (!owlPostForm.checkValidity()) {
-            owlPostForm.reportValidity();
+          const nameInput = document.getElementById('owl-sender-name');
+          const emailInput = document.getElementById('owl-sender-email');
+          const msgInput = document.getElementById('owl-message');
+          const nameVal = (nameInput ? nameInput.value : '').trim();
+          const emailVal = (emailInput ? emailInput.value : '').trim();
+          const msgVal = (msgInput ? msgInput.value : '').trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          function showValidationError(text) {
+            if (owlStatus) {
+              owlStatus.style.display = 'block';
+              owlStatus.className = 'validation-scroll-banner';
+              owlStatus.textContent = text;
+              owlStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            playOwlSound('scratch');
+          }
+
+          if (!nameVal || nameVal.length < 2) {
+            showValidationError('Please inscribe your name or guild upon the parchment.');
+            if (nameInput) nameInput.focus();
+            return;
+          }
+          if (!emailVal || !emailRegex.test(emailVal)) {
+            showValidationError('The owl needs a return address.');
+            if (emailInput) emailInput.focus();
+            return;
+          }
+          if (!msgVal || msgVal.length < 10) {
+            showValidationError('Your correspondence must contain at least 10 runes of text.');
+            if (msgInput) msgInput.focus();
             return;
           }
 
-          const originalBtnHTML = owlSubmitBtn.innerHTML;
-          owlSubmitBtn.disabled = true;
-          owlSubmitBtn.textContent = 'Dispatching owl...';
-          owlStatusMsg.textContent = '';
-          owlStatusMsg.classList.remove('has-success');
+          if (owlStatus) {
+            owlStatus.style.display = 'none';
+            owlStatus.textContent = '';
+          }
 
           const formData = new FormData(owlPostForm);
           const formObject = Object.fromEntries(formData.entries());
+          const chosenOwl = formObject.owlType || 'Snowy Owl';
 
-          // Spam Shield: Honeypot check
+          dispatchSealBtn.disabled = true;
+          dispatchSealBtn.classList.add('is-pressing');
+          if (waxSealLabel) waxSealLabel.textContent = 'Taking Flight…';
+          playOwlSound('seal');
+          setTimeout(function () {
+            playOwlSound('wing');
+          }, 350);
+
+          const shockwaveRing = document.getElementById('wax-seal-shockwave-ring');
+          if (shockwaveRing) {
+            shockwaveRing.style.display = 'block';
+            setTimeout(function () {
+              shockwaveRing.style.display = 'none';
+            }, 700);
+          }
+
+          if (featherBurstContainer) {
+            featherBurstContainer.style.display = 'block';
+          }
+          if (carrierOwlBox) {
+            carrierOwlBox.style.display = 'block';
+            setTimeout(function () {
+              carrierOwlBox.style.display = 'none';
+            }, 3400);
+          }
+
+          // Honeypot check
           if (formObject.botcheck) {
-            handleSuccess();
+            setTimeout(handleSuccess, 500);
             return;
           }
 
-          const jsonBody = JSON.stringify(formObject);
-
           function handleSuccess() {
             if (owlFormFields) owlFormFields.style.display = 'none';
-            owlStatusMsg.textContent = '✦ Your owl has taken flight! Devanshi will reply to your return address soon.';
-            owlStatusMsg.classList.add('has-success');
+            if (owlConfirmation) owlConfirmation.style.display = 'block';
+            if (confirmationStatusText) {
+              confirmationStatusText.textContent = `✦ Your ${chosenOwl} has taken flight! Devanshi will reply to your return address soon.`;
+            }
+            incrementOwlCount();
+            logSessionDispatch(chosenOwl, nameVal);
+            dispatchSealBtn.classList.remove('is-pressing');
+            if (waxSealLabel) waxSealLabel.textContent = 'Dispatch Owl';
           }
 
-          function handleError(errorMsg) {
-            owlSubmitBtn.disabled = false;
-            owlSubmitBtn.innerHTML = originalBtnHTML;
-            owlStatusMsg.textContent = errorMsg || 'The owl encountered a storm. Please use the fallback link below.';
+          function handleError(msg) {
+            dispatchSealBtn.disabled = false;
+            dispatchSealBtn.classList.remove('is-pressing');
+            if (waxSealLabel) waxSealLabel.textContent = 'Dispatch Owl';
+            if (featherBurstContainer) {
+              featherBurstContainer.style.display = 'none';
+            }
+            if (owlStatus) {
+              owlStatus.style.display = 'block';
+              owlStatus.className = 'validation-scroll-banner';
+              owlStatus.textContent = msg || 'The owl encountered a fierce storm. Please try again or reach out directly.';
+            }
           }
 
           fetch(`${API_BASE_URL}/api/owl-post`, {
@@ -4017,7 +7249,7 @@
               'Content-Type': 'application/json',
               'Accept': 'application/json'
             },
-            body: jsonBody
+            body: JSON.stringify(formObject)
           })
             .then(function (response) {
               return response.json().then(function (data) {
@@ -4028,41 +7260,56 @@
             })
             .then(function (result) {
               if (result.ok && result.data && result.data.success) {
-                handleSuccess();
-                incrementOwlCount();
+                setTimeout(handleSuccess, 500);
               } else {
                 const errorMsg = (result.data && result.data.message)
                   ? result.data.message
-                  : 'The owl encountered a storm. Please use the fallback link below.';
+                  : 'The owl encountered a storm. Please reach out via direct channels.';
                 handleError(errorMsg);
               }
             })
             .catch(function () {
-              // Graceful network fallback
-              handleError('The owl could not complete its journey across the network. Please use the direct mail link below.');
+              handleError('The owl could not complete its journey across the network. Please reach out via direct channels.');
             });
-
         });
       }
 
-      /**
-       * Subtle Clickable Email Copy Button
-       * Copies devanshi1303@gmail.com and changes label to 'Copied to parchment ✓' for 2 seconds
-       */
-      const copyEmailBtn = document.getElementById('copy-email-btn');
-      const copyText = document.getElementById('copy-text');
-      if (copyEmailBtn && copyText) {
+      function resetForm() {
+        if (owlPostForm) owlPostForm.reset();
+        if (owlFormFields) owlFormFields.style.display = 'block';
+        if (owlConfirmation) owlConfirmation.style.display = 'none';
+        if (featherBurstContainer) featherBurstContainer.style.display = 'none';
+        if (carrierOwlBox) carrierOwlBox.style.display = 'none';
+        if (owlStatus) owlStatus.style.display = 'none';
+        if (charCounter) charCounter.textContent = '0 / 500 characters';
+        if (dispatchSealBtn) {
+          dispatchSealBtn.disabled = false;
+          dispatchSealBtn.classList.remove('is-pressing');
+        }
+        if (waxSealLabel) waxSealLabel.textContent = 'Dispatch Owl';
+        // Restore default Snowy owl selection
+        const snowyCard = document.getElementById('owl-perch-snowy');
+        if (snowyCard) selectOwl(snowyCard);
+      }
+
+      if (mischiefResetBtn) mischiefResetBtn.addEventListener('click', resetForm);
+      if (sendAnotherBtn) sendAnotherBtn.addEventListener('click', resetForm);
+
+      // --- 4. Postal Ledger Direct Plaque Copy Email Button ---
+      const plaqueCopyBtn = document.getElementById('plaque-copy-email-btn');
+      if (plaqueCopyBtn) {
         let copyTimeout = null;
-        copyEmailBtn.addEventListener('click', function () {
+        plaqueCopyBtn.addEventListener('click', function () {
           const email = 'devanshi1303@gmail.com';
+          const span = plaqueCopyBtn.querySelector('span');
 
           function onSuccess() {
-            copyText.textContent = 'Copied to parchment ✓';
-            copyEmailBtn.classList.add('copied');
+            if (span) span.textContent = 'Copied to parchment ✓';
+            plaqueCopyBtn.classList.add('copied');
             clearTimeout(copyTimeout);
             copyTimeout = setTimeout(function () {
-              copyText.textContent = 'devanshi1303@gmail.com';
-              copyEmailBtn.classList.remove('copied');
+              if (span) span.textContent = 'Copy Email Address';
+              plaqueCopyBtn.classList.remove('copied');
             }, 2000);
           }
 

@@ -47,7 +47,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, message, botcheck } = body;
+    const { name, email, message, owlType, botcheck } = body;
+    const cleanOwlType = typeof owlType === 'string' && owlType.trim() ? owlType.trim() : 'Barn Owl';
 
     // Honeypot spam check
     if (botcheck) {
@@ -100,7 +101,8 @@ export async function POST(req: NextRequest) {
     const cleanData = {
       name: name.trim(),
       email: email.trim().toLowerCase(),
-      message: message.trim()
+      message: message.trim(),
+      owlType: cleanOwlType
     };
 
     const savedRecord = await saveMessage(cleanData);
@@ -110,6 +112,7 @@ export async function POST(req: NextRequest) {
       name: cleanData.name,
       email: cleanData.email,
       message: cleanData.message,
+      owlType: cleanOwlType,
       id: savedRecord.id,
       createdAt: savedRecord.created_at
     }).catch(emailErr => {

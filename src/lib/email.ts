@@ -22,12 +22,14 @@ export async function sendOwlNotification({
   name,
   email,
   message,
+  owlType,
   id,
   createdAt
 }: {
   name: string;
   email: string;
   message: string;
+  owlType?: string;
   id?: number | string;
   createdAt?: string;
 }) {
@@ -42,12 +44,13 @@ export async function sendOwlNotification({
 
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
+  const safeOwlType = escapeHtml(owlType || 'Barn Owl');
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
   const dispatchDate = createdAt
     ? new Date(createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST'
     : new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
 
-  const subject = `✦ New Owl Post: ${name} dispatched a message ✦`;
+  const subject = `✦ New Owl Post: ${name} via ${safeOwlType} ✦`;
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -157,6 +160,10 @@ export async function sendOwlNotification({
           <tr>
             <td class="meta-label">Sender:</td>
             <td><strong>${safeName}</strong></td>
+          </tr>
+          <tr>
+            <td class="meta-label">Carrier Owl:</td>
+            <td><strong>${safeOwlType}</strong></td>
           </tr>
           <tr>
             <td class="meta-label">Return Owl:</td>

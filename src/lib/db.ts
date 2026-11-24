@@ -10,6 +10,7 @@ const inMemoryStore: Array<{
   name: string;
   email: string;
   message: string;
+  owl_type?: string;
   created_at: string;
 }> = [];
 
@@ -53,17 +54,20 @@ function getDatabase() {
 export async function saveMessage({
   name,
   email,
-  message
+  message,
+  owlType
 }: {
   name: string;
   email: string;
   message: string;
+  owlType?: string;
 }) {
   getDatabase();
 
   const cleanName = String(name || '').trim();
   const cleanEmail = String(email || '').trim().toLowerCase();
   const cleanMessage = String(message || '').trim();
+  const cleanOwlType = String(owlType || 'Barn Owl').trim();
 
   // Mode 1: Direct PostgreSQL Connection
   if (dbMode === 'postgres' && pgPool) {
@@ -140,6 +144,7 @@ export async function saveMessage({
     name: cleanName,
     email: cleanEmail,
     message: cleanMessage,
+    owl_type: cleanOwlType,
     created_at: new Date().toISOString()
   };
   inMemoryStore.push(memoryRecord);
